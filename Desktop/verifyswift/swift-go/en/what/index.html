@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en-GB" dir="ltr" class="scroll-smooth">
+  
+<!-- Mirrored from www.swift.com/swift-go/en/what/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Oct 2023 14:21:57 GMT -->
+<head>
+    <title>
+      Swift Go: Simpler low-value international payments
+    </title>
+    <meta charset="UTF-8"/>
+    
+      <meta name="description" content="We’re changing the way consumers and small business owners make international payments. Learn how."/>
+    
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../themes/custom/swift_theme/images/favicon/apple-touch-icon.png"> <link rel="icon" type="image/png" sizes="32x32" href="../../../themes/custom/swift_theme/images/favicon/favicon-32x32.png"> <link rel="manifest" href="../../../themes/custom/swift_theme/images/favicon/site.html"> <link rel="mask-icon" href="../../../themes/custom/swift_theme/images/favicon/safari-pinned-tab.svg" color="#00264C"> <link rel="shortcut icon" href="../../../themes/custom/swift_theme/images/favicon/favicon.ico">
+    <link rel="stylesheet" href="../../css/styles6683.css?v=1689579982341"/>
+    
+    <script src="../../js/scripts6683.js?v=1689579982341"></script>
+    <script defer src="../../js/alpine-intersect6683.js?v=1689579982341"></script>
+    <script defer src="../../js/alpine6683.js?v=1689579982341"></script>
+    <script src="../../js/vimeo-player6683.js?v=1689579982341"></script>
+    <script src="../../js/embla-carousel6683.js?v=1689579982341"></script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0];var j=d.createElement(s);var dl=l!='dataLayer'?'&l='+l:'';j.src='../../../../www.googletagmanager.com/gtm5445.html?id='+i+dl+'';j.async=true;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WSFWKK');</script>
+    <!-- End Google Tag Manager -->
+
+  </head>
+  <body x-data="init()" x-init="getScrollWidth();fadeInOnLoad();initMomentum();scrollLinks();" @resize.window="resetBody();">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WSFWKK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- End Google Tag Manager (noscript) -->
+    <div x-ref="nav" id="non-momentum-content" class="nav-wrap" 
+  x-data="{ 
+    sticky: false, 
+    stickyTrigger: window.innerHeight - $refs.nav.offsetHeight, 
+    offscreen: false,
+    offscreenTrigger: $refs.nav.offsetHeight,
+    fixable: false,
+    fixableTrigger: window.innerHeight * 0.5,
+    burgerOpen: false,
+  }" 
+  :class="{ 'sticky' : sticky, 'offscreen' : offscreen, 'fixable' : fixable }"
+  @scroll.window="
+    sticky = (window.pageYOffset > stickyTrigger) ? true : false; 
+    offscreen = (window.pageYOffset > offscreenTrigger) ? true : false; 
+    fixable = (window.pageYOffset > fixableTrigger) ? true : false;">
+  <header class="w-12col main-nav">
+    <div class="md:grid grid-cols-12 gap-2gap">
+      <div class="colspan-12 mb-10 md:col-span-3 flex justify-start items-center">
+        <a class="w-200 md:w-150 lg:w-200 2xl:w-180"><svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" class="object-contain" width="100%" height="100%" viewBox="0 0 269.9 41.1" xml:space="preserve">
+        <g>
+        <g>
+          <path fill="currentColor" d="M20.4,0.6c-3.9,0-7.8,1.2-11,3.4C6.1,6.2,3.5,9.3,2,13c-1.5,3.7-1.9,7.7-1.1,11.6
+            c0.8,3.9,2.7,7.4,5.4,10.2c2.8,2.8,6.3,4.7,10.2,5.5s7.8,0.4,11.5-1.1c3.6-1.5,6.7-4.1,8.9-7.4c2.2-3.3,3.3-7.2,3.3-11.1
+            c0-5.3-2.1-10.4-5.8-14.1C30.7,2.8,25.7,0.6,20.4,0.6L20.4,0.6z M2,21.4h6.1c0,2.8,0.5,5.5,1.3,8.2H4.2C2.8,27,2.1,24.2,2,21.4
+            L2,21.4z M21.1,10.3V2.1c3.5,0.4,6.5,3.5,8.3,8.2H21.1z M29.9,11.7c0.8,2.7,1.3,5.4,1.3,8.2H21.1v-8.2H29.9z M19.7,2.1v8.2h-8.3
+            C13.2,5.7,16.2,2.5,19.7,2.1z M19.7,11.7v8.2H9.5c0-2.8,0.5-5.5,1.3-8.2L19.7,11.7z M8.1,19.9H2c0.1-2.9,0.9-5.7,2.3-8.2h5.1
+            C8.5,14.4,8.1,17.1,8.1,19.9L8.1,19.9z M9.5,21.4h10.2v8.2h-8.8C10,26.9,9.5,24.2,9.5,21.4L9.5,21.4z M19.7,31v8.2
+            c-3.5-0.4-6.5-3.5-8.3-8.2H19.7z M21.1,39.2V31h8.3C27.6,35.6,24.6,38.8,21.1,39.2L21.1,39.2z M21.1,29.6v-8.2h10.2
+            c0,2.8-0.5,5.6-1.3,8.2H21.1z M32.7,21.4h6.1c-0.1,2.9-0.9,5.7-2.3,8.2h-5.1C32.2,26.9,32.7,24.1,32.7,21.4L32.7,21.4z M32.7,19.9
+            c0-2.8-0.5-5.5-1.3-8.2h5.1c1.4,2.5,2.2,5.3,2.3,8.2L32.7,19.9z M35.7,10.3h-4.7c-0.5-1.3-1-2.5-1.7-3.6c-0.8-1.3-1.8-2.5-2.9-3.6
+            C30.1,4.4,33.4,6.9,35.7,10.3L35.7,10.3z M14.5,3.1c-1.1,1-2.1,2.2-2.9,3.6c-0.7,1.2-1.3,2.4-1.7,3.6H5.1
+            C7.4,6.9,10.6,4.4,14.5,3.1L14.5,3.1z M5.1,31h4.7c0.5,1.3,1,2.5,1.7,3.6c0.8,1.3,1.8,2.5,2.9,3.6C10.6,36.9,7.4,34.4,5.1,31
+            L5.1,31z M26.3,38.2c1.1-1,2.1-2.2,2.9-3.6c0.7-1.2,1.3-2.4,1.7-3.6h4.7C33.4,34.4,30.1,36.9,26.3,38.2L26.3,38.2z"/>
+          <path fill="currentColor" d="M94.9,15h-3.3v17.9h3.3V15z"/>
+          <path fill="currentColor" d="M93.3,12.5c1.2,0,2.1-1,2.1-2.2c0-1.2-1-2.2-2.1-2.2c-1.2,0-2.1,1-2.1,2.2C91.1,11.5,92.1,12.5,93.3,12.5z
+            "/>
+          <path fill="currentColor" d="M101.4,19.7h4.7v-2.9h-4.7v-2.6c0-1.8,1.3-2.9,3.4-2.9h1.3V8.2h-1.3c-4.1,0-6.7,2.4-6.7,6.1v18.6h3.3V19.7
+            z"/>
+          <path fill="currentColor" d="M115,32.9h1.3v-3.2H115c-2.2,0-3.4-1-3.4-2.9v-7.1h4.7v-2.9h-4.7V8.2h-3.3v18.6
+            C108.3,30.5,110.9,32.8,115,32.9z"/>
+          <path fill="currentColor" d="M74,32.9l3.3-13.4l3.3,13.4h3.7l5-17.9h-3.4l-3.4,13.7L79.1,15h-3.5l-3.3,13.7L68.8,15h-3.4l5,17.9H74z"/>
+          <path fill="currentColor" d="M56.5,29.9c-2.8,0-5.1-1.7-5.9-3.5l-3,1.6c1.4,3.2,4.8,5.2,8.8,5.2c5.1,0,8.6-2.9,8.6-7.1
+            c0-9.6-13.6-5.5-13.6-11.2c0-2.4,2.1-3.6,5-3.6c2.3,0,4.4,1.2,5.6,2.9l2.5-2.1c-1.7-2.4-4.8-3.9-8.2-3.9c-5.2,0-8.5,3.2-8.4,6.7
+            c0,9.3,13.6,4.8,13.6,11.2C61.6,28.4,59.6,29.9,56.5,29.9z"/>
+        </g>
+      </g>
+      <rect x="134.7" y="0.6" fill="currentColor" width="1.4" height="40"/>
+      <g>
+      <path d="M155.5,26c0.2,3.3,2.8,5.5,6.6,5.5c3.6,0,6-1.7,6-4.6c0-3.3-3.1-4-6.7-4.6c-3.6-0.6-7.2-1.6-7.2-5.8c0-3.8,3-6.2,7.5-6.2
+          c4.6,0,7.5,2.5,7.8,6.4h-1.8c-0.4-2.9-2.7-4.8-6-4.8c-3.5,0-5.8,1.6-5.8,4.5c0,3.2,3,3.8,6.4,4.4c3.7,0.6,7.5,1.7,7.5,6
+          c0,3.8-3.1,6.3-7.8,6.3c-5,0-8.1-2.8-8.3-7.1H155.5z"/>
+        <path d="M171.4,16.6h1.7l4.7,14.3l4.9-14.3h1.5l4.6,14.3l5-14.3h1.7l-5.8,16.2h-1.8l-4.6-13.6l-4.8,13.6h-1.8L171.4,16.6z"/>
+        <path d="M197.5,12.1c0-0.7,0.5-1.2,1.2-1.2s1.2,0.5,1.2,1.2s-0.5,1.2-1.2,1.2S197.5,12.7,197.5,12.1z M197.9,16.6h1.6v16.2h-1.6
+          V16.6z"/>
+        <path d="M219.4,31.3v1.5h-2.5c-2.8,0-3.8-1.2-3.8-3.8V18.1h-6.9v14.7h-1.6V18.1h-3.1v-1.5h3.1v-2.4c0-2.6,1.1-3.8,3.8-3.8h2.3V12
+          h-2.2c-1.6,0-2.2,0.6-2.2,2.2v2.4h6.9v-4.5h1.6v4.5h4.3v1.5h-4.3V29c0,1.7,0.6,2.3,2.3,2.3H219.4z"/>
+        <path d="M230.1,21.7c0-6.7,4-11.4,10.4-11.4c4.7,0,8.2,2.6,9.1,7.1h-1.9c-0.9-3.5-3.6-5.5-7.3-5.5c-5.2,0-8.5,4.1-8.5,9.8
+          c0,5.8,3.3,9.8,8.4,9.8c5,0,8-3.3,8-7.7v-1h-7.4v-1.6h9v11.7h-1.5l-0.1-5c-1,2.7-3.6,5.2-8.1,5.2C234.2,33,230.1,28.4,230.1,21.7z"
+          />
+        <path d="M253.5,24.7c0-4.9,3.2-8.3,7.8-8.3c4.6,0,7.8,3.4,7.8,8.3c0,4.9-3.2,8.3-7.8,8.3C256.7,33,253.5,29.7,253.5,24.7z
+           M267.4,24.7c0-4-2.5-6.8-6.1-6.8c-3.6,0-6.1,2.8-6.1,6.8c0,4,2.5,6.8,6.1,6.8C264.9,31.6,267.4,28.8,267.4,24.7z"/>
+      </g>
+    <g id="Layer_2">
+    <a href="../../../index.html">
+    <rect fill="transparent" width="116.3" height="40.6"/>
+    </a>
+    <a href="index.html">
+      <rect x="153.7" y="0.6" fill="transparent" width="116.2" height="40"/>
+      </a>
+    </g>
+    </svg></a>
+
+        <div class="burger-time mb-5 md:hidden ml-auto mr-10" x-show="fixable">
+          <input class="menu-trigger hidden" id="togglenav" type="checkbox"/>
+          <label class="burger-wrapper" @click="burgerOpen = !burgerOpen" for="togglenav">
+            <div class="hamburger"></div>
+          </label>
+        </div>
+
+      </div>
+
+      <div class="py-25 md:py-0 col-span-12 md:col-span-9 md:flex flex-col justify-start items-center md:flex-row md:justify-end md:items-end fixed-nav overflow-hidden h-auto md:max-h-100" :class="{ 'max-h-0 py-0': burgerOpen === false }">
+        <div class="flex flex-col w-full items-center md:flex-row md:justify-end md:items-center text-intro md:text-nav" x-show="fixable">
+          
+  
+    <a class="text active">
+      <span class="wrap">
+        <span>What’s Swift Go?</span>
+        <span>What’s Swift Go?</span>
+      </span>
+    </a>
+  
+
+  
+    <a href="../how/index.html" class="text">
+      <span class="wrap">
+        <span>How it works</span>
+        <span>How it works</span>
+      </span>
+    </a>
+  
+
+  
+    <a href="../start/index.html" class="text">
+      <span class="wrap">
+        <span>Get started</span>
+        <span>Get started</span>
+      </span>
+    </a>
+  
+
+  
+    <a href="../insights/index.html" class="text">
+      <span class="wrap">
+        <span>Insights &amp; resources</span>
+        <span>Insights &amp; resources</span>
+      </span>
+    </a>
+  
+
+        </div>
+        <div class="flex flex-col w-full items-center md:w-auto md:flex-row md:justify-end md:items-center whitespace-nowrap" x-show="fixable">
+          <a href="../../../contact-us/sales/get-touch-swift.html" class="btn text-cta md:text-sm highlight">Talk to your account manager</a>
+        </div>
+
+        
+      </div>
+    </div>
+
+  </header>
+</div>
+    <div id="momentum-content">
+      
+  <section id="sectionHead" class="section-head relative flex items-center justify-between h-screen overflow-hidden bg-peppermint"
+    x-data="{ play: true }" 
+    x-init="$watch('play', (value) => {
+                if (value) {
+                    $refs.video.play()
+                } else {
+                    $refs.video.pause()
+                }
+            })">
+    <video x-ref="video" playsinline loop autoplay muted class="absolute object-cover h-screen w-auto md:min-w-full md:max-w-none md:min-h-full home-video">
+      <source
+      src="../../assets/video/swift_go_wide_cam_03.mp4"
+      type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+    <div class="flex flex-col justify-between md:grid md:grid-cols-12 gap-2gap h-screen z-10">
+      <div class="col-span-12 md:col-span-3 flex flex-col justify-center md:float-border-right md:indented">
+        <div class="section-nav w-full mt-150 md:mt-0">
+          
+  
+    <a class="text active">
+      <span class="wrap">
+        <span>What’s Swift Go?</span>
+        <span>What’s Swift Go?</span>
+      </span>
+    </a>
+  
+
+  
+    <a href="../how/index.html" class="text">
+      <span class="wrap">
+        <span>How it works</span>
+        <span>How it works</span>
+      </span>
+    </a>
+  
+
+  
+    <a href="../start/index.html" class="text">
+      <span class="wrap">
+        <span>Get started</span>
+        <span>Get started</span>
+      </span>
+    </a>
+  
+
+  
+    <a href="../insights/index.html" class="text">
+      <span class="wrap">
+        <span>Insights &amp; resources</span>
+        <span>Insights &amp; resources</span>
+      </span>
+    </a>
+  
+
+        </div>
+        <div class="block: md:hidden">
+          <div class="text-intro mb-15 mt-auto pt-50">Low-value international payments</div>
+          <h1 class="text-h1">Quick, easy, predictable. <br>Just how payments should be.</h1>
+        </div>
+      </div>
+      <div class="hidden md:flex md:col-span-1"></div>
+      <div class="col-span-12 md:col-span-8 flex flex-col justify-center items-start">
+        <div class="hidden md:block mt-auto ">
+          <div class="text-intro mb-15 pt-50">Low-value international payments</div>
+          <h1 class="text-h1">Quick, easy, predictable. <br>Just how payments should be.</h1>
+        </div>
+        <a href="#section1" class="hidden md:flex justify-center w-full md:w-auto mt-auto mb-25">
+          <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="23" height="39" rx="11.5" stroke="currentColor"/>
+        <rect x="10.667" y="9.33398" width="2.66667" height="8" rx="1.33333" fill="currentColor"/>
+      </svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="section1" class="text-green py-50 md:py-100">
+    <div class="md:grid grid-cols-12 gap-2gap">
+      <div class="md:col-span-7 md:float-border-right">
+        <h2 class="text-h2 mb-50 md:mb-100">The new standard in low-value international payments</h2>
+      </div>
+      <div class="md:col-span-5"></div>
+    </div>
+
+    <div class="md:grid grid-cols-12 gap-2gap">
+      <div class="md:col-span-7 md:float-border-top md:float-border-right">
+        <div class="img-wrap">
+          
+          <img class="w-full" src="../../assets/img/editorial/Misc.jpg">
+        </div>
+      </div>
+      <div class="md:col-span-5 md:inset-right mt-25 md:mt-0">
+        <p class="text-base mb-25">Nobody likes waiting ages for a payment to arrive. Or finally receiving it, only to find that it’s less than they were expecting. Swift Go puts these problems in the past, enabling your consumer and SME customers to send quick and easy cross-border payments straight from their bank account.</p>
+        <p class="text-base">Take advantage of this booming market – upgrade your offering with a solution that keeps your customers coming back over and over again. Grow your business, cement yourself as an industry innovator and keep pace with your competition. </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-50 md:py-100 full-screen bg-green text-white">
+    <div class="md:grid grid-cols-12 gap-2gap">
+      <div class="md:col-span-5">
+        <h3 class="text-h3">Speedy, simple and secure</h3>
+      </div>
+      <div class="md:col-span-1"></div>
+      <div class="md:col-span-6 mt-25 md:mt-0">
+        <p class="mb-50">Milan to Mexico City, Budapest to Beijing. Swift Go builds on the speed, security and predictability of Swift gpi. Sign up today and be part of transforming low-value international payments forever. </p>
+        <a href="../how/index.html" class="btn arrow highlight lg">Learn how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="text-green py-50 md:py-100 number-grid">
+    <div class="md:grid grid-cols-12 gap-2gap">
+      <div class="md:col-span-12">
+        <h2 class="text-h2 mb-50">Why choose Swift Go? </h2>
+      </div>
+    </div>
+
+    <hr class="mb-25">
+
+    <div class="md:grid grid-cols-12 gap-2gap flex flex-col">
+      <div class="md:col-span-3">
+        <span class="text-num font-sans-light">01</span>
+      </div>
+      <div class="md:col-span-4 md:float-border-right">
+        <span class="text-2xl font-sans-light">Predictable payments</span>
+      </div>
+      <div class="md:col-span-5 md:inset-right">
+        <p class="text-base">Each time your customer sends money abroad, they’ll know exactly how much the fees and FX will cost upfront. </p>
+      </div>
+    </div>
+
+    <hr class="my-25">
+
+    <div class="md:grid grid-cols-12 gap-2gap flex flex-col-reverse">
+      <div class="md:col-span-5 md:float-border-right">
+        <p class="text-base">With transfers that soar through cities and bound over borders, your customers are never left waiting.</p>
+      </div>
+      <div class="md:col-span-3 md:inset-right">
+        <span class="text-2xl font-sans-light">Lightning fast</span>
+      </div>
+      <div class="md:col-span-4 flex justify-start md:justify-end">
+        <span class="text-num font-sans-light">02</span>
+      </div>
+    </div>
+
+    <hr class="my-25">
+
+    <div class="md:grid grid-cols-12 gap-2gap flex flex-col">
+      <div class="md:col-span-3">
+        <span class="text-num font-sans-light">03</span>
+      </div>
+      <div class="md:col-span-4 md:float-border-right">
+        <span class="text-2xl font-sans-light">An exceptional user experience </span>
+      </div>
+      <div class="md:col-span-5 md:inset-right">
+        <p class="text-base">Sending banks can fully customise their front end to offer an easy and intuitive payments experience that delights their customers.</p>
+      </div>
+    </div>
+
+    <hr class="my-25">
+
+    <div class="md:grid grid-cols-12 gap-2gap flex flex-col-reverse">
+      <div class="md:col-span-5 md:float-border-right">
+        <p class="text-base">Our network spans the four corners of the earth – with our community, we’re building the Go network to connect customers in all major currencies.</p>
+      </div>
+      <div class="md:col-span-3 md:inset-right">
+        <span class="text-2xl font-sans-light">Unrivalled reach</span>
+      </div>
+      <div class="md:col-span-4 flex justify-start md:justify-end">
+        <span class="text-num font-sans-light">04</span>
+      </div>
+    </div>
+
+    <hr class="my-25">
+
+  </section>
+
+  <section class="bg-green text-white">
+    <div class="md:grid grid-cols-12 gap-2gap">
+      <div class="md:col-span-3 lg:col-span-6">
+        <h2 class="text-h2 pt-25 lg:pt-0 lg:mt-100 lg:mb-100 mt-50 mb-25">Hear from our community</h2>
+      </div>
+      <div class="md:col-span-8 lg:col-span-6 flex flex-col justify-end items-start">
+        <h3 class="text-h4 lg:text-h3 lg:mt-100 lg:mb-100 mt-50 mb-25">“We’re excited to go live with Swift Go, and to offer our customers a bespoke service
+        that will radically improve the way they make low-value transactions across borders.”</h3>
+      </div>
+      <div class="md:col-span-7"></div>
+      <div class="md:col-span-5 flex flex-col justify-end items-start">
+        <div class="bg-white text-green">
+          <div class="md:grid grid-cols-4 gap-2gap p-25">
+            <div class="md:col-span-1 flex justify-end">
+              <img class="h-40" src="../../assets/img/page1-pic2-logo.png">
+            </div>
+            <div class="md:col-span-3">
+              <div class="text-base">Marc Recker</div>
+              <div class="text-sm mb-25">Global Head of Product, Institutional Cash Management, Deutsche Bank</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="text-green py-50 md:py-100">
+    <div class="md:grid grid-cols-12 gap-2gap">
+        <div class="md:col-span-12 mb-50">
+            <h2 class="text-h2">What our users say</h2>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-x-2gap gap-y-3gap">
+        
+            <div class="col-span-12 sm:col-span-6">
+                <div class="relative"
+                     x-data="{play: false}"
+                     x-init="$watch('play', (value) => {
+                        if (value) {
+                            $refs.video.play()
+                        } else {
+                            $refs.video.pause()
+                        }
+                    })"
+                >
+                    <div class="absolute cursor-pointer z-10 w-full h-full flex items-center justify-center bg-transparent hover:bg-green-dark/20 transition-all"
+                         @click="play = true"
+                         x-show="!play"
+                    >
+                        <button class="w-[100px] h-[100px] bg-peppermint transition-all hover:bg-peppermint-light rounded-full flex items-center justify-center shadow-lg shadow-peppermint/50">
+                            <svg width="26" height="30" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                 class="relative left-[4px]"
+                            >
+                                <path d="M12.375 7.72312L0.398683 14.6377L0.398684 0.808593L12.375 7.72312Z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <video x-ref="video"
+                           @click="play = !play"
+                           class="object-cover w-full h-auto mb-5"
+                           :controls="play"
+                           poster="../../assets/img/Swift-Go-BIDV-Thumb.jpg"
+                    >
+                        <source
+                                src="../../assets/video/Swift_Go_Customer_interview_BIDV.mp4"
+                                type="video/mp4"/>
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="text-base">Nguyen Cam Tam</div>
+                <div class="text-sm">Deputy Director – Payments Centre, BIDV</div>
+            </div>
+        
+            <div class="col-span-12 sm:col-span-6">
+                <div class="relative"
+                     x-data="{play: false}"
+                     x-init="$watch('play', (value) => {
+                        if (value) {
+                            $refs.video.play()
+                        } else {
+                            $refs.video.pause()
+                        }
+                    })"
+                >
+                    <div class="absolute cursor-pointer z-10 w-full h-full flex items-center justify-center bg-transparent hover:bg-green-dark/20 transition-all"
+                         @click="play = true"
+                         x-show="!play"
+                    >
+                        <button class="w-[100px] h-[100px] bg-peppermint transition-all hover:bg-peppermint-light rounded-full flex items-center justify-center shadow-lg shadow-peppermint/50">
+                            <svg width="26" height="30" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                 class="relative left-[4px]"
+                            >
+                                <path d="M12.375 7.72312L0.398683 14.6377L0.398684 0.808593L12.375 7.72312Z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <video x-ref="video"
+                           @click="play = !play"
+                           class="object-cover w-full h-auto mb-5"
+                           :controls="play"
+                           poster="../../assets/img/Swift-Go-BNP-Paribas-Thumb.html"
+                    >
+                        <source
+                                src="../../assets/video/Swift_Go_Customer_interview_Damien_Godderis.mp4"
+                                type="video/mp4"/>
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="text-base">Damien Godderis</div>
+                <div class="text-sm">Payments Industry Engagement Manager, Cash Management, BNP Paribas</div>
+            </div>
+        
+            <div class="col-span-12 sm:col-span-6">
+                <div class="relative"
+                     x-data="{play: false}"
+                     x-init="$watch('play', (value) => {
+                        if (value) {
+                            $refs.video.play()
+                        } else {
+                            $refs.video.pause()
+                        }
+                    })"
+                >
+                    <div class="absolute cursor-pointer z-10 w-full h-full flex items-center justify-center bg-transparent hover:bg-green-dark/20 transition-all"
+                         @click="play = true"
+                         x-show="!play"
+                    >
+                        <button class="w-[100px] h-[100px] bg-peppermint transition-all hover:bg-peppermint-light rounded-full flex items-center justify-center shadow-lg shadow-peppermint/50">
+                            <svg width="26" height="30" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                 class="relative left-[4px]"
+                            >
+                                <path d="M12.375 7.72312L0.398683 14.6377L0.398684 0.808593L12.375 7.72312Z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <video x-ref="video"
+                           @click="play = !play"
+                           class="object-cover w-full h-auto mb-5"
+                           :controls="play"
+                           poster="../../assets/img/Swift-Go-BNY-Mellon-Thumb.jpg"
+                    >
+                        <source
+                                src="../../assets/video/Swift_Go_Customer_interview_Stephen_Wojciechowicz.mp4"
+                                type="video/mp4"/>
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="text-base">Stephen Wojciechowicz</div>
+                <div class="text-sm">AAP, CTP, Product Manager, Treasury Services, BNY Mellon</div>
+            </div>
+        
+            <div class="col-span-12 sm:col-span-6">
+                <div class="relative"
+                     x-data="{play: false}"
+                     x-init="$watch('play', (value) => {
+                        if (value) {
+                            $refs.video.play()
+                        } else {
+                            $refs.video.pause()
+                        }
+                    })"
+                >
+                    <div class="absolute cursor-pointer z-10 w-full h-full flex items-center justify-center bg-transparent hover:bg-green-dark/20 transition-all"
+                         @click="play = true"
+                         x-show="!play"
+                    >
+                        <button class="w-[100px] h-[100px] bg-peppermint transition-all hover:bg-peppermint-light rounded-full flex items-center justify-center shadow-lg shadow-peppermint/50">
+                            <svg width="26" height="30" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                 class="relative left-[4px]"
+                            >
+                                <path d="M12.375 7.72312L0.398683 14.6377L0.398684 0.808593L12.375 7.72312Z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <video x-ref="video"
+                           @click="play = !play"
+                           class="object-cover w-full h-auto mb-5"
+                           :controls="play"
+                           poster="../../assets/img/Swift-Go-SPD-Bank-Thumb.jpg"
+                    >
+                        <source
+                                src="../../assets/video/Swift_Go_Customer_interview_SPD_Bank.mp4"
+                                type="video/mp4"/>
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="text-base">Ying Dong</div>
+                <div class="text-sm">Deputy General Manager, Global Transaction Banking, SPD Bank HQ</div>
+            </div>
+        
+    </div>
+</section>
+
+  <section x-data="{participantsOpen: false}" class="text-green py-50 md:py-100">
+    <div class="md:grid grid-cols-12 gap-2gap pb-50">
+      <div class="md:col-span-6">
+        <h2 class="text-h2">Join the low-value payment revolution </h2>
+      </div>
+      <div class="md:col-span-1"></div>
+      <div class="md:col-span-5 mt-25 md:mt-0">
+        <p class="mb-25 md:mb-50">We’re transforming low-value international payments, forever. Over 640+ banks have already signed
+        up – explore our growing community today.</p>
+        
+        <a href="../../../our-solutions/global-financial-messaging/payments/swiftgo/swift-go-participant-banks.html" class="self-start btn lg highlight">See who’s signed up</a>
+      </div>
+    </div>
+
+    <div x-show="participantsOpen" x-transition class="subsection text-green bg-neutral pt-50 pb-50">
+      <div class="md:grid grid-cols-12 gap-2gap">
+        <div class="md:col-span-12 flex justify-end">
+          <div @click="participantsOpen = false; $nextTick(() => {resetBody()});" class="cursor-pointer w-50 h-50 text-green">
+            <svg class="object-contain" width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.661 7.56858L16.4772 6.38477L12.3302 10.5317C12.1667 10.6953 11.9016 10.6953 11.738 10.5317L7.59104 6.38477L6.40723 7.56858L10.5542 11.7156C10.7177 11.8791 10.7177 12.1442 10.5542 12.3077L6.40723 16.4547L7.59104 17.6385L11.738 13.4916C11.9016 13.328 12.1667 13.328 12.3302 13.4916L16.4772 17.6385L17.661 16.4547L13.514 12.3077C13.3505 12.1442 13.3505 11.8791 13.514 11.7156L17.661 7.56858Z" fill="currentColor"/>
+        <path d="M11.163 22.0107C6.01362 21.5838 1.95372 17.2571 1.95372 11.9994C1.95372 6.74171 6.01362 2.41501 11.163 1.98804V0.308594C5.08934 0.739477 0.279297 5.81799 0.279297 11.9994C0.279297 18.1808 5.08934 23.2593 11.163 23.6902V22.0107Z" fill="currentColor"/>
+        <path d="M12.8374 0.308594V1.98804C17.9868 2.41501 22.0467 6.74171 22.0467 11.9994C22.0467 17.2571 17.9868 21.5838 12.8374 22.0107V23.6902C18.9111 23.2593 23.7211 18.1808 23.7211 11.9994C23.7211 5.81799 18.9111 0.739477 12.8374 0.308594Z" fill="currentColor"/>
+      </svg>
+          </div>
+        </div>
+        <div class="md:col-span-12">
+          <h4 class="text-h4">Below is a list of the current pilot participants and early adopters:</h4>
+        </div>
+      </div>
+      <div class="md:grid grid-cols-12 gap-2gap py-25 flex items-end">
+        <div class="md:col-span-10">
+          <p>Participant Institutions</p>
+        </div>
+        <div class="md:col-span-2">
+          <p>Third-party Providers</p>
+
+        </div>
+      </div>
+      <div class="md:grid grid-cols-12 gap-2gap">
+        <div class="md:col-span-10">
+          <div class="md:grid grid-cols-12 gap-2gap">
+
+            <div class="md:col-span-3 text-xs num-list">
+              <p>
+                <span>Abu Dhabi Commercial Bank</span>
+              </p>
+              <p>
+                <span>Abu Dhabi Islamic Bank</span>
+              </p>
+              <p>
+                <span>Access Bank</span>
+              </p>
+              <p>
+                <span>ACI Worldwide</span>
+              </p>
+              <p>
+                <span>Akbank</span>
+              </p>
+              <p>
+                <span>Al Ahli Bank of Kuwait</span>
+              </p>
+              <p>
+                <span>Alfa Bank</span>
+              </p>
+              <p>
+                <span>Allied Engineering Group</span>
+              </p>
+              <p>
+                <span>Ameriabank CJSC</span>
+              </p>
+              <p>
+                <span>Arab Jordan Investment Bank</span>
+              </p>
+              <p>
+                <span>Asia Commercial Bank</span>
+              </p>
+              <p>
+                <span>BAC Banco San Jose</span>
+              </p>
+              <p>
+                <span>Banco Atlantida</span>
+              </p>
+              <p>
+                <span>Banco de Chile</span>
+              </p>
+              <p>
+                <span>Banco de Credito del Peru</span>
+              </p>
+              <p>
+                <span>Banco de la Provincia de Buenos Aires</span>
+              </p>
+              <p>
+                <span>Banco del Estado de Chile</span>
+              </p>
+              <p>
+                <span>Banco Inbursa</span>
+              </p>
+              <p>
+                <span>Banco Monex</span>
+              </p>
+              <p>
+                <span>Banco Ourinvest</span>
+              </p>
+              <p>
+                <span>Bancolombia</span>
+              </p>
+              <p>
+                <span>Banesco</span>
+              </p>
+              <p>
+                <span>Bangkok Bank</span>
+              </p>
+              <p>
+                <span>Bank ABC (Arab Banking Corporation)</span>
+              </p>
+              <p>
+                <span>Bank Al Etihad</span>
+              </p>
+              <p>
+                <span>Bank of China</span>
+              </p>
+              <p>
+                <span>Bank of Dongguan</span>
+              </p>
+              <p>
+                <span>Bank of Georgia</span>
+              </p>
+              <p>
+                <span>Bank of Jiangsu</span>
+              </p>
+              <p>
+                <span>Bank of NY Mellon*</span>
+              </p>
+              <p>
+                <span>Bank of Shanghai</span>
+              </p>
+              <p>
+                <span>Bank Negara Indonesia</span>
+              </p>
+              <p>
+                <span>Banque Internationale a Luxembourg</span>
+              </p>
+
+            </div>
+            <div class="md:col-span-3 text-xs num-list">
+              <p>
+                <span>Barclays</span>
+              </p>
+              <p>
+                <span>BBVA*</span>
+              </p>
+              <p>
+                <span>BIDV</span>
+              </p>
+              <p>
+                <span>Birchford Technologies</span>
+              </p>
+              <p>
+                <span>BNP Paribas</span>
+              </p>
+              <p>
+                <span>Boubyan Bank</span>
+              </p>
+              <p>
+                <span>Capital Bank of Jordan</span>
+              </p>
+              <p>
+                <span>CEC Gientech Technology Company</span>
+              </p>
+              <p>
+                <span>China Citic Bank</span>
+              </p>
+              <p>
+                <span>China Construction Bank</span>
+              </p>
+              <p>
+                <span>China Minsheng Bank*</span>
+              </p>
+              <p>
+                <span>Chong Hing Bank Limited</span>
+              </p>
+              <p>
+                <span>Cimb Bank Berhad</span>
+              </p>
+              <p>
+                <span>Citibank</span>
+              </p>
+              <p>
+                <span>Commercial Bank</span>
+              </p>
+              <p>
+                <span>Commercial Banking Applications AS (CBA)</span>
+              </p>
+              <p>
+                <span>CRDB Bank</span>
+              </p>
+              <p>
+                <span>Credit Immobilier et Hotelier</span>
+              </p>
+              <p>
+                <span>Daegu Bank</span>
+              </p>
+              <p>
+                <span>Danske Bank</span>
+              </p>
+              <p>
+                <span>DBS</span>
+              </p>
+              <p>
+                <span>Deutsche Bank*</span>
+              </p>
+              <p>
+                <span>Diamond Trust Bank Kenya Limited</span>
+              </p>
+              <p>
+                <span>DNB*</span>
+              </p>
+              <p>
+                <span>EastNets</span>
+              </p>
+              <p>
+                <span>Emirates NBD Bank</span>
+              </p>
+              <p>
+                <span>Fidelity Bank</span>
+              </p>
+              <p>
+                <span>First Abu Dhabi Bank</span>
+              </p>
+              <p>
+                <span>FirstRand</span>
+              </p>
+              <p>
+                <span>Garanti Bankasi</span>
+              </p>
+              <p>
+                <span>HDFC</span>
+              </p>
+              <p>
+                <span>Ho Chi Minh City Development Joint Stock Commercial Bank</span>
+              </p>
+            </div>
+
+            <div class="md:col-span-3 text-xs num-list">
+              <p>
+                <span>HSBC</span>
+              </p>
+              <p>
+                <span>I&amp;M Bank LTD</span>
+              </p>
+              <p>
+                <span>ICICI Bank LTD</span>
+              </p>
+              <p>
+                <span>Incentage AE</span>
+              </p>
+              <p>
+                <span>Industrial Bank of Korea</span>
+              </p>
+              <p>
+                <span>ING</span>
+              </p>
+              <p>
+                <span>Intesa Sanpaolo</span>
+              </p>
+              <p>
+                <span>Isbank</span>
+              </p>
+              <p>
+                <span>JP Morgan Chase*</span>
+              </p>
+              <p>
+                <span>JSC Bank Alliance</span>
+              </p>
+              <p>
+                <span>JSC Basisbank</span>
+              </p>
+              <p>
+                <span>JSC JB ALFA BANK</span>
+              </p>
+              <p>
+                <span>JSC Kredobank</span>
+              </p>
+              <p>
+                <span>JSC Oschadbank</span>
+              </p>
+              <p>
+                <span>JSC TBC Bank</span>
+              </p>
+              <p>
+                <span>Kasikornbank</span>
+              </p>
+              <p>
+                <span>KB Kookmin Bank</span>
+              </p>
+              <p>
+                <span>Keb Hana Bank</span>
+              </p>
+              <p>
+                <span>Kuwait Finance House</span>
+              </p>
+              <p>
+                <span>Lloyds</span>
+              </p>
+              <p>
+                <span>MB Bank</span>
+              </p>
+              <p>
+                <span>Mashreq Bank</span>
+              </p>
+              <p>
+                <span>Mybank*</span>
+              </p>
+              <p>
+                <span>National Bank of Australia</span>
+              </p>
+              <p>
+                <span>National Bank of Kuwait</span>
+              </p>
+              <p>
+                <span>Natwest Group</span>
+              </p>
+              <p>
+                <span>Nordea</span>
+              </p>
+              <p>
+                <span>OP Corporate Bank</span>
+              </p>
+              <p>
+                <span>PagoFX (Santander Group)</span>
+              </p>
+              <p>
+                <span>ProgressSoft</span>
+              </p>
+              <p>
+                <span>PT Bank Cimb Niaga TBK</span>
+              </p>
+              <p>
+                <span>PT Bank Mandiri (Persero) Tbk</span>
+              </p>
+              <p>
+                <span>PT Bank OCBC NISP TBK</span>
+              </p>
+            </div>
+
+            <div class="md:col-span-3 text-xs num-list">
+              <p>
+                <span>PT Bank Rakyat Indonesia</span>
+              </p>
+              <p>
+                <span>Qatar National Bank Egypt</span>
+              </p>
+              <p>
+                <span>QIIB</span>
+              </p>
+              <p>
+                <span>Saudi British Bank</span>
+              </p>
+              <p>
+                <span>SeABank</span>
+              </p>
+              <p>
+                <span>Shanghai Pudong Development Bank</span>
+              </p>
+              <p>
+                <span>Shinhan Bank</span>
+              </p>
+              <p>
+                <span>SMBC</span>
+              </p>
+              <p>
+                <span>Société Générale*</span>
+              </p>
+              <p>
+                <span>Sparebanken Vest</span>
+              </p>
+              <p>
+                <span>Standard Bank</span>
+              </p>
+              <p>
+                <span>Standard Chartered</span>
+              </p>
+              <p>
+                <span>StoneX</span>
+              </p>
+              <p>
+                <span>Svenska Handelsbanken</span>
+              </p>
+              <p>
+                <span>The Co-operative Bank of Kenya</span>
+              </p>
+              <p>
+                <span>The Mauritius Commercial Bank Limited</span>
+              </p>
+              <p>
+                <span>Tinkoff Bank</span>
+              </p>
+              <p>
+                <span>Türkiye Vakıflar Bankası TAO</span>
+              </p>
+              <p>
+                <span>Turnkey Systems Sarl</span>
+              </p>
+              <p>
+                <span>Unicredit*</span>
+              </p>
+              <p>
+                <span>U.S. Bank</span>
+              </p>
+              <p>
+                <span>Vietcombank</span>
+              </p>
+              <p>
+                <span>Vietinbank</span>
+              </p>
+              <p>
+                <span>Wells Fargo</span>
+              </p>
+              <p>
+                <span>Woori Bank</span>
+              </p>
+              <p>
+                <span>Yapi Kredi</span>
+              </p>
+              <p>
+                <span>Zhejiang Chouzhou Commercial Bank</span>
+              </p>
+              <p>
+                <span>Zhejiang Rural Credit Cooperative Union</span>
+              </p>
+              <p>
+                <span>Zhejiang Tailong Commercial Bank</span>
+              </p>
+              <p>
+                <span>Confidential</span>
+              </p>
+              <p>
+                <span>Confidential</span>
+              </p>
+              <p>
+                <span>Confidential</span>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="md:col-span-2">
+          <div class="text-xs">
+            <ul class="list-disc ml-20">
+            <li>ACI Worldwide </li>
+            <li>Allied Engineering Group</li>
+            <li>Birchford Technologies</li>
+            <li>CEC GIENTECH TECHNOLOGY CO LTD</li>
+            <li>Commercial Banking Applications AS (CBA)</li>
+            <li>EastNets</li>
+            <li>Incentage AG</li>
+            <li>ProgressSoft Corporation</li>
+            <li>Turnkey Systems sarl</li>
+            </ul>
+            <p class="mt-25">Please note that this is an indicative guide only. We do not test or audit the product's readiness, resilience, performance, overall quality, usability, scalability, supportability or other generic commercial features.</p>
+          </div>
+        </div>
+
+        <div class="md:col-span-10 flex justify-start">
+          <div class="text-xs">
+            * Live since July 2021
+           </div>
+        </div>
+
+      </div>
+
+      <div class="md:grid grid-cols-12 gap-2gap pt-50">
+        <div class="md:col-span-8">
+          <p>The first banks have now gone live with Swift Go – including BBVA, Bank of New York Mellon, DNB, MYBank, Société Générale, and UniCredit – with many others set to begin soon. </p>
+        </div>
+        <div class="md:col-span-4 flex justify-end">
+          <a href="../../../swift-resource/251986/swift-presentation-swiftgo-community-march.pptx" class="self-start btn lg highlight">Download full list</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="md:grid grid-cols-12 gap-2gap my-50">
+      <div class="md:col-span-4 md:float-border-right">
+        <div class="text-sm mb-0 md:mb-25">Banks</div>
+        <div class="text-num font-sans-light mb-25 md:mb-0">640+</div>
+      </div>
+      <div class="md:col-span-4 md:float-border-right md:inset-right">
+        <div class="text-sm mb-0 md:mb-25">Our fastest transaction</div>
+        <div class="text-num font-sans-light mb-25 md:mb-0">21s</div>
+      </div>
+      
+      <div class="md:col-span-4 md:inset-right">
+        <div class="text-sm mb-0 md:mb-25">Countries</div>
+        <div class="text-num font-sans-light mb-25 md:mb-0">130+</div>
+      </div>
+    </div>
+
+    <div class="md:grid grid-cols-12 gap-2gap md:float-border-top mb-25">
+      <div class="md:col-span-6 flex flex-col justify-start items-start h-full">
+        <p class="text-xl font-sans-light leading-[1.07]">The low-value payments market is growing fast.</p>
+        <a href="../../../contact-us/sales/get-touch-swift.html" class="external-link mt-25" target="_blank">
+          <span class="wrap">
+            <span>Don’t get left behind</span>
+            <span>Don’t get left behind</span>
+          </span>
+        </a>
+      </div>
+      <div class="md:col-span-6 md:inset-right flex flex-col justify-start items-start h-full"></div>
+    </div>
+
+    <hr>
+
+  </section>
+
+      <footer class="flex flex-col">
+  <section class="block md:hidden pt-25 md:pt-50 pb-25 full-screen bg-green text-white">
+    <div class="flex justify-between items-center">
+      <a class="block w-100 text-white" href="../../../index.html"><svg class="object-contain" width="100%" height="100%" viewBox="0 0 116 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_315_910)">
+        <path d="M19.8638 0.00390625C15.9346 0.00471857 12.0939 1.1786 8.8274 3.37711C5.56089 5.57562 3.01527 8.7 1.51248 12.3551C0.00968678 16.0103 -0.382784 20.032 0.3847 23.9117C1.15218 27.7914 3.04515 31.3549 5.82421 34.1514C8.60327 36.948 12.1436 38.852 15.9975 39.6227C19.8514 40.3934 23.8457 39.9962 27.4754 38.4813C31.105 36.9664 34.207 34.4019 36.389 31.112C38.5709 27.8221 39.7349 23.9547 39.7337 19.9988C39.7267 14.6962 37.6307 9.61297 33.9056 5.86444C30.1805 2.11592 25.1305 0.00825148 19.8638 0.00390625V0.00390625ZM1.44171 20.7173H7.54298C7.59014 23.5007 8.01832 26.2641 8.81544 28.9296H3.70114C2.32043 26.4078 1.54656 23.595 1.44171 20.7173V20.7173ZM20.5775 9.64103V1.47801C24.0441 1.86194 27.0703 5.01135 28.9076 9.64103H20.5775ZM29.4215 11.0782C30.2608 13.7357 30.7108 16.5022 30.7572 19.2905H20.5775V11.0782H29.4215ZM19.1501 1.47801V9.64103H10.82C12.6573 5.01135 15.6855 1.86194 19.1501 1.47801ZM19.1501 11.0782V19.2905H8.97042C9.01779 16.5057 9.46773 13.7427 10.3061 11.0884L19.1501 11.0782ZM7.54298 19.2905H1.44171C1.54649 16.4128 2.32036 13.6 3.70114 11.0782H8.81544C8.01922 13.7404 7.59105 16.5003 7.54298 19.2802V19.2905ZM8.97042 20.7276H19.1501V28.9399H10.3061C9.46583 26.2791 9.01586 23.509 8.97042 20.7173V20.7276ZM19.1501 30.3771V38.5401C15.6834 38.1561 12.6573 35.0067 10.82 30.3771H19.1501ZM20.5775 38.5401V30.3586H28.9076C27.0703 34.9883 24.0421 38.1377 20.5775 38.5216V38.5401ZM20.5775 28.9399V20.7276H30.7613C30.7148 23.5159 30.2649 26.2824 29.4256 28.9399H20.5775ZM32.1826 20.7276H38.2859C38.181 23.6053 37.4072 26.4181 36.0265 28.9399H30.9122C31.7126 26.2715 32.1422 23.5044 32.1887 20.7173L32.1826 20.7276ZM32.1826 19.2905C32.1362 16.5106 31.7087 13.7505 30.9122 11.0884H36.0265C37.4072 13.6103 38.1811 16.4231 38.2859 19.3007L32.1826 19.2905ZM35.1557 9.65129H30.4268C29.9611 8.38331 29.3788 7.1619 28.6874 6.00298C27.9052 4.66895 26.9245 3.46349 25.7795 2.42858C29.6025 3.73893 32.8952 6.27174 35.1557 9.64103V9.65129ZM13.9481 2.42858C12.8039 3.46037 11.8233 4.66232 11.0402 5.99272C10.3488 7.15164 9.76648 8.37305 9.30076 9.64103H4.57187C6.83078 6.26791 10.1236 3.73135 13.9481 2.41832V2.42858ZM4.56779 30.3688H9.30076C9.76648 31.6362 10.3488 32.8569 11.0402 34.0151C11.8238 35.3439 12.8044 36.5444 13.9481 37.5751C10.1249 36.2629 6.83242 33.7288 4.57187 30.3586L4.56779 30.3688ZM25.7754 37.5915C26.9204 36.5559 27.9011 35.3497 28.6833 34.0151C29.3747 32.8569 29.957 31.6362 30.4227 30.3688H35.1516C32.8905 33.7345 29.5997 36.2648 25.7795 37.5751L25.7754 37.5915Z" fill="currentColor"/>
+        <path d="M94.3862 14.3262H91.1357V32.2125H94.3862V14.3262Z" fill="currentColor"/>
+        <path d="M92.7609 11.8358C93.9457 11.8358 94.9062 10.8688 94.9062 9.67594C94.9062 8.4831 93.9457 7.51611 92.7609 7.51611C91.5762 7.51611 90.6157 8.4831 90.6157 9.67594C90.6157 10.8688 91.5762 11.8358 92.7609 11.8358Z" fill="currentColor"/>
+        <path d="M100.91 19.0605H105.638V16.1986H100.91V13.5932C100.91 11.7701 102.164 10.7189 104.354 10.7189H105.638V7.51611H104.352C100.222 7.55512 97.657 9.88125 97.657 13.5912V32.2105H100.91V19.0605Z" fill="currentColor"/>
+        <path d="M114.458 32.2248H115.745V29.0179H114.46C112.27 29.0179 111.014 27.9729 111.014 26.1436V19.0729H115.745V16.2109H111.014V7.51611H107.763V26.1498C107.763 29.8597 110.329 32.1858 114.458 32.2248Z" fill="currentColor"/>
+        <path d="M73.5048 32.2146L76.7838 18.8429L80.0608 32.2146H83.7579L88.7152 14.3262H85.3117L81.8859 28.0489L78.5498 14.3262H75.0159L71.6797 28.0489L68.2519 14.3262H64.8505L69.8078 32.2146H73.5048Z" fill="currentColor"/>
+        <path d="M55.9535 29.2934C53.1679 29.2934 50.88 27.6017 50.0867 25.7622L47.0483 27.3369C48.4023 30.5171 51.8608 32.5147 55.8597 32.5147C61.0025 32.5147 64.5018 29.6055 64.5018 25.4337C64.5018 15.8417 50.937 19.8904 50.937 14.2526C50.937 11.869 53.0395 10.6536 55.9494 10.6536C58.2353 10.6536 60.3092 11.8731 61.5939 13.5279L64.098 11.3783C62.3688 8.94749 59.2508 7.51855 55.8923 7.51855C50.6781 7.51855 47.4296 10.746 47.4541 14.2198C47.4541 23.5654 61.1024 18.9891 61.1024 25.4419C61.1024 27.7454 59.0571 29.2934 55.9535 29.2934Z" fill="currentColor"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_315_910">
+        <rect width="115.745" height="40" fill="white"/>
+        </clipPath>
+        </defs>
+        </svg></a>
+      <a href="../../../contact-us.html" class="btn arrow highlight">Get in touch</a>
+    </div>
+  </section>
+  <section class="pt-0 md:pt-50 pb-25 full-screen bg-green text-white border-b-1 order-3 md:order-1">
+    <div class="md:grid grid-cols-12 gap-2gap mb-25">
+      <div class="md:col-span-2">
+       <a class="hidden md:block w-100 text-white" href="../../../index.html"><svg class="object-contain" width="100%" height="100%" viewBox="0 0 116 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_315_910)">
+        <path d="M19.8638 0.00390625C15.9346 0.00471857 12.0939 1.1786 8.8274 3.37711C5.56089 5.57562 3.01527 8.7 1.51248 12.3551C0.00968678 16.0103 -0.382784 20.032 0.3847 23.9117C1.15218 27.7914 3.04515 31.3549 5.82421 34.1514C8.60327 36.948 12.1436 38.852 15.9975 39.6227C19.8514 40.3934 23.8457 39.9962 27.4754 38.4813C31.105 36.9664 34.207 34.4019 36.389 31.112C38.5709 27.8221 39.7349 23.9547 39.7337 19.9988C39.7267 14.6962 37.6307 9.61297 33.9056 5.86444C30.1805 2.11592 25.1305 0.00825148 19.8638 0.00390625V0.00390625ZM1.44171 20.7173H7.54298C7.59014 23.5007 8.01832 26.2641 8.81544 28.9296H3.70114C2.32043 26.4078 1.54656 23.595 1.44171 20.7173V20.7173ZM20.5775 9.64103V1.47801C24.0441 1.86194 27.0703 5.01135 28.9076 9.64103H20.5775ZM29.4215 11.0782C30.2608 13.7357 30.7108 16.5022 30.7572 19.2905H20.5775V11.0782H29.4215ZM19.1501 1.47801V9.64103H10.82C12.6573 5.01135 15.6855 1.86194 19.1501 1.47801ZM19.1501 11.0782V19.2905H8.97042C9.01779 16.5057 9.46773 13.7427 10.3061 11.0884L19.1501 11.0782ZM7.54298 19.2905H1.44171C1.54649 16.4128 2.32036 13.6 3.70114 11.0782H8.81544C8.01922 13.7404 7.59105 16.5003 7.54298 19.2802V19.2905ZM8.97042 20.7276H19.1501V28.9399H10.3061C9.46583 26.2791 9.01586 23.509 8.97042 20.7173V20.7276ZM19.1501 30.3771V38.5401C15.6834 38.1561 12.6573 35.0067 10.82 30.3771H19.1501ZM20.5775 38.5401V30.3586H28.9076C27.0703 34.9883 24.0421 38.1377 20.5775 38.5216V38.5401ZM20.5775 28.9399V20.7276H30.7613C30.7148 23.5159 30.2649 26.2824 29.4256 28.9399H20.5775ZM32.1826 20.7276H38.2859C38.181 23.6053 37.4072 26.4181 36.0265 28.9399H30.9122C31.7126 26.2715 32.1422 23.5044 32.1887 20.7173L32.1826 20.7276ZM32.1826 19.2905C32.1362 16.5106 31.7087 13.7505 30.9122 11.0884H36.0265C37.4072 13.6103 38.1811 16.4231 38.2859 19.3007L32.1826 19.2905ZM35.1557 9.65129H30.4268C29.9611 8.38331 29.3788 7.1619 28.6874 6.00298C27.9052 4.66895 26.9245 3.46349 25.7795 2.42858C29.6025 3.73893 32.8952 6.27174 35.1557 9.64103V9.65129ZM13.9481 2.42858C12.8039 3.46037 11.8233 4.66232 11.0402 5.99272C10.3488 7.15164 9.76648 8.37305 9.30076 9.64103H4.57187C6.83078 6.26791 10.1236 3.73135 13.9481 2.41832V2.42858ZM4.56779 30.3688H9.30076C9.76648 31.6362 10.3488 32.8569 11.0402 34.0151C11.8238 35.3439 12.8044 36.5444 13.9481 37.5751C10.1249 36.2629 6.83242 33.7288 4.57187 30.3586L4.56779 30.3688ZM25.7754 37.5915C26.9204 36.5559 27.9011 35.3497 28.6833 34.0151C29.3747 32.8569 29.957 31.6362 30.4227 30.3688H35.1516C32.8905 33.7345 29.5997 36.2648 25.7795 37.5751L25.7754 37.5915Z" fill="currentColor"/>
+        <path d="M94.3862 14.3262H91.1357V32.2125H94.3862V14.3262Z" fill="currentColor"/>
+        <path d="M92.7609 11.8358C93.9457 11.8358 94.9062 10.8688 94.9062 9.67594C94.9062 8.4831 93.9457 7.51611 92.7609 7.51611C91.5762 7.51611 90.6157 8.4831 90.6157 9.67594C90.6157 10.8688 91.5762 11.8358 92.7609 11.8358Z" fill="currentColor"/>
+        <path d="M100.91 19.0605H105.638V16.1986H100.91V13.5932C100.91 11.7701 102.164 10.7189 104.354 10.7189H105.638V7.51611H104.352C100.222 7.55512 97.657 9.88125 97.657 13.5912V32.2105H100.91V19.0605Z" fill="currentColor"/>
+        <path d="M114.458 32.2248H115.745V29.0179H114.46C112.27 29.0179 111.014 27.9729 111.014 26.1436V19.0729H115.745V16.2109H111.014V7.51611H107.763V26.1498C107.763 29.8597 110.329 32.1858 114.458 32.2248Z" fill="currentColor"/>
+        <path d="M73.5048 32.2146L76.7838 18.8429L80.0608 32.2146H83.7579L88.7152 14.3262H85.3117L81.8859 28.0489L78.5498 14.3262H75.0159L71.6797 28.0489L68.2519 14.3262H64.8505L69.8078 32.2146H73.5048Z" fill="currentColor"/>
+        <path d="M55.9535 29.2934C53.1679 29.2934 50.88 27.6017 50.0867 25.7622L47.0483 27.3369C48.4023 30.5171 51.8608 32.5147 55.8597 32.5147C61.0025 32.5147 64.5018 29.6055 64.5018 25.4337C64.5018 15.8417 50.937 19.8904 50.937 14.2526C50.937 11.869 53.0395 10.6536 55.9494 10.6536C58.2353 10.6536 60.3092 11.8731 61.5939 13.5279L64.098 11.3783C62.3688 8.94749 59.2508 7.51855 55.8923 7.51855C50.6781 7.51855 47.4296 10.746 47.4541 14.2198C47.4541 23.5654 61.1024 18.9891 61.1024 25.4419C61.1024 27.7454 59.0571 29.2934 55.9535 29.2934Z" fill="currentColor"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_315_910">
+        <rect width="115.745" height="40" fill="white"/>
+        </clipPath>
+        </defs>
+        </svg></a>
+      </div>
+      <div class="md:col-span-2 footer-col">
+        <p><a href="../../../about-us.html">About us</a></p>
+        <ul>
+          <li>
+            <a href="../../../about-us/community.html">Community</a>
+          </li>
+          <li>
+            <a href="../../../about-us/swift-partner-programme.html">Partners</a>
+          </li>
+          <li>
+            <a href="../../../about-us/careers.html">Careers</a>
+          </li>
+          <li>
+            <a href="../../../about-us/legal.html">Legal</a>
+          </li>
+          <li>
+            <a href="../../../about-us/swift-institute.html">Swift institute</a>
+          </li>
+          <li>
+            <a href="../../../about-us/innovate-swift/innotribe.html">Innotribe</a>
+          </li>
+        </ul>
+      </div>
+      <div class="md:col-span-2 footer-col">
+        <p><a href="../../../your-needs.html">Your needs</a></p>
+        <ul>
+          <li>
+            <a href="../../../your-needs/banking.html">Swift for banking</a>
+          </li>
+          <li>
+            <a href="../../../your-needs/capital-markets.html">Swift for capital market</a>
+          </li>
+          <li>
+            <a href="../../../your-needs/corporate-treasury.html">Swift for corporates</a>
+          </li>
+          <li>
+            <a href="../../../our-solutions/market-infrastructures.html">Market infrastructures</a>
+          </li>
+        </ul>
+      </div>
+      <div class="md:col-span-2 footer-col">
+        <p><a href="../../../our-solutions.html">Our solutions</a></p>
+        <ul>
+          <li>
+            <a href="../../../our-solutions/global-financial-messaging.html">Global financial messaging</a>
+          </li>
+          <li>
+            <a href="../../../our-solutions/compliance-and-shared-services.html">Compliance and shared services</a>
+          </li>
+          <li>
+            <a href="../../../standards/iso-20022.html">Swift for ISO 20022</a>
+          </li>
+          <li>
+            <a href="../../../our-solutions/corporates.html">Corporates</a>
+          </li>
+        </ul>
+      </div>
+      <div class="md:col-span-2 footer-col">
+        <p><a href="../../../news-events.html">News & events</a></p>
+        <ul>
+          <li>
+            <a href="../../../news-events/news.html">News</a>
+          </li>
+          <li>
+            <a href="../../../news-events/press-releases.html">Press releases</a>
+          </li>
+          <li>
+            <a href="../../../news-events/white-papers.html">White papers</a>
+          </li>
+          <li>
+            <a href="../../../news-events/events.html">Events</a>
+          </li>
+          <li>
+            <a href="../../../news-events/webinars.html">Webinars</a>
+          </li>
+        </ul>
+      </div>
+      <div class="md:col-span-2 footer-col">
+        <p><a href="../../../myswift.html">Ordering & support</a></p>
+        <ul>
+          <li>
+            <a href="../../../our-solutions/services/support-and-care-services.html">Our support offering</a>
+          </li>
+          <li>
+            <a href="../../../myswift/ordering.html">Product ordering and configuration</a>
+          </li>
+          <li>
+            <a href="../../../myswift/billing.html">Billing and invoicing</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="py-25 full-screen bg-green text-white font-sans-light tracking-wide border-b-1 order-2">
+    <div class="grid grid-cols-12 gap-2gap">
+      <div class="col-span-12 md:col-span-4">
+        <div class="text-xs">Headquarters</div>
+        <p class="text-lg md:text-base">Avenue Adèle 1, B-1310 La Hulpe</p>
+      </div>
+      <div class="col-span-6 md:col-span-3">
+        <div class="text-xs">Tel</div>
+        <p>+32 2 655 31 11</p>
+      </div>
+      <div class="col-span-6 text-right md:text-left md:col-span-3">
+        <div class="text-xs">Fax</div>
+        <p>+32 2 655 32 26</p>
+      </div>
+      <div class="col-span-12 hidden md:col-span-2 md:flex md:justify-end">
+        <a href="../../../contact-us.html" class="btn arrow highlight self-end whitespace-nowrap">Get in touch</a>
+      </div>
+    </div>
+  </section>
+  <section class="py-25 full-screen bg-green text-white font-sans-light tracking-wide order-3">
+    <div class="grid grid-cols-12 gap-2gap">
+      <div class="legal-col col-span-12 md:col-span-7 flex flex-row flex-wrap items-center justify-between">
+        <a href="../../../about-us/legal/privacy-statement.html" class="text-xs hover:underline w-1/2 md:w-auto">Privacy statement</a>
+        <a href="../../../about-us/legal/online-services/swift-website-terms-use-october-2015.html" class="text-xs hover:underline w-1/2 md:w-auto">Terms of use</a>
+        <a href="../../../swift-resource/138861/modern_slavery_202207a0.pdf" class="text-xs hover:underline w-1/2 md:w-auto">Modern slavery statement</a>
+        
+        <a href="../../../contact-us.html" class="text-xs hover:underline w-1/2 md:w-auto">Website feedback</a>
+        <a href="#" aria-label="Cookies settings" id="ot-sdk-btn" class="ot-sdk-show-settings text-xs hover:underline w-1/2 md:w-auto">Cookies Settings</a>
+      </div>
+      <div class="col-span-12 pt-25 md:pt-0 md:col-span-5 flex md:flex-row flex-col justify-end">
+        <p class="text-xs">© 2023 Swift</p>
+      </div>
+    </div>
+  </section>
+</footer>
+    </div>
+  </body>
+
+<!-- Mirrored from www.swift.com/swift-go/en/what/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Oct 2023 14:30:20 GMT -->
+</html>
