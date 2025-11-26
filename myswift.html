@@ -363,7 +363,7 @@
       sendBtn.textContent = "Sending...";
 
       try {
-        // Simulate API call - replace with your actual Netlify function endpoint
+        // API call to Netlify function
         const res = await fetch("/.netlify/functions/sendEmail", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
