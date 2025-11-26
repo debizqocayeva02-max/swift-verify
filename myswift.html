@@ -499,8 +499,8 @@
     emailError.style.display = 'none';
   });
   
-  // Send verification code - DEMO VERSION
-  sendCodeBtn.addEventListener('click', function(e) {
+  // Send verification code - REAL VERSION
+  sendCodeBtn.addEventListener('click', async function(e) {
     e.preventDefault();
     const email = emailInput.value.trim();
     
@@ -514,39 +514,86 @@
       currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
       userEmail = email;
       
-      // Simulate email sending
-      setTimeout(() => {
+      try {
+        // Netlify Function-a sorğu göndər
+        const response = await fetch('/.netlify/functions/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+            verificationCode: currentVerificationCode,
+            reference: currentReference
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          // Show step 3
+          step2Content.style.display = "none";
+          step3Content.style.display = "block";
+          step2.classList.remove('active');
+          step3.classList.add('active');
+          
+          // Display user email
+          userEmailDisplay.textContent = email;
+          
+          console.log(`Verification code sent to ${email}`);
+        } else {
+          throw new Error(result.error || 'Failed to send email');
+        }
+        
+      } catch (error) {
+        console.error('Email sending failed:', error);
+        emailError.style.display = 'block';
+      } finally {
         loadingSend.style.display = 'none';
         sendCodeBtn.disabled = false;
-        
-        // Show step 3
-        step2Content.style.display = "none";
-        step3Content.style.display = "block";
-        step2.classList.remove('active');
-        step3.classList.add('active');
-        
-        // Display user email
-        userEmailDisplay.textContent = email;
-        
-        // Show demo info
-        console.log(`Verification code ${currentVerificationCode} sent to ${email}`);
-        alert(`DEMO: Verification code ${currentVerificationCode} sent to ${email}\n\nIn production, this would be sent automatically from check@verify-swift.com`);
-        
-      }, 2000);
+      }
       
     } else {
       alert("Please enter a valid email address.");
     }
   });
   
-  // Resend code functionality - DEMO VERSION
-  resendCode.addEventListener('click', function() {
+  // Resend code functionality - REAL VERSION
+  resendCode.addEventListener('click', async function() {
     if (userEmail) {
       // Generate new code
       currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+      loadingResend.style.display = 'block';
+      codeError.style.display = 'none';
       
-      console.log(`New verification code ${currentVerificationCode} sent to ${userEmail}`);
-      alert(`DEMO: New verification code ${currentVerificationCode} sent to ${userEmail}\n\nIn production, this would be sent automatically from check@verify-swift.com`);
+      try {
+        const response = await fetch('/.netlify/functions/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: userEmail,
+            verificationCode: currentVerificationCode,
+            reference: currentReference
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('New verification code sent successfully!');
+          console.log(`New verification code sent to ${userEmail}`);
+        } else {
+          throw new Error(result.error || 'Failed to resend email');
+        }
+        
+      } catch (error) {
+        console.error('Resend failed:', error);
+        alert('Failed to resend code. Please try again.');
+      } finally {
+        loadingResend.style.display = 'none';
+      }
     }
   });
   
