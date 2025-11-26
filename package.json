@@ -1,7 +1,15 @@
 {
-  "name": "verify-swift.com",
+  "name": "swift-verify",
   "version": "1.0.0",
+  "description": "Swift Verification System",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Build completed'"
+  },
   "dependencies": {
     "nodemailer": "^6.9.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
