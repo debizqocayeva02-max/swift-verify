@@ -1,4 +1,6 @@
 exports.handler = async (event) => {
+    console.log('Function called', event.body);
+    
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
@@ -12,15 +14,9 @@ exports.handler = async (event) => {
     try {
         const { to, verificationCode, reference } = JSON.parse(event.body);
         
-        // Burada real email göndərmək əvəzinə log yazırıq
-        console.log('Email would be sent:', {
-            to: to,
-            code: verificationCode,
-            reference: reference,
-            from: 'check@verify-swift.com'
-        });
-
-        // Həmişə uğurlu cavab qaytarırıq
+        // Sadəcə log yazırıq, real email göndərmirik
+        console.log('Email details:', { to, verificationCode, reference });
+        
         return {
             statusCode: 200,
             headers,
@@ -31,12 +27,13 @@ exports.handler = async (event) => {
         };
 
     } catch (error) {
+        console.error('Error:', error);
         return {
-            statusCode: 200, // Hətta xəta olsa belə 200 qaytarırıq
+            statusCode: 200,
             headers,
             body: JSON.stringify({ 
                 success: true, 
-                message: 'Verification code processed'
+                message: 'Demo mode: Code would be sent to ' + (event.body ? JSON.parse(event.body).to : 'unknown')
             })
         };
     }
