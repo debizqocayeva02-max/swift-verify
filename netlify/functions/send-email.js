@@ -1,6 +1,11 @@
 const nodemailer = require('nodemailer');
 
 exports.handler = async function(event, context) {
+  console.log('🔧 ENV CHECK:', {
+    SMTP_HOST: process.env.SMTP_HOST || 'MISSING!',
+    SMTP_USER: process.env.SMTP_USER || 'MISSING!'
+  });
+
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -19,6 +24,18 @@ exports.handler = async function(event, context) {
     };
   }
 
+  // Əgər SMTP_HOST yoxdursa, error qaytar
+  if (!process.env.SMTP_HOST) {
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ 
+        success: false, 
+        message: 'SMTP configuration missing. Please set Environment Variables in Netlify.' 
+      })
+    };
+  }
+
   try {
     const { to, code } = JSON.parse(event.body);
 
@@ -29,9 +46,6 @@ exports.handler = async function(event, context) {
         body: JSON.stringify({ success: false, message: 'Email and code required' })
       };
     }
-
-    console.log('Sending email to:', to);
-    console.log('SMTP Host:', process.env.SMTP_HOST);
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
@@ -46,27 +60,18 @@ exports.handler = async function(event, context) {
       }
     });
 
+    // Test connection
+    await transporter.verify();
+
     const mailOptions = {
       from: process.env.SMTP_FROM,
       to: to,
       subject: 'Swift Verify - Verification Code',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #3498db;">SWIFT VERIFY</h2>
-          <p>Your verification code:</p>
-          <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; font-size: 24px; font-weight: bold; letter-spacing: 5px; color: #2c3e50;">
-            ${code}
-          </div>
-          <p style="color: #7f8c8d; font-size: 14px; margin-top: 20px;">
-            This code is valid for 10 minutes.<br>
-            If you didn't request this code, please ignore this email.
-          </p>
-        </div>
-      `
+      html: `... your email template ...`
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully:', info.messageId);
+    console.log('✅ Email sent:', info.messageId);
 
     return {
       statusCode: 200,
@@ -78,7 +83,7 @@ exports.handler = async function(event, context) {
     };
 
   } catch (error) {
-    console.error('Email sending error:', error);
+    console.error('❌ Email error:', error);
     return {
       statusCode: 500,
       headers,
