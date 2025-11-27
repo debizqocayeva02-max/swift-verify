@@ -31,11 +31,11 @@ exports.handler = async function(event, context) {
     }
 
     console.log('Sending email to:', to);
-    console.log('Using SMTP:', process.env.SMTP_HOST, process.env.SMTP_PORT);
+    console.log('SMTP Host:', process.env.SMTP_HOST);
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT),
+      port: parseInt(process.env.SMTP_PORT || '465'),
       secure: true,
       auth: {
         user: process.env.SMTP_USER,
