@@ -8,15 +8,11 @@ app.use(bodyParser.json());
 // Kodları saxlamaq üçün demo in-memory object
 let codes = {};
 
-// SMTP konfiqurasiya
+// SMTP konfiqurasiya MailDev üçün
 const transporter = nodemailer.createTransport({
-  host: "verify-swift.com",  // Megahost SMTP host
-  port: 465,                       // SSL: 465, TLS: 587
-  secure: true,
-  auth: {
-    user: "check@verify-swift.com",   // sizin mailbox
-    pass: "qocaman12A"            // SMTP şifrəniz
-  }
+  host: "localhost",   // MailDev localhost-da işləyir
+  port: 1025,          // MailDev SMTP portu
+  secure: false        // TLS tələb olunmur
 });
 
 // Kod göndərmə endpoint
@@ -27,11 +23,12 @@ app.post("/send-code", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: `"Verify-Swift" <check@verify-swift.com>`,
+      from: `"Verify-Swift" <test@verify-swift.local>`,
       to: email,
       subject: "Doğrulama kodunuz",
       text: `Sizin doğrulama kodunuz: ${code}`
     });
+    console.log(`Kod ${email} ünvanına göndərildi: ${code}`);
     res.send({ success: true, message: "Kod göndərildi" });
   } catch (err) {
     console.error("Mail göndərmə xətası", err);
