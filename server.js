@@ -10,7 +10,7 @@ let codes = {};
 
 // SMTP konfiqurasiya
 const transporter = nodemailer.createTransport({
-  host: "mail.verify-swift.com",  // Megahost SMTP host
+  host: "verify-swift.com",  // Megahost SMTP host
   port: 465,                       // SSL: 465, TLS: 587
   secure: true,
   auth: {
