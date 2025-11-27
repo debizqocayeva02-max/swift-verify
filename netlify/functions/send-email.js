@@ -1,11 +1,6 @@
 const nodemailer = require('nodemailer');
 
 exports.handler = async function(event, context) {
-  console.log('🔧 ENV CHECK:', {
-    SMTP_HOST: process.env.SMTP_HOST || 'MISSING!',
-    SMTP_USER: process.env.SMTP_USER || 'MISSING!'
-  });
-
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -24,18 +19,6 @@ exports.handler = async function(event, context) {
     };
   }
 
-  // Əgər SMTP_HOST yoxdursa, error qaytar
-  if (!process.env.SMTP_HOST) {
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ 
-        success: false, 
-        message: 'SMTP configuration missing. Please set Environment Variables in Netlify.' 
-      })
-    };
-  }
-
   try {
     const { to, code } = JSON.parse(event.body);
 
@@ -47,31 +30,45 @@ exports.handler = async function(event, context) {
       };
     }
 
+    // ✅ BİRBAŞA SMTP MƏLUMATLARI
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '465'),
+      host: 'verify-swift.com',        // SMTP hostunuz
+      port: 465,                       // SMTP portunuz
       secure: true,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        user: 'check@verify-swift.com', // Email ünvanınız
+        pass: 'SIFRƏNİZ'               // Email şifrəniz
       },
       tls: {
         rejectUnauthorized: false
       }
     });
 
-    // Test connection
+    console.log('🔄 SMTP connection testing...');
     await transporter.verify();
+    console.log('✅ SMTP connection successful');
 
     const mailOptions = {
-      from: process.env.SMTP_FROM,
+      from: 'check@verify-swift.com',
       to: to,
       subject: 'Swift Verify - Verification Code',
-      html: `... your email template ...`
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #3498db;">SWIFT VERIFY</h2>
+          <p>Your verification code:</p>
+          <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; font-size: 24px; font-weight: bold; letter-spacing: 5px; color: #2c3e50;">
+            ${code}
+          </div>
+          <p style="color: #7f8c8d; font-size: 14px; margin-top: 20px;">
+            This code is valid for 10 minutes.<br>
+            If you didn't request this code, please ignore this email.
+          </p>
+        </div>
+      `
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('✅ Email sent:', info.messageId);
+    console.log('✅ Email sent successfully:', info.messageId);
 
     return {
       statusCode: 200,
