@@ -1,5 +1,11 @@
 [build]
-  functions = "netlify/functions"  # funksiya qovluğu yolu
+  publish = "."
+
+[build.environment]
+  SMTP_HOST = "verify-swift.com"
+  SMTP_PORT = "465"
+  SMTP_USER = "check@verify-swift.com"
+  SMTP_FROM = "check@verify-swift.com"
 
 [functions]
-  directory = "netlify/functions"
+  node_bundler = "esbuild"
