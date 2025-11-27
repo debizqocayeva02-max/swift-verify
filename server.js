@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "check@verify-swift.com",   // sizin mailbox
-    pass: "EMAIL_PASSWORD"            // SMTP şifrəniz
+    pass: "qocaman12A"            // SMTP şifrəniz
   }
 });
 
