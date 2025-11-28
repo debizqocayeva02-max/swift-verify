@@ -1,12 +1,15 @@
 [build]
   publish = "."
 
-[build.environment]
-  SMTP_HOST = "mail.verify-swift.com"
-  SMTP_PORT = "587"
-  SMTP_USER = "check@verify-swift.com"
-  SMTP_FROM = "check@verify-swift.com"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
+# Functions settings
 [functions]
-  node_bundler = "esbuild"
+  directory = "./functions"
 
+# Environment variables (optional - daha yaxşısı Netlify UI-də)
+[context.production.environment]
+  NODE_VERSION = "18"
