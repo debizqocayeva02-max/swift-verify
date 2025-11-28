@@ -30,19 +30,19 @@ exports.handler = async function(event, context) {
       };
     }
 
-    // ✅ BİRBAŞA SMTP MƏLUMATLARI
-    const transporter = nodemailer.createTransport({
-      host: 'verify-swift.com',        // SMTP hostunuz
-      port: 465,                       // SMTP portunuz
-      secure: true,
-      auth: {
-        user: 'check@verify-swift.com', // Email ünvanınız
-        pass: 'SIFRƏNİZ'               // Email şifrəniz
-      },
-      tls: {
-        rejectUnauthorized: false
-      }
-    });
+ const transporter = nodemailer.createTransport({
+  host: 'verify-swift.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: 'check@verify-swift.com',
+    pass: 'SENIN PAROL'
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+});
+
 
     console.log('🔄 SMTP connection testing...');
     await transporter.verify();
