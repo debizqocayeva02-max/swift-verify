@@ -1,15 +1,9 @@
 [build]
   publish = "."
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Functions settings
 [functions]
   directory = "./functions"
+  node_bundler = "esbuild"
 
-# Environment variables (optional - daha yaxşısı Netlify UI-də)
-[context.production.environment]
+[build.environment]
   NODE_VERSION = "18"
