@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MT996 - Exim Bank Djibouti to Banque Cramer (Final Response - ODDO BHF AML)</title>
+    <title>MT996 - Exim Bank Djibouti to Banque Cramer (ODDO BHF AML)</title>
     <style>
         * {
             margin: 0;
@@ -421,13 +421,67 @@
         
         .date-field {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
             gap: 15px;
             margin-bottom: 20px;
             background: #ffffff;
-            padding: 10px 16px;
+            padding: 16px;
             border-radius: 12px;
             border: 1px solid #e2e8f0;
+        }
+        
+        .date-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .date-label {
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .date-value {
+            font-weight: 700;
+            color: #006633;
+        }
+        
+        .aml-officer {
+            width: 100%;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 5px;
+        }
+        
+        .officer-title {
+            font-weight: 600;
+            color: #0a2540;
+            margin-bottom: 8px;
+        }
+        
+        .officer-pin {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .officer-pin-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        .officer-pin-value {
+            font-family: monospace;
+            font-size: 13px;
+            font-weight: 600;
+            color: #075985;
+            background: #e6f0f9;
+            padding: 4px 12px;
+            border-radius: 30px;
         }
         
         .security-footer {
@@ -579,19 +633,19 @@
 
         <div class="reference-box">
             <div class="ref-item">
-                <span class="ref-label">20: SENDER'S REF:</span>
+                <span class="ref-label">20:</span>
                 <span class="ref-value">EXIM/DJ/FIN/28042026-882</span>
             </div>
             <div class="ref-item">
-                <span class="ref-label">21: RELATED REF (YOURS):</span>
+                <span class="ref-label">21:</span>
                 <span class="ref-value">CRAMCHGGXXX/2026/MT199</span>
             </div>
             <div class="ref-item">
-                <span class="ref-label">20A: SWIFT SESSION:</span>
+                <span class="ref-label">20A:</span>
                 <span class="ref-value">2026-04-28-1180B92</span>
             </div>
             <div class="ref-item">
-                <span class="ref-label">ORIGINAL TRANSFER REF:</span>
+                <span class="ref-label">ORIGINAL REF:</span>
                 <span class="ref-value">DEU17112212C332-230326</span>
             </div>
         </div>
@@ -605,7 +659,7 @@
                         
                         <p><strong>We sincerely apologise for the delay.</strong> The delay was due to a review carried out by the Anti-Money Laundering (AML) Department of the intermediary bank ODDO BHF SE (Frankfurt – SWIFT BHFBDEFFXXX). The funds were held at ODDO BHF SE for additional compliance screening. The review has now been concluded with a 'clear to proceed' status under reference AMLC/ODDO/FRT/2026-882.</p>
                         
-                        <p>All regulatory and compliance checks have been satisfied. No further holds are applicable. The funds will be released from our nostro account via the cleared payment corridor: EXTNDJJDXXX → DEUTDEFFXXX → BHFBDEFFXXX (ODDO BHF) → CRAMCHGGXXX.  Any charges related to the AML investigation have been waived by ODDO BHF SE.</p>
+                        <p>All regulatory and compliance checks have been satisfied. No further holds are applicable. The funds will be released from our nostro account via the cleared payment corridor: EXTNDJJDXXX → DEUTDEFFXXX → BHFBDEFFXXX (ODDO BHF) → CRAMCHGGXXX. Any charges related to the AML investigation have been waived by ODDO BHF SE.</p>
                         
                         <p>Please direct any additional queries to our SWIFT operations team using MT199 referencing this MT996.</p>
                     </div>
@@ -614,11 +668,21 @@
 
             <div class="signature-box">
                 <div class="date-field">
-                    <span class="date-label">FINAL RESPONSE AUTHORIZED:</span>
-                    <span class="date-value">28 APRIL 2026</span>
-                    <span style="margin-left:auto; font-size:12px; color:#006633;">✅ AML Clearance Stamped (ODDO BHF)</span>
+                    <div class="date-row">
+                        <span class="date-label">FINAL RESPONSE AUTHORIZED:</span>
+                        <span class="date-value">28 APRIL 2026</span>
+                        <span style="margin-left:auto; font-size:12px; color:#006633;">✅ AML Clearance Stamped</span>
+                    </div>
+                    
+                    <div class="aml-officer">
+                        <div class="officer-title">Director of AML Department</div>
+                        <div style="color:#475569; font-size:13px;">ODDO BHF SE (Frankfurt)</div>
+                        <div class="officer-pin">
+                            <span class="officer-pin-label">AML DIRECTOR PIN:</span>
+                            <span class="officer-pin-value">ODDO-AML-882-DIR</span>
+                        </div>
+                    </div>
                 </div>
-
                 
 
 
@@ -629,7 +693,7 @@
                 <img src="https://spangenberggroep.nl/wp-content/uploads/2023/09/pci-dss-1.png.webp" alt="PCI-DSS">
             </div>
             <div class="security-note">
-                ✅ SWIFT MT996 – FINAL RESPONSE • Exim Bank (Djibouti) S.A. to Banque Cramer & Cie SA • Original Transfer: EUR 20,000,000.00 • AML Review completed by ODDO BHF SE (Frankfurt) • Funds were held at ODDO BHF, now cleared • Value date 30 April 2026 • SWIFT authenticated • 256-bit SSL Encrypted
+                ✅ SWIFT MT996 – FINAL RESPONSE • Exim Bank (Djibouti) S.A. to Banque Cramer & Cie SA • Original Transfer: EUR 20,000,000.00 • AML Review completed by ODDO BHF SE (Frankfurt) • Funds were held at ODDO BHF, now cleared • SWIFT authenticated • 256-bit SSL Encrypted
             </div>
         </div>
     </div>
