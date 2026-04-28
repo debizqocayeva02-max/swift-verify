@@ -347,49 +347,49 @@
             color: #3e6c8a;
             font-size: 13px;
             margin-left: 15px;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
-        /* PIN card style - clean frame, no extra header text */
+        /* PIN card style - clean frame, only "Pin Code:" label and value */
         .pin-frame {
             background: #ffffff;
             border: 1px solid #dcebf3;
             border-radius: 20px;
-            padding: 12px 18px;
-            margin-top: 12px;
+            padding: 10px 18px;
+            margin-top: 8px;
             transition: all 0.1s ease;
             box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
 
         .pin-item {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            align-items: baseline;
             flex-wrap: wrap;
             gap: 12px;
             background: #f8fcfd;
-            padding: 8px 18px;
+            padding: 6px 16px;
             border-radius: 60px;
             border: 1px solid #e2edf5;
         }
 
         .pin-label {
             font-weight: 700;
-            color: #256f8a;
+            color: #1e4a6b;
             font-size: 13px;
             letter-spacing: 0.3px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .pin-value {
             font-family: 'Courier New', monospace;
             font-weight: 800;
             background: white;
-            padding: 5px 18px;
+            padding: 4px 16px;
             border-radius: 40px;
             color: #004c70;
             letter-spacing: 0.5px;
             font-size: 14px;
-            border: 1px solid #cde1ec;
+            border: 1px solid #e0ecf5;
         }
 
         .security-footer {
@@ -558,28 +558,28 @@
             </div>
         </div>
 
-        <!-- Officers signature area - PIN codes inside clean frames WITHOUT extra title texts -->
+        <!-- Officers signature area: each PIN shown as "Pin Code:" label + value, both in same clean frame -->
         <div class="signature-box">
             <div class="officers-row">
-                <!-- Mr. Christoph Berchtold with his PIN (frame only) -->
+                <!-- Mr. Christoph Berchtold with PIN (Pin Code: UBS-611-AR-628) -->
                 <div class="officer-card">
                     <div class="officer-name">Mr. Christoph Berchtold</div>
                     <div class="officer-title">Chief Risk Officer<br>UBS Switzerland AG</div>
                     <div class="pin-frame">
                         <div class="pin-item">
-                            <span class="pin-label">PIN CODE</span>
+                            <span class="pin-label">Pin Code:</span>
                             <span class="pin-value">UBS-611-AR-628</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Ms. Sabine Keller-Busse with her PIN (frame only, under her details) -->
+                <!-- Ms. Sabine Keller-Busse with PIN (Pin Code: UBS-612-TN-929) directly under her title -->
                 <div class="officer-card">
                     <div class="officer-name">Ms. Sabine Keller-Busse</div>
                     <div class="officer-title">President UBS Switzerland<br>Head Personal & Corporate Banking</div>
                     <div class="pin-frame">
                         <div class="pin-item">
-                            <span class="pin-label">PIN CODE</span>
+                            <span class="pin-label">Pin Code:</span>
                             <span class="pin-value">UBS-612-TN-929</span>
                         </div>
                     </div>
@@ -610,7 +610,7 @@
         function downloadPDF() {
             window.print();
         }
-        console.log("MT996 ready — PIN codes framed, extra label text removed as requested.");
+        console.log("MT996 ready — PIN codes displayed exactly as 'Pin Code: UBS-611-AR-628' and 'Pin Code: UBS-612-TN-929' within frames.");
     </script>
 </body>
 </html>
