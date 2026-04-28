@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT996 - Reply to MT799 Pre-Advice | UBS Switzerland AG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #ecf3fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .message-container {
+            max-width: 1300px;
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        /* Toolbar for print/PDF */
+        .pdf-toolbar {
+            background: #0f2c3d;
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .pdf-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .pdf-title h2 {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .pdf-badge {
+            background: #d4af37;
+            color: #0f2c3d;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .pdf-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .pdf-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pdf-btn:hover {
+            background: #d4af37;
+            color: #0f2c3d;
+            border-color: #d4af37;
+        }
+
+        .message-status {
+            background: #f7fafc;
+            padding: 14px 28px;
+            border-bottom: 1px solid #e0edf5;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1);}
+            50% { opacity: 0.5; transform: scale(1.1);}
+            100% { opacity: 1; transform: scale(1);}
+        }
+
+        .status-text {
+            font-weight: 700;
+            color: #10b981;
+            font-size: 13px;
+        }
+
+        .message-ref {
+            font-family: monospace;
+            background: #e6edf2;
+            padding: 5px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e4a6b;
+        }
+
+        .message-date {
+            color: #2c5a7a;
+            font-size: 13px;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .swift-banner {
+            background: linear-gradient(98deg, #003458 0%, #1a5d7a 100%);
+            color: white;
+            padding: 18px 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .swift-logo {
+            background: rgba(255,255,255,0.2);
+            font-weight: 800;
+            padding: 8px 20px;
+            border-radius: 12px;
+            letter-spacing: 1px;
+        }
+
+        .swift-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .swift-badge {
+            background: #d4af37;
+            color: #003458;
+            font-weight: 700;
+            padding: 6px 18px;
+            border-radius: 40px;
+            margin-left: auto;
+            font-size: 13px;
+        }
+
+        .message-header {
+            padding: 28px 28px 12px 28px;
+        }
+
+        .header-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .bank-info {
+            background: #f9fdfe;
+            border: 1px solid #cbdde6;
+            border-radius: 20px;
+            padding: 18px;
+            transition: 0.1s;
+        }
+
+        .bank-info-title {
+            font-size: 11px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #256f8a;
+            margin-bottom: 14px;
+        }
+
+        .bank-info-content p {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 13px;
+        }
+
+        .bank-label {
+            width: 90px;
+            color: #4a6a7e;
+            font-weight: 500;
+        }
+
+        .bank-value {
+            color: #0a2e42;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .swift-code {
+            font-family: monospace;
+            background: #eaf3f8;
+            padding: 3px 10px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        .ref-section {
+            background: #eef5fa;
+            margin: 0 28px 20px 28px;
+            border-radius: 24px;
+            padding: 18px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            border: 1px solid #cde1ec;
+        }
+
+        .ref-block {
+            font-size: 13px;
+            font-weight: 600;
+            color: #004070;
+        }
+
+        .ref-value {
+            font-family: monospace;
+            background: white;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #003458;
+            font-size: 13px;
+        }
+
+        .narrative-section {
+            background: white;
+            border-left: 5px solid #d4af37;
+            margin: 0 28px 28px 28px;
+            padding: 24px 28px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border-radius: 24px;
+            border: 1px solid #e2eff7;
+        }
+
+        .narrative-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #003458;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .narrative-title span {
+            background: #eef2f5;
+            font-size: 12px;
+            padding: 4px 14px;
+            border-radius: 50px;
+            color: #2c6e8f;
+        }
+
+        .narrative-content {
+            font-family: 'Courier New', 'SF Mono', monospace;
+            font-size: 14px;
+            line-height: 1.75;
+            color: #1f3b4c;
+        }
+
+        .narrative-content p {
+            margin-bottom: 18px;
+        }
+
+        .highlight {
+            background: #fef5e0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: #9b6f0b;
+        }
+
+        .email-request {
+            background: #eef6fc;
+            border-radius: 20px;
+            padding: 12px 20px;
+            display: inline-block;
+            font-family: monospace;
+            font-size: 14px;
+            margin: 6px 0 10px;
+        }
+
+        .signature-box {
+            background: #fbfeff;
+            border: 1px dashed #86b3cc;
+            border-radius: 24px;
+            padding: 28px;
+            margin: 10px 28px 28px 28px;
+        }
+
+        .officers-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 30px;
+        }
+
+        .officer-card {
+            flex: 1 1 280px;
+        }
+
+        .officer-name {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0a2e42;
+            border-left: 3px solid #d4af37;
+            padding-left: 12px;
+            margin-bottom: 8px;
+        }
+
+        .officer-title {
+            color: #3e6c8a;
+            font-size: 13px;
+            margin-left: 15px;
+        }
+
+        .pins-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            border-top: 1px solid #d4e2ec;
+            padding-top: 22px;
+        }
+
+        .pin-card {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            background: #f5fafd;
+            padding: 8px 18px;
+            border-radius: 60px;
+        }
+
+        .pin-label {
+            font-weight: 700;
+            color: #2f6b8c;
+            font-size: 12px;
+        }
+
+        .pin-value {
+            font-family: monospace;
+            font-weight: 800;
+            background: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            color: #004c70;
+            letter-spacing: 0.5px;
+        }
+
+        .security-footer {
+            background: #0e2b3c;
+            padding: 22px 28px;
+            border-top: 2px solid #d4af37;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            color: #b9d2e5;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .verification-bar {
+            background: rgba(255,255,255,0.05);
+            border-radius: 60px;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .verify-label {
+            color: white;
+            font-weight: 600;
+            gap: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .verify-code {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 22px;
+            border-radius: 40px;
+            font-family: monospace;
+            font-weight: 700;
+            color: #d4af37;
+        }
+
+        .verify-status {
+            color: #2dd4bf;
+            font-weight: 700;
+        }
+
+        .security-note {
+            text-align: center;
+            color: #7e9fb0;
+            font-size: 11px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 1050px) {
+            .header-grid { grid-template-columns: repeat(2,1fr);}
+        }
+        @media (max-width: 700px) {
+            .header-grid { grid-template-columns: 1fr; }
+            .message-container { margin: 10px; }
+            body { padding: 16px; }
+        }
+        @media print {
+            body { background: white; padding: 0;}
+            .pdf-toolbar { display: none; }
+            .status-dot { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <!-- Toolbar for PDF/Print -->
+        <div class="pdf-toolbar">
+            <div class="pdf-title">
+                <h2>MT996 - MESSAGE ACKNOWLEDGEMENT</h2>
+                <span class="pdf-badge">OFFICIAL SWIFT ACKNOWLEDGEMENT</span>
+            </div>
+            <div class="pdf-buttons">
+                <button class="pdf-btn" onclick="window.print()">🖨️ Print / PDF</button>
+                <button class="pdf-btn" onclick="downloadPDF()">📥 Download PDF</button>
+            </div>
+        </div>
+
+        <!-- Status & Reference Line -->
+        <div class="message-status">
+            <div class="status-indicator"><span class="status-dot"></span><span class="status-text">SWIFT NETWORK: DELIVERED / ACK</span></div>
+            <div class="message-ref">UBSWCHZH80A / MT996 / 2026-1234</div>
+            <div class="message-date">📅 25th April, 2026 - 09:47 AM (CET)</div>
+        </div>
+
+        <!-- SWIFT Banner UBS -->
+        <div class="swift-banner">
+            <div class="swift-logo">SWIFT</div>
+            <div class="swift-title">MT996 - FREE FORMAT RESPONSE MESSAGE</div>
+            <div class="swift-badge">REPLY TO MT799 (Barclays)</div>
+        </div>
+
+        <!-- HEADER GRID: Sender/Receiver etc -->
+        <div class="message-header">
+            <div class="header-grid">
+                <!-- SENDER: UBS Switzerland AG (Reply from) -->
+                <div class="bank-info">
+                    <div class="bank-info-title">🏦 SENDER BANK (RESPONDING BANK)</div>
+                    <div class="bank-info-content">
+                        <p><span class="bank-label">Bank Name:</span><span class="bank-value">UBS Switzerland AG</span></p>
+                        <p><span class="bank-label">SWIFT:</span><span class="bank-value swift-code">UBSWCHZH80A</span></p>
+                        <p><span class="bank-label">Address:</span><span class="bank-value">Bahnhofstrasse 45, 8001 Zurich, Switzerland</span></p>
+                    </div>
+                </div>
+                <!-- RECEIVER: Barclays Bank PLC (Original issuer) -->
+                <div class="bank-info">
+                    <div class="bank-info-title">🏦 RECEIVER BANK (ORIGINATOR OF MT799)</div>
+                    <div class="bank-info-content">
+                        <p><span class="bank-label">Bank Name:</span><span class="bank-value">Barclays Bank PLC</span></p>
+                        <p><span class="bank-label">SWIFT:</span><span class="bank-value swift-code">BARCGB22</span></p>
+                        <p><span class="bank-label">Address:</span><span class="bank-value">1 Churchill Place, London E14 5HP, UK</span></p>
+                    </div>
+                </div>
+                <!-- APPLICANT: MMG Capital Limited -->
+                <div class="bank-info">
+                    <div class="bank-info-title">📋 APPLICANT (PER MT799)</div>
+                    <div class="bank-info-content">
+                        <p><span class="bank-label">Company:</span><span class="bank-value"><strong>MMG Capital Limited</strong></span></p>
+                        <p><span class="bank-label">Address:</span><span class="bank-value">43-45 Dorset Street, London W1U 7NA, UK</span></p>
+                    </div>
+                </div>
+                <!-- BENEFICIARY: Elektrolka Sarl -->
+                <div class="bank-info">
+                    <div class="bank-info-title">👤 BENEFICIARY (OUR CLIENT)</div>
+                    <div class="bank-info-content">
+                        <p><span class="bank-label">Company:</span><span class="bank-value"><strong>Elektrolka Sarl</strong></span></p>
+                        <p><span class="bank-label">Account:</span><span class="bank-value swift-code">CH94 0027 9279 3706 4860 R</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transaction references linking to original MT799 -->
+        <div class="ref-section">
+            <div class="ref-block">📑 REFERENCE (YOUR MT799): <span class="ref-value">004444 1 of 1 MSI61HKK4 9893</span></div>
+            <div class="ref-block">📌 OUR REFERENCE: <span class="ref-value">UBS/MT996/2026-0425/30M</span></div>
+            <div class="ref-block">💰 AMOUNT CONFIRMED: <span class="ref-value">USD 30,000,000.00</span></div>
+        </div>
+
+        <!-- Main narrative field (79) with the official reply wording -->
+        <div class="narrative-section">
+            <div class="narrative-title">📄 79: NARRATIVE / FULL REPLY TEXT <span>FREE FORMAT RESPONSE</span></div>
+            <div class="narrative-content">
+                <p>WE, UBS SWITZERLAND AG, REFER TO YOUR SWIFT MESSAGE <strong>MT799 PRE-ADVICE (FREE FORMAT MESSAGE)</strong> DATED <strong>24TH APRIL 2026</strong>, TRANSACTION REFERENCE NO. <strong>004444 (1 OF 1) MSI61HKK4 9893</strong>.</p>
+                
+                <p>BY THIS MESSAGE, OUR BANK HEREBY CONFIRMS ITS READINESS TO RECEIVE A STANDBY LETTER OF CREDIT (SBLC) <strong>MT760</strong> TO BE ISSUED BY YOUR BANK ON BEHALF OF <strong>MMG CAPITAL LIMITED</strong> IN FAVOUR OF OUR CLIENT, <strong>ELEKTROLKA SARL</strong> (RUE JEAN-VIOLETTE, 25 GENEVA, SWITZERLAND), IN THE AMOUNT OF <span class="highlight">USD 30,000,000.00 (THIRTY MILLION UNITED STATES DOLLARS)</span>.</p>
+                
+                <p>IN ORDER TO PROCEED WITH REGISTRATION OF THIS TRANSACTION, WE KINDLY REQUEST THAT YOU PROVIDE US WITH A COPY OF THE UNDERLYING AGREEMENT CONCLUDED BETWEEN <strong>MMG CAPITAL LIMITED</strong> AND <strong>ELEKTROLKA SARL</strong>, ON THE BASIS OF WHICH THE SBLC IS TO BE ISSUED.</p>
+                
+                <p>YOU MAY FORWARD THE REQUESTED AGREEMENT TO US VIA EMAIL AT: <span class="highlight email-request" style="background:#e9f3fa; display:inline-block;">📧 sabine.keller-busse@ubs.com</span></p>
+                
+                <p>WE LOOK FORWARD TO YOUR PROMPT RESPONSE. UPON RECEIPT AND REVIEW OF THE UNDERLYING CONTRACT, WE SHALL PROCEED WITH FINAL ACCEPTANCE AND MT760 DELIVERY COORDINATION.</p>
+                
+                <p>THIS MESSAGE CONSTITUTES A FORMAL BANK-TO-BANK REPLY SUBJECT TO AUTHENTICATED SWIFT VERIFICATION.</p>
+            </div>
+        </div>
+
+        <!-- Officers signature area same as requested: Mr. Christoph Berchtold & Ms. Sabine Keller-Busse -->
+        <div class="signature-box">
+            <div class="officers-row">
+                <div class="officer-card">
+                    <div class="officer-name">Mr. Christoph Berchtold</div>
+                    <div class="officer-title">Chief Risk Officer<br>UBS Switzerland AG</div>
+                </div>
+                <div class="officer-card">
+                    <div class="officer-name">Ms. Sabine Keller-Busse</div>
+                    <div class="officer-title">President UBS Switzerland<br>Head Personal & Corporate Banking</div>
+                </div>
+            </div>
+            <div class="pins-row">
+                <div class="pin-card"><span class="pin-label">PIN CODE:</span><span class="pin-value">UBS-611-AR-628</span></div>
+                <div class="pin-card"><span class="pin-label">PIN CODE:</span><span class="pin-value">UBS-612-TN-929</span></div>
+            </div>
+            <div style="margin-top: 20px; font-size: 12px; color: #307090; border-top: 1px solid #cde1ec; padding-top: 15px; text-align: center;">
+                <span>🏦 Authorized SWIFT signatories — UBS Switzerland AG Zurich</span>
+            </div>
+        </div>
+
+        <!-- Security footer with banking verification branding (UBS style)-->
+        <div class="security-footer">
+            <div class="secure-badge">
+                <span>🔐 SWIFT Certified</span>
+                <span>⚡ ISO 20022 Compliant</span>
+                <span>🛡️ Authenticated by UBS Secure Gateway</span>
+            </div>
+            <div class="verification-bar">
+                <div class="verify-label"><span>📩</span><span>MT996 SIGNED & VERIFIED</span></div>
+                <div class="verify-code">UBS-996-30M-USD-SWIFT</div>
+                <div class="verify-status"><span>✓</span><span>UBS DIGITAL SEAL</span></div>
+            </div>
+            <div class="security-note">This SWIFT message is digitally authenticated via UBS internal secure channel. Reference to underlying agreement as requested.</div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Simple print emulation to save as PDF
+            window.print();
+        }
+        // Additional micro-interaction to show ready status
+        console.log("MT996 Reply Message generated for UBS → Barclays");
+    </script>
+</body>
+</html>
