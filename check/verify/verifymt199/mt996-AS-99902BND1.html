@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MT996 - Exim Bank Djibouti to Banque Cramer (Final Response)</title>
+    <title>MT996 - Exim Bank Djibouti to Banque Cramer (Final Response with ODDO BHF)</title>
     <style>
         * {
             margin: 0;
@@ -190,7 +190,7 @@
 
         .header-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
@@ -465,7 +465,7 @@
             .status-dot { animation: none; }
         }
 
-        @media (max-width: 1000px) {
+        @media (max-width: 1200px) {
             .header-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
@@ -496,8 +496,8 @@
                 <span class="status-dot"></span>
                 <span class="status-text">FINAL RESPONSE - AML CLEARANCE OBTAINED</span>
             </div>
-            <div class="message-ref">EXIM/DJ/FIN/08042026-882</div>
-            <div class="message-date">📅 April 08, 2026 - 14:05 PM EAT</div>
+            <div class="message-ref">EXIM/DJ/FIN/09042026-882</div>
+            <div class="message-date">📅 April 09, 2026 - 17:38 PM EAT</div>
         </div>
 
         <div class="swift-banner">
@@ -509,7 +509,7 @@
         <div class="swift-fields">
             <div class="field-row">
                 <span class="field-tag">20:</span>
-                <span class="field-content">EXIM/DJ/FIN/08042026-882</span>
+                <span class="field-content">EXIM/DJ/FIN/09042026-882</span>
                 <span style="color:#64748b; font-size:11px; margin-left:auto;">Sender's Reference</span>
             </div>
             <div class="field-row">
@@ -519,13 +519,13 @@
             </div>
             <div class="field-row">
                 <span class="field-tag">20A:</span>
-                <span class="field-content">2026-04-08-1180B92</span>
+                <span class="field-content">2026-04-09-1180B92</span>
                 <span style="color:#64748b; font-size:11px; margin-left:auto;">Transaction Session / Output</span>
             </div>
             <div class="field-row">
                 <span class="field-tag">21A:</span>
-                <span class="field-content">AMLC/DE/FRT/2026-882</span>
-                <span style="color:#64748b; font-size:11px; margin-left:auto;">AML Review Reference</span>
+                <span class="field-content">AMLC/ODDO/FRT/2026-882</span>
+                <span style="color:#64748b; font-size:11px; margin-left:auto;">AML Review Reference (ODDO BHF)</span>
             </div>
             <div class="field-row">
                 <span class="field-tag">79:</span>
@@ -546,12 +546,22 @@
                 </div>
 
                 <div class="bank-info">
-                    <div class="bank-info-title">CORRESPONDENT BANK (GERMANY)</div>
+                    <div class="bank-info-title">INTERMEDIARY BANK 1</div>
                     <div class="bank-info-content">
                         <p><span class="bank-label">Bank Name:</span><span class="bank-value">Deutsche Bank AG</span></p>
                         <p><span class="bank-label">SWIFT:</span><span class="bank-value swift-code">DEUTDEFFXXX</span></p>
                         <p><span class="bank-label">Location:</span><span class="bank-value">Frankfurt am Main, Germany</span></p>
-                        <p><span class="bank-label">AML Dept Ref:</span><span class="bank-value">DE-AML/882/2026</span></p>
+                        <p><span class="bank-label">Role:</span><span class="bank-value">First Correspondent</span></p>
+                    </div>
+                </div>
+
+                <div class="bank-info">
+                    <div class="bank-info-title">INTERMEDIARY BANK 2 (AML HOLD)</div>
+                    <div class="bank-info-content">
+                        <p><span class="bank-label">Bank Name:</span><span class="bank-value">ODDO BHF SE</span></p>
+                        <p><span class="bank-label">SWIFT:</span><span class="bank-value swift-code">BHFBDEFFXXX</span></p>
+                        <p><span class="bank-label">Address:</span><span class="bank-value">Bockenheimer Landstrasse 10, 60323 Frankfurt am Main, Germany</span></p>
+                        <p><span class="bank-label">AML Dept Ref:</span><span class="bank-value">ODDO-AML/882/2026</span></p>
                     </div>
                 </div>
 
@@ -570,7 +580,7 @@
         <div class="reference-box">
             <div class="ref-item">
                 <span class="ref-label">20: SENDER'S REF:</span>
-                <span class="ref-value">EXIM/DJ/FIN/08042026-882</span>
+                <span class="ref-value">EXIM/DJ/FIN/09042026-882</span>
             </div>
             <div class="ref-item">
                 <span class="ref-label">21: RELATED REF (YOURS):</span>
@@ -578,7 +588,7 @@
             </div>
             <div class="ref-item">
                 <span class="ref-label">20A: SWIFT SESSION:</span>
-                <span class="ref-value">2026-04-08-1180B92</span>
+                <span class="ref-value">2026-04-09-1180B92</span>
             </div>
             <div class="ref-item">
                 <span class="ref-label">ORIGINAL TRANSFER REF:</span>
@@ -591,11 +601,11 @@
                 <div class="narrative-section">
                     <div class="narrative-title">📄 79: FINAL RESPONSE - CREDIT CONFIRMATION (In reply to your enquiry)</div>
                     <div class="narrative-content">
-                        <p><strong>Further to your enquiry, we hereby confirm that the transfer made from your bank by Company China Africa Horizon Investment & Development Group Sarl in favour of our client China Africa Horizon Investment & Development Group Sar), in the amount of EUR 20,000,000.00 (Twenty Million Euros), dated 23.03.2026, reference DEU17112212C332-230326, will be credited to the account of Company (Account No: DJ100001173985678944183) within three (3) banking days.</strong></p>
+                        <p><strong>Further to your enquiry, we hereby confirm that the transfer made from your bank by Company China Africa Horizon Investment & Development Group Sarl in favour of our client China Africa Horizon Investment & Development Group Sarl, in the amount of EUR 20,000,000.00 (Twenty Million Euros), dated 23.03.2026, reference DEU17112212C332-230326, will be credited to the account of the beneficiary (Account No: DJ100001173985678944183) within three (3) banking days.</strong></p>
                         
-                        <p><strong>We sincerely apologise for the delay.</strong> The delay was due to a review carried out by the Anti-Money Laundering (AML) Department of the correspondent Bank in Germany (Deutsche Bank AG – SWIFT DEUTDEFFXXX). The review has now been concluded with a 'clear to proceed' status under reference AMLC/DE/FRT/2026-882.</p>
+                        <p><strong>We sincerely apologise for the delay.</strong> The delay was due to a review carried out by the Anti-Money Laundering (AML) Department of the intermediary bank ODDO BHF SE (Frankfurt – SWIFT BHFBDEFFXXX). The funds were held at ODDO BHF SE for additional compliance screening. The review has now been concluded with a 'clear to proceed' status under reference AMLC/ODDO/FRT/2026-882.</p>
                         
-                        <p>All regulatory and compliance checks have been satisfied. No further holds are applicable. The funds will be released from our nostro account via the cleared payment corridor EXTNDJJDXXX → DEUTDEFFXXX → CRAMCHGGXXX. The beneficiary will receive value date April 11, 2026 (T+3). Any charges related to the AML investigation have been waived by the correspondent bank.</p>
+                        <p>All regulatory and compliance checks have been satisfied. No further holds are applicable. The funds will be released from our nostro account via the cleared payment corridor: EXTNDJJDXXX → DEUTDEFFXXX → BHFBDEFFXXX (ODDO BHF) → CRAMCHGGXXX. The beneficiary will receive value date April 14, 2026 (T+3). Any charges related to the AML investigation have been waived by ODDO BHF SE.</p>
                         
                         <p>Please direct any additional queries to our SWIFT operations team using MT199 referencing this MT996.</p>
                     </div>
@@ -605,8 +615,8 @@
             <div class="signature-box">
                 <div class="date-field">
                     <span class="date-label">FINAL RESPONSE AUTHORIZED:</span>
-                    <span class="date-value">APRIL 08, 2026</span>
-                    <span style="margin-left:auto; font-size:12px; color:#006633;">✅ AML Clearance Stamped</span>
+                    <span class="date-value">APRIL 09, 2026</span>
+                    <span style="margin-left:auto; font-size:12px; color:#006633;">✅ AML Clearance Stamped (ODDO BHF)</span>
                 </div>
                 
                 <div class="officers-row">
@@ -633,7 +643,7 @@
                     </div>
                     <div class="pin-card">
                         <span class="pin-label">AML REFERENCE:</span>
-                        <span class="pin-value">DE-882-CLEAR</span>
+                        <span class="pin-value">ODDO-882-CLEAR</span>
                     </div>
                 </div>
             </div>
@@ -646,7 +656,7 @@
                 <img src="https://spangenberggroep.nl/wp-content/uploads/2023/09/pci-dss-1.png.webp" alt="PCI-DSS">
             </div>
             <div class="security-note">
-                ✅ SWIFT MT996 – FINAL RESPONSE • Exim Bank (Djibouti) S.A. to Banque Cramer & Cie SA • Original Transfer: EUR 20,000,000.00 • AML Review completed by Deutsche Bank AG (Frankfurt) • Funds will credit within 3 banking days • SWIFT authenticated • 256-bit SSL Encrypted
+                ✅ SWIFT MT996 – FINAL RESPONSE • Exim Bank (Djibouti) S.A. to Banque Cramer & Cie SA • Original Transfer: EUR 20,000,000.00 • AML Review completed by ODDO BHF SE (Frankfurt) • Funds were held at ODDO BHF, now cleared • Funds will credit within 3 banking days • SWIFT authenticated • 256-bit SSL Encrypted
             </div>
         </div>
     </div>
