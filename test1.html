@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SWIFT Alliance Access | MT103 Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>SWIFT Alliance Access | MT103 Terminal Mobile</title>
     <style>
         :root {
             --bg-dark: #0b0e14;
@@ -13,338 +13,577 @@
             --text-dim: #94a3b8;
             --success: #00ff88;
             --border: #2d3748;
+            --danger: #ff3b5c;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
             display: flex;
-            height: 100vh;
-            overflow: hidden;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Sidebar - Desktop vs Mobile */
+        /* Mobil için dikey sidebar dönüşümü */
         .sidebar {
-            width: 70px;
-            background: #000;
-            border-right: 1px solid var(--border);
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: space-around;
             align-items: center;
-            padding: 20px 0;
-            gap: 25px;
+            background: #000000cc;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            gap: 8px;
             flex-shrink: 0;
+            position: sticky;
+            top: 0;
             z-index: 100;
         }
 
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { 
-                width: 100%; 
-                height: 50px; 
-                flex-direction: row; 
-                justify-content: space-around; 
-                padding: 0;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                order: 2; /* Menyu aşağıda qalsın və ya yuxarıda, bu halda aşağıda terminal stili verir */
-            }
+        .nav-item {
+            color: var(--text-dim);
+            font-size: 22px;
+            padding: 8px 12px;
+            border-radius: 40px;
+            transition: 0.2s;
+            cursor: pointer;
+            background: rgba(255,255,255,0.02);
         }
 
-        .nav-item { color: var(--text-dim); cursor: pointer; font-size: 20px; }
-        .nav-item.active { color: var(--accent); }
+        .nav-item.active {
+            color: var(--accent);
+            background: rgba(0, 98, 255, 0.15);
+        }
 
+        /* Main workspace */
         .main-workspace {
-            flex-grow: 1;
+            flex: 1;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
             background: radial-gradient(circle at top left, #1a202c, #0b0e14);
-            -webkit-overflow-scrolling: touch;
+            width: 100%;
         }
 
         .top-bar {
-            min-height: 60px;
+            padding: 12px 16px;
             border-bottom: 1px solid var(--border);
+            background: rgba(21, 25, 33, 0.9);
+            backdrop-filter: blur(12px);
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 15px;
-            background: rgba(21, 25, 33, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 90;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        /* Grid Layout */
+        /* Tek sütunlu mobil grid */
         .dashboard-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 15px;
-            padding: 15px;
-        }
-
-        @media (max-width: 1024px) {
-            .dashboard-grid { grid-template-columns: 1fr; }
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: 16px;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 20px;
+            padding: 18px;
+            transition: all 0.2s;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
         }
 
         .header-section {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border);
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 1px solid #2d3748;
             padding-bottom: 10px;
         }
 
         .tag {
             font-family: 'Courier New', monospace;
             color: var(--accent);
-            background: rgba(0, 98, 255, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 11px;
             font-weight: bold;
+            background: rgba(0, 98, 255, 0.15);
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .label {
+            font-size: 10px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.4;
+            word-break: break-word;
         }
 
         .amount-hero {
             background: linear-gradient(145deg, #1e2530, #151921);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 20px 16px;
+            border-radius: 24px;
             text-align: center;
             border: 1px solid #3e4b5e;
             margin-bottom: 20px;
         }
-        .amount-val { font-size: clamp(22px, 6vw, 38px); font-weight: 800; color: #fff; }
 
-        .label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
-        .value { font-size: 13px; margin-top: 4px; font-weight: 500; word-break: break-all; }
+        .amount-val {
+            font-size: clamp(28px, 8vw, 44px);
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(0,98,255,0.3);
+            letter-spacing: -0.5px;
+        }
 
-        /* Network Map Mobile Responsive */
-        .network-map-outer {
+        /* yatay kaydırmalı harita (mobil) */
+        .network-map-container {
             width: 100%;
             overflow-x: auto;
-            margin-top: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            padding: 15px 5px;
+            margin: 18px 0 8px 0;
+            padding-bottom: 12px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .network-map {
+            min-width: 620px;
+            padding: 20px 12px;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .node-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 85px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .node-icon {
+            width: 48px;
+            height: 48px;
+            background: #0f131c;
+            border: 1.5px solid var(--success);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: var(--success);
+        }
+
+        .node-name {
+            font-family: 'Consolas', monospace;
+            font-size: 10px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .node-city {
+            font-size: 8px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .connection-line {
+            flex-grow: 1;
+            height: 2px;
+            background: #2d3748;
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 2px;
+            overflow: hidden;
+            min-width: 35px;
+        }
+
+        .line-progress {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--success), transparent);
+            left: -100%;
+            animation: pulseLine 2s infinite linear;
+        }
+
+        @keyframes pulseLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* console mobil için */
+        .console {
+            background: #080b10;
+            font-family: 'Consolas', monospace;
+            padding: 14px;
+            border-radius: 14px;
+            height: 150px;
+            overflow-y: auto;
+            font-size: 11px;
             border: 1px solid var(--border);
         }
-        
-        .network-map {
-            min-width: 580px; /* Sxem qırılmasın deyə minimum ölçü */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-        }
 
-        .node-item { display: flex; flex-direction: column; align-items: center; width: 85px; }
-        .node-icon {
-            width: 42px; height: 42px; background: #151921; border: 2px solid var(--success);
-            border-radius: 10px; display: flex; align-items: center; justify-content: center;
-            font-size: 18px; margin-bottom: 8px; color: var(--success);
-        }
-        .node-name { font-family: 'Consolas', monospace; font-size: 10px; color: #fff; font-weight: bold; }
-
-        .connection-line { flex-grow: 1; height: 2px; background: #2d3748; position: relative; margin-bottom: 18px; overflow: hidden; }
-        .line-progress {
-            position: absolute; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, var(--success), transparent);
-            left: -100%; animation: pulseLine 2.5s infinite linear;
-        }
-        @keyframes pulseLine { 0% { left: -100%; } 100% { left: 100%; } }
-
-        .console {
-            background: #000; font-family: 'Consolas', monospace; padding: 12px;
-            border-radius: 8px; height: 130px; overflow-y: auto; font-size: 11px; border: 1px solid var(--border);
+        .log-entry {
+            margin-bottom: 8px;
+            border-left: 2px solid var(--accent);
+            padding-left: 8px;
+            word-break: break-word;
         }
 
         .action-btn {
-            background: var(--accent); color: white; border: none; padding: 14px;
-            border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 13px; width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
             transition: 0.2s;
+            font-size: 14px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        .action-btn:active { transform: scale(0.98); }
 
-        /* Modal fixes for mobile */
+        .action-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+        }
+
+        .action-btn:active {
+            transform: scale(0.97);
+            filter: brightness(1.1);
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        /* Modal mobil uyum */
         .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(8px);
-            justify-content: center; align-items: center; z-index: 1000; padding: 15px;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 16px;
         }
-        .modal-content {
-            background: var(--card-bg); border: 1px solid var(--border);
-            border-radius: 16px; width: 100%; max-width: 500px; padding: 20px; position: relative;
-        }
-        .close-modal { position: absolute; right: 15px; top: 15px; color: var(--text-dim); font-size: 24px; }
 
-        pre { 
-            white-space: pre-wrap; 
-            word-wrap: break-word; 
-            background: rgba(0,0,0,0.3); 
-            padding: 10px; 
-            border-radius: 6px;
-            font-size: 10px;
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 24px 20px;
+            position: relative;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 18px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-dim);
+            background: rgba(255,255,255,0.05);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            background: #00000030;
+            padding: 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+
+        .grid-info-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* İyileştirmeler */
+        @media (max-width: 480px) {
+            .card {
+                padding: 14px;
+            }
+            .amount-hero {
+                padding: 16px;
+            }
+            .node-item {
+                width: 70px;
+            }
+            .node-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav class="sidebar">
-        <div class="nav-item active">🏦</div>
-        <div class="nav-item">📊</div>
-        <div class="nav-item">🔒</div>
-        <div class="nav-item">⚙️</div>
-    </nav>
+<nav class="sidebar">
+    <div class="nav-item active">🏦</div>
+    <div class="nav-item">📊</div>
+    <div class="nav-item">🔒</div>
+    <div class="nav-item">⚙️</div>
+</nav>
 
-    <div class="main-workspace">
-        <header class="top-bar">
-            <div style="display:flex; align-items:center; gap:8px;">
-                <span style="font-weight:800; color:var(--accent); font-size:13px; letter-spacing:0.5px;">ALLIANCE ACCESS</span>
-                <span style="color:var(--success); font-size:9px;">● ONLINE</span>
-            </div>
-            <div style="font-size:11px; font-weight:bold; color:var(--text-dim);">ELIKO</div>
-        </header>
+<div class="main-workspace">
+    <header class="top-bar">
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span style="font-weight:800; color:var(--accent); letter-spacing:1px; font-size: 14px;">ALLIANCE ACCESS</span>
+            <span style="color:var(--success); font-size:9px; font-weight:bold; background:#00000055; padding:2px 8px; border-radius:20px;">● ONLINE</span>
+        </div>
+        <div style="text-align:right">
+            <div style="font-size:9px; color:var(--text-dim)">OPERATOR</div>
+            <div style="font-size:12px; font-weight:bold;">ELIKO_ADMIN</div>
+        </div>
+    </header>
 
-        <div class="dashboard-grid">
-            <div class="left-panel">
-                <div class="card" style="margin-bottom:15px;">
-                    <div class="header-section">
-                        <h2 style="font-size:13px;">MT103 SETTLED</h2>
-                        <span class="tag">GPI FINAL</span>
+    <div class="dashboard-grid">
+        <!-- sol panel mobilde üstte -->
+        <div class="left-panel">
+            <div class="card" style="margin-bottom:0;">
+                <div class="header-section">
+                    <h2 style="font-size:15px;">MT103 TRANSFER - SETTLED</h2>
+                    <span class="tag">GPI FINAL</span>
+                </div>
+
+                <div class="amount-hero">
+                    <div class="label">Total Transaction Value</div>
+                    <div class="amount-val">€ 20,000,000.00</div>
+                    <div style="color:var(--success); font-size:11px; margin-top:6px; font-weight:bold;">VALUE DATE: 2026-03-26</div>
+                </div>
+
+                <div class="grid-info-mobile">
+                    <div>
+                        <div class="label">Ordering Customer <span class="tag">:50K:</span></div>
+                        <div class="value">MMG CAPITAL LIMITED</div>
+                        <div class="value" style="font-size:12px; color:var(--text-dim);">Avenue de Miremont 22, GENEVA, SWITZERLAND</div>
                     </div>
-
-                    <div class="amount-hero">
-                        <div class="label">Amount Settled</div>
-                        <div class="amount-val">€ 20,000,000.00</div>
-                        <div style="color:var(--success); font-size:11px; margin-top:5px; font-weight:bold;">2026-03-26</div>
-                    </div>
-
-                    <div style="display:grid; grid-template-columns: 1fr; gap:15px;">
-                        <div>
-                            <div class="label">Sender <span class="tag">:50K:</span></div>
-                            <div class="value">MMG CAPITAL LIMITED<br><small style="color:var(--text-dim)">GENEVA, SWITZERLAND</small></div>
-                        </div>
-                        <div>
-                            <div class="label">Beneficiary <span class="tag">:59:</span></div>
-                            <div class="value" style="color:var(--accent)">DJ10001173985678944183</div>
-                            <div class="value">CHINA AFRICA HORIZON GROUP</div>
-                        </div>
-                    </div>
-
-                    <div class="network-map-outer">
-                        <div class="network-map">
-                            <div class="node-item"><div class="node-icon">🏦</div><div class="node-name">CRAMCHGG</div></div>
-                            <div class="connection-line"><div class="line-progress"></div></div>
-                            <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">DEUTDEFF</div></div>
-                            <div class="connection-line"><div class="line-progress" style="animation-delay: 0.8s;"></div></div>
-                            <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">BHFBDEFF</div></div>
-                            <div class="connection-line"><div class="line-progress" style="animation-delay: 1.6s;"></div></div>
-                            <div class="node-item"><div class="node-icon" style="border-style: double;">🏛️</div><div class="node-name">EXTNDJJD</div></div>
-                        </div>
-                        <div style="text-align:center; font-size:9px; color:var(--text-dim); margin-top:10px;">↔ Sürüşdürün (Scroll)</div>
+                    <div>
+                        <div class="label">Beneficiary IBAN <span class="tag">:59:</span></div>
+                        <div class="value" style="color:var(--accent); font-family:monospace; word-break:break-all;">DJ10001173985678944183</div>
+                        <div class="value" style="font-size:13px;">CHINA AFRICA HORIZON INVESTMENT GROUP</div>
                     </div>
                 </div>
 
-                <div class="card" style="margin-bottom:15px;">
-                    <div class="header-section"><h3>SYSTEM LOGS</h3></div>
-                    <div class="console" id="console">
-                        <div class="log-entry"><span style="color:var(--text-dim)">[21:05]</span> AUTH: MT103 Validated.</div>
-                        <div class="log-entry"><span style="color:var(--success)">[21:08]</span> GPI: Credit confirmed.</div>
+                <div class="network-map-container">
+                    <div class="network-map">
+                        <div class="node-item"><div class="node-icon">🏦</div><div class="node-name">CRAMCHGG</div><div class="node-city">Geneva</div></div>
+                        <div class="connection-line"><div class="line-progress"></div></div>
+                        <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">DEUTDEFF</div><div class="node-city">Frankfurt</div></div>
+                        <div class="connection-line"><div class="line-progress" style="animation-delay: 0.8s;"></div></div>
+                        <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">BHFBDEFF</div><div class="node-city">Frankfurt</div></div>
+                        <div class="connection-line"><div class="line-progress" style="animation-delay: 1.6s;"></div></div>
+                        <div class="node-item"><div class="node-icon" style="border-style: double; border-width:3px;">🏛️</div><div class="node-name">EXTNDJJD</div><div class="node-city">Djibouti</div></div>
                     </div>
                 </div>
             </div>
 
-            <div class="right-panel">
-                <div class="card">
-                    <div class="header-section"><h3>SWIFT RAW</h3></div>
-                    <pre id="swiftRaw">
-{1:F01CRAMCHGGAXXX8291722562}
+            <div class="card">
+                <div class="header-section"><h3 style="font-size:14px;">SYSTEM AUDIT LOGS</h3></div>
+                <div class="console" id="console">
+                    <div class="log-entry"><span style="color:var(--text-dim)">[20:05:01]</span> AUTH: Requesting validation for UETR 40fb91ed...</div>
+                    <div class="log-entry"><span style="color:var(--success)">[20:05:08]</span> GPI: Final credit notification received (MT910).</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- sağ panel mobilde alt kısımda -->
+        <div class="right-panel">
+            <div class="card">
+                <div class="header-section"><h3 style="font-size:14px;">SWIFT FIN RAW</h3></div>
+                <pre id="swiftRaw" style="font-family:'Courier New', monospace; font-size:11px; color:var(--text-dim);">{1:F01CRAMCHGGAXXX8291722562}
 {2:O1031611060317EXTNDJJDXXX5062118924}
+{3:{108:MT103GPI}}
 {4:
 :20:MT103/DEU17112212C332
+:21:40fb91ed-19aa-4263
 :32A:260326EUR20000000,00
-:50K:MMG Capital Limited
+:50K:/1234567890
+MMG Capital Limited
+Avenue de Miremont 22
+:52A:CRAMCHGGXXX
+:57A:EXTNDJJDXXX
 :59:/DJ10001173985678944183
+China Africa Horizon
+:71A:SHA
 :72:/SET/COMPLETED
 -}</pre>
-                    <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
-                        <button class="action-btn" onclick="downloadAdvice()">📥 DOWNLOAD ADVICE</button>
-                        <button class="action-btn" style="background:transparent; border:1px solid var(--border)" onclick="toggleModal('rurModal')">📜 VIEW RUR</button>
-                        <button class="action-btn" style="background:transparent; border:1px solid var(--border)" onclick="toggleModal('gpiModal')">📡 TRACE GPI</button>
-                    </div>
+
+                <div class="button-group">
+                    <button class="action-btn" onclick="downloadAdvice()">📥 DOWNLOAD ADVICE</button>
+                    <button class="action-btn action-outline" onclick="toggleModal('rurModal')">📜 VIEW FULL RUR</button>
+                    <button class="action-btn action-outline" onclick="toggleModal('gpiModal')">📡 TRACE GPI PATH</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="gpiModal" class="modal-overlay" onclick="closeOnOutside(event)">
-        <div class="modal-content">
-            <span class="close-modal" onclick="toggleModal('gpiModal')">&times;</span>
-            <h3 style="color:var(--accent); margin-bottom:15px;">📡 GPI Tracker</h3>
-            <div style="font-size: 13px; line-height: 2;">
-                <p>● <strong>CRAMCHGG:</strong> Debited 23.03</p>
-                <p>● <strong>DEUTDEFF:</strong> Processed</p>
-                <p style="color:var(--success)">● <strong>EXTNDJJD:</strong> Credited 26.03</p>
-            </div>
+<!-- GPI Modal -->
+<div id="gpiModal" class="modal-overlay" onclick="closeOnOutside(event)">
+    <div class="modal-content">
+        <span class="close-modal" onclick="toggleModal('gpiModal')">&times;</span>
+        <h3 style="color:var(--accent); margin-bottom:20px; font-size:18px;">📡 gPI Real-Time Tracker</h3>
+        <div style="border-left: 2px solid var(--border); margin-left: 8px; padding-left: 20px; font-size: 13px; line-height: 2;">
+            <p><strong>🏦 CRAMCHGG (Geneva):</strong> Funds Debited · 2026-03-23 09:42</p>
+            <p><strong>⚙️ DEUTDEFF (Frankfurt):</strong> Processed via gpi Hub · 2026-03-24 11:17</p>
+            <p><strong>⚙️ BHFBDEFF (Frankfurt):</strong> Intermediary swift · 2026-03-25 08:05</p>
+            <p style="color:var(--success)"><strong>🏛️ EXTNDJJD (Djibouti):</strong> Funds Credited · 2026-03-26 14:02:44</p>
+            <p style="margin-top:12px; font-size:11px; color:var(--accent)">UETR: 40fb91ed-19aa-4263-be97-dc75011ad83f</p>
         </div>
     </div>
+</div>
 
-    <div id="rurModal" class="modal-overlay" onclick="closeOnOutside(event)">
-        <div class="modal-content">
-            <span class="close-modal" onclick="toggleModal('rurModal')">&times;</span>
-            <h3 style="color:var(--accent); margin-bottom:15px;">📜 RUR Report</h3>
-            <div style="background:#000; padding:15px; font-family:monospace; font-size:11px; border:1px solid var(--border);">
-                STATUS: COMPLETED<br>
-                UETR: 40fb91ed-19aa-4263-be97<br>
-                MMG CAPITAL -> CHINA AFRICA
-            </div>
+<!-- RUR Modal -->
+<div id="rurModal" class="modal-overlay" onclick="closeOnOutside(event)">
+    <div class="modal-content">
+        <span class="close-modal" onclick="toggleModal('rurModal')">&times;</span>
+        <h3 style="color:var(--accent); margin-bottom:16px;">📜 Read-Upon-Receipt Report</h3>
+        <div style="background:#04070c; padding:18px; border-radius:20px; font-family:monospace; font-size:12px; border:1px solid var(--border); line-height: 1.7;">
+            <strong>UETR:</strong> 40fb91ed-19aa-4263-be97-dc75011ad83f<br>
+            <strong>ORDERER:</strong> MMG CAPITAL LIMITED<br>
+            <strong>BENEFICIARY:</strong> CHINA AFRICA HORIZON GROUP<br>
+            <strong>AMOUNT:</strong> 20,000,000.00 EUR<br>
+            <strong>STATUS:</strong> FINAL / ACK RECEIVED<br>
+            <strong>MT103 REF:</strong> DEU17112212C332<br>
+            <strong>Settlement Date:</strong> 26-MAR-2026<br>
+            <hr style="border-color:#2d3748; margin:10px 0;">
+            <span style="color:var(--success)">✓ CONFIRMED: Credit to beneficiary account.</span>
         </div>
     </div>
+</div>
 
-    <script>
-        function logToConsole(msg, success = false) {
-            const consoleEl = document.getElementById('console');
-            const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            const div = document.createElement('div');
-            div.className = 'log-entry';
-            div.innerHTML = `<span style="color:var(--text-dim)">[${time}]</span> <span style="color:${success ? 'var(--success)' : '#fff'}">${msg}</span>`;
-            consoleEl.appendChild(div);
-            consoleEl.scrollTop = consoleEl.scrollHeight;
-        }
+<script>
+    // konsola log ekleme (mobil uyumlu)
+    function logToConsole(msg, isSuccess = false) {
+        const consoleEl = document.getElementById('console');
+        const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const div = document.createElement('div');
+        div.className = 'log-entry';
+        div.innerHTML = `<span style="color:var(--text-dim)">[${time}]</span> <span style="color:${isSuccess ? 'var(--success)' : '#e2e8f0'}">${msg}</span>`;
+        consoleEl.appendChild(div);
+        consoleEl.scrollTop = consoleEl.scrollHeight;
+        // sadece son 35 mesajı tut (performans)
+        while(consoleEl.children.length > 40) consoleEl.removeChild(consoleEl.firstChild);
+    }
 
-        function toggleModal(id) {
-            const m = document.getElementById(id);
-            m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
+    function toggleModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+        const isOpen = modal.style.display === 'flex';
+        modal.style.display = isOpen ? 'none' : 'flex';
+        if (!isOpen) {
+            const modalName = modalId === 'gpiModal' ? 'GPI TRACE' : (modalId === 'rurModal' ? 'RUR REPORT' : 'SECURE');
+            logToConsole(`🔐 Accessing secure ${modalName} records...`, false);
         }
+    }
 
-        function downloadAdvice() {
-            const content = document.getElementById('swiftRaw').innerText;
-            const blob = new Blob([content], {type: 'text/plain'});
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'MT103_MMG.txt';
-            a.click();
-            logToConsole("Document saved.", true);
-        }
+    function downloadAdvice() {
+        // mevcut swiftRaw içeriğini al
+        let rawContent = document.getElementById('swiftRaw').innerText;
+        // MT103 başlık eklentisi
+        const header = "SWIFT MT103 - SETTLEMENT ADVICE\nGenerated: " + new Date().toISOString() + "\n\n";
+        const blob = new Blob([header + rawContent], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `MT103_Advice_MMG_Capital_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.txt`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+        logToConsole("📄 Advice generated and downloaded successfully.", true);
+    }
 
-        function closeOnOutside(e) {
-            if (e.target.className === 'modal-overlay') e.target.style.display = 'none';
+    function closeOnOutside(e) {
+        if (e.target.classList && e.target.classList.contains('modal-overlay')) {
+            e.target.style.display = 'none';
         }
-    </script>
+    }
+
+    // Sidebar aktif buton geçiş simülasyonu (görsel)
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            navItems.forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+            const iconText = this.innerText || this.textContent;
+            logToConsole(`Navigation: ${iconText} module selected (display mode)`, false);
+        });
+    });
+
+    // Sayfa yüklendiğinde interaktif mesaj
+    window.addEventListener('load', () => {
+        logToConsole("Terminal ready | Mobile secure session established", true);
+        logToConsole("SWIFTNet link active | GPI tracker online", false);
+    });
+
+    // Dokunma geri bildirimi için butonlara hafif vib (isteğe bağlı, sessiz)
+    if (window.navigator && window.navigator.vibrate) {
+        const btns = document.querySelectorAll('.action-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                window.navigator.vibrate?.(10);
+            }, { passive: true });
+        });
+    }
+</script>
 </body>
 </html>
