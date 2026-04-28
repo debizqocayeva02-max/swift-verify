@@ -366,15 +366,8 @@
             margin-top: 20px;
         }
 
-        .officers-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px 60px;
-            margin-bottom: 25px;
-        }
-
         .officer-card {
-            flex: 1 1 250px;
+            margin-bottom: 20px;
         }
 
         .officer-name {
@@ -391,8 +384,9 @@
             display: flex;
             flex-wrap: wrap;
             gap: 40px 60px;
+            margin: 20px 0;
+            padding-top: 15px;
             border-top: 1px solid #d1d5db;
-            padding-top: 20px;
         }
 
         .pin-card {
@@ -424,7 +418,7 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 15px;
-            margin-bottom: 20px;
+            margin-top: 20px;
             background: #ffffff;
             padding: 16px;
             border-radius: 12px;
@@ -450,15 +444,17 @@
         
         .aml-officer {
             width: 100%;
-            padding-top: 10px;
+            padding: 15px 0;
             border-top: 1px solid #e2e8f0;
-            margin-top: 5px;
+            border-bottom: 1px solid #e2e8f0;
+            margin: 5px 0;
         }
         
         .officer-title {
             font-weight: 600;
             color: #0a2540;
             margin-bottom: 8px;
+            font-size: 15px;
         }
         
         .officer-pin {
@@ -482,6 +478,16 @@
             background: #e6f0f9;
             padding: 4px 12px;
             border-radius: 30px;
+        }
+        
+        .final-response {
+            width: 100%;
+            margin-top: 15px;
+            padding-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
         
         .security-footer {
@@ -525,7 +531,7 @@
 
         @media (max-width: 768px) {
             .header-grid { grid-template-columns: 1fr; }
-            .officers-row, .pins-row { flex-direction: column; gap: 20px; }
+            .pins-row { flex-direction: column; gap: 15px; }
             .message-date { margin-left: 0; }
             .swift-badge { margin-left: 0; }
             .reference-box { flex-direction: column; align-items: flex-start; }
@@ -665,26 +671,30 @@
                     </div>
                 </div>
             </div>
-                    <div class="aml-officer">
-                        <div class="officer-title">Director of AML Department</div>
-                        <div style="color:#475569; font-size:13px;">ODDO BHF SE (Frankfurt)</div>
-                        <div class="officer-pin">
-                            <span class="officer-pin-label">AML DIRECTOR PIN:</span>
-                            <span class="officer-pin-value">ODDO-AML-882-DIR</span>
-                        </div>
+
+            <div class="signature-box">
+                <!-- 1. Director of AML Department (ODDO BHF SE) ve PIN kodu -->
+                <div class="aml-officer">
+                    <div class="officer-title">Director of AML Department</div>
+                    <div style="color:#475569; font-size:13px;">ODDO BHF SE (Frankfurt am Main, Germany)</div>
+                    <div class="officer-pin">
+                        <span class="officer-pin-label">AML DIRECTOR PIN:</span>
+                        <span class="officer-pin-value">ODDO-AML-882-DIR</span>
                     </div>
                 </div>
-            <div class="signature-box">
+                
+
+                
+                <!-- 3. FINAL RESPONSE AUTHORIZED (ən AŞAĞIDA) -->
                 <div class="date-field">
                     <div class="date-row">
                         <span class="date-label">FINAL RESPONSE AUTHORIZED:</span>
                         <span class="date-value">28 APRIL 2026</span>
                         <span style="margin-left:auto; font-size:12px; color:#006633;">✅ AML Clearance Stamped</span>
                     </div>
-                    
-
-                
-
+                </div>
+            </div>
+        </div>
 
         <div class="security-footer">
             <div class="security-logos">
