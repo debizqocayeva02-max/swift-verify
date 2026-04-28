@@ -327,7 +327,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 50px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .officer-card {
@@ -347,39 +347,49 @@
             color: #3e6c8a;
             font-size: 13px;
             margin-left: 15px;
+            margin-bottom: 16px;
         }
 
-        .pins-row {
+        /* PIN card style - clean frame, no extra header text */
+        .pin-frame {
+            background: #ffffff;
+            border: 1px solid #dcebf3;
+            border-radius: 20px;
+            padding: 12px 18px;
+            margin-top: 12px;
+            transition: all 0.1s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .pin-item {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
             flex-wrap: wrap;
-            gap: 40px;
-            border-top: 1px solid #d4e2ec;
-            padding-top: 22px;
-        }
-
-        .pin-card {
-            display: flex;
-            align-items: baseline;
             gap: 12px;
-            background: #f5fafd;
+            background: #f8fcfd;
             padding: 8px 18px;
             border-radius: 60px;
+            border: 1px solid #e2edf5;
         }
 
         .pin-label {
             font-weight: 700;
-            color: #2f6b8c;
-            font-size: 12px;
+            color: #256f8a;
+            font-size: 13px;
+            letter-spacing: 0.3px;
         }
 
         .pin-value {
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-weight: 800;
             background: white;
-            padding: 4px 16px;
+            padding: 5px 18px;
             border-radius: 40px;
             color: #004c70;
             letter-spacing: 0.5px;
+            font-size: 14px;
+            border: 1px solid #cde1ec;
         }
 
         .security-footer {
@@ -446,6 +456,7 @@
             .header-grid { grid-template-columns: 1fr; }
             .message-container { margin: 10px; }
             body { padding: 16px; }
+            .officers-row { gap: 30px; }
         }
         @media print {
             body { background: white; padding: 0;}
@@ -547,28 +558,39 @@
             </div>
         </div>
 
-        <!-- Officers signature area same as requested: Mr. Christoph Berchtold & Ms. Sabine Keller-Busse -->
+        <!-- Officers signature area - PIN codes inside clean frames WITHOUT extra title texts -->
         <div class="signature-box">
             <div class="officers-row">
+                <!-- Mr. Christoph Berchtold with his PIN (frame only) -->
                 <div class="officer-card">
                     <div class="officer-name">Mr. Christoph Berchtold</div>
                     <div class="officer-title">Chief Risk Officer<br>UBS Switzerland AG</div>
+                    <div class="pin-frame">
+                        <div class="pin-item">
+                            <span class="pin-label">PIN CODE</span>
+                            <span class="pin-value">UBS-611-AR-628</span>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- Ms. Sabine Keller-Busse with her PIN (frame only, under her details) -->
                 <div class="officer-card">
                     <div class="officer-name">Ms. Sabine Keller-Busse</div>
                     <div class="officer-title">President UBS Switzerland<br>Head Personal & Corporate Banking</div>
+                    <div class="pin-frame">
+                        <div class="pin-item">
+                            <span class="pin-label">PIN CODE</span>
+                            <span class="pin-value">UBS-612-TN-929</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="pins-row">
-                <div class="pin-card"><span class="pin-label">PIN CODE:</span><span class="pin-value">UBS-611-AR-628</span></div>
-                <div class="pin-card"><span class="pin-label">PIN CODE:</span><span class="pin-value">UBS-612-TN-929</span></div>
-            </div>
-            <div style="margin-top: 20px; font-size: 12px; color: #307090; border-top: 1px solid #cde1ec; padding-top: 15px; text-align: center;">
-                <span>🏦 Authorized SWIFT signatories — UBS Switzerland AG Zurich</span>
+            <div style="margin-top: 20px; font-size: 12px; color: #307090; border-top: 1px solid #e0eff7; padding-top: 16px; text-align: center;">
+                <span>🏦 Authorized SWIFT signatories — UBS Switzerland AG Zurich | Dual PIN authentication</span>
             </div>
         </div>
 
-        <!-- Security footer with banking verification branding (UBS style)-->
+        <!-- Security footer with banking verification branding (UBS style) -->
         <div class="security-footer">
             <div class="secure-badge">
                 <span>🔐 SWIFT Certified</span>
@@ -586,11 +608,9 @@
 
     <script>
         function downloadPDF() {
-            // Simple print emulation to save as PDF
             window.print();
         }
-        // Additional micro-interaction to show ready status
-        console.log("MT996 Reply Message generated for UBS → Barclays");
+        console.log("MT996 ready — PIN codes framed, extra label text removed as requested.");
     </script>
 </body>
 </html>
