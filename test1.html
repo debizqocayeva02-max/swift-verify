@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SWIFT Alliance Access | MT103 Terminal</title>
     <style>
         :root {
@@ -16,8 +16,9 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
             display: flex;
@@ -25,7 +26,7 @@
             overflow: hidden;
         }
 
-        /* Responsive Sidebar */
+        /* Sidebar - Desktop vs Mobile */
         .sidebar {
             width: 70px;
             background: #000;
@@ -36,22 +37,24 @@
             padding: 20px 0;
             gap: 25px;
             flex-shrink: 0;
+            z-index: 100;
         }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { 
                 width: 100%; 
-                height: 60px; 
+                height: 50px; 
                 flex-direction: row; 
                 justify-content: space-around; 
                 padding: 0;
                 border-right: none;
                 border-bottom: 1px solid var(--border);
+                order: 2; /* Menyu aşağıda qalsın və ya yuxarıda, bu halda aşağıda terminal stili verir */
             }
         }
 
-        .nav-item { color: var(--text-dim); cursor: pointer; font-size: 20px; transition: 0.3s; }
+        .nav-item { color: var(--text-dim); cursor: pointer; font-size: 20px; }
         .nav-item.active { color: var(--accent); }
 
         .main-workspace {
@@ -60,6 +63,7 @@
             flex-direction: column;
             overflow-y: auto;
             background: radial-gradient(circle at top left, #1a202c, #0b0e14);
+            -webkit-overflow-scrolling: touch;
         }
 
         .top-bar {
@@ -68,20 +72,23 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
-            background: rgba(21, 25, 33, 0.8);
+            padding: 0 15px;
+            background: rgba(21, 25, 33, 0.95);
             backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 90;
         }
 
-        /* Layout Grid */
+        /* Grid Layout */
         .dashboard-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 20px;
-            padding: 20px;
+            gap: 15px;
+            padding: 15px;
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1024px) {
             .dashboard-grid { grid-template-columns: 1fr; }
         }
 
@@ -89,8 +96,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 20px;
-            position: relative;
+            padding: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
@@ -99,63 +105,61 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
-            border-bottom: 1px solid #2d3748;
+            border-bottom: 1px solid var(--border);
             padding-bottom: 10px;
         }
 
         .tag {
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Courier New', monospace;
             color: var(--accent);
-            font-weight: bold;
             background: rgba(0, 98, 255, 0.1);
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 11px;
+            font-weight: bold;
         }
-
-        .label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-        .value { font-size: 14px; font-weight: 500; line-height: 1.4; word-break: break-word; }
 
         .amount-hero {
             background: linear-gradient(145deg, #1e2530, #151921);
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
             text-align: center;
             border: 1px solid #3e4b5e;
             margin-bottom: 20px;
         }
-        .amount-val { font-size: clamp(28px, 6vw, 42px); font-weight: 800; color: #fff; text-shadow: 0 0 20px rgba(0,98,255,0.2); }
+        .amount-val { font-size: clamp(22px, 6vw, 38px); font-weight: 800; color: #fff; }
 
-        /* Network Map - Responsive Scroll */
-        .network-map-container {
+        .label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+        .value { font-size: 13px; margin-top: 4px; font-weight: 500; word-break: break-all; }
+
+        /* Network Map Mobile Responsive */
+        .network-map-outer {
             width: 100%;
             overflow-x: auto;
-            margin-top: 25px;
-            padding-bottom: 15px;
-            -webkit-overflow-scrolling: touch;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 15px 5px;
+            border: 1px solid var(--border);
         }
         
         .network-map {
-            min-width: 650px;
-            padding: 30px 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            min-width: 580px; /* Sxem qırılmasın deyə minimum ölçü */
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 10px;
         }
 
-        .node-item { display: flex; flex-direction: column; align-items: center; width: 100px; text-align: center; }
+        .node-item { display: flex; flex-direction: column; align-items: center; width: 85px; }
         .node-icon {
-            width: 48px; height: 48px; background: #151921; border: 2px solid var(--success);
-            border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            font-size: 20px; margin-bottom: 10px; color: var(--success);
+            width: 42px; height: 42px; background: #151921; border: 2px solid var(--success);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 18px; margin-bottom: 8px; color: var(--success);
         }
-        .node-name { font-family: 'Consolas', monospace; font-size: 11px; color: #fff; font-weight: bold; }
-        .node-city { font-size: 9px; color: var(--accent); text-transform: uppercase; margin-top: 2px; }
+        .node-name { font-family: 'Consolas', monospace; font-size: 10px; color: #fff; font-weight: bold; }
 
-        .connection-line { flex-grow: 1; height: 2px; background: #2d3748; position: relative; margin-bottom: 25px; overflow: hidden; }
+        .connection-line { flex-grow: 1; height: 2px; background: #2d3748; position: relative; margin-bottom: 18px; overflow: hidden; }
         .line-progress {
             position: absolute; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, var(--success), transparent);
@@ -164,35 +168,36 @@
         @keyframes pulseLine { 0% { left: -100%; } 100% { left: 100%; } }
 
         .console {
-            background: #000; font-family: 'Consolas', monospace; padding: 15px;
-            border-radius: 8px; height: 160px; overflow-y: auto; font-size: 12px; border: 1px solid var(--border);
+            background: #000; font-family: 'Consolas', monospace; padding: 12px;
+            border-radius: 8px; height: 130px; overflow-y: auto; font-size: 11px; border: 1px solid var(--border);
         }
-        .log-entry { margin-bottom: 5px; border-left: 2px solid var(--accent); padding-left: 8px; }
 
         .action-btn {
-            background: var(--accent); color: white; border: none; padding: 12px;
-            border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s; font-size: 13px;
+            background: var(--accent); color: white; border: none; padding: 14px;
+            border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 13px; width: 100%;
+            transition: 0.2s;
         }
-        .action-btn:hover { filter: brightness(1.2); }
+        .action-btn:active { transform: scale(0.98); }
 
+        /* Modal fixes for mobile */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); backdrop-filter: blur(8px);
-            justify-content: center; align-items: center; z-index: 9999; padding: 20px;
+            justify-content: center; align-items: center; z-index: 1000; padding: 15px;
         }
         .modal-content {
             background: var(--card-bg); border: 1px solid var(--border);
-            border-radius: 16px; width: 100%; max-width: 650px; padding: 30px; position: relative;
+            border-radius: 16px; width: 100%; max-width: 500px; padding: 20px; position: relative;
         }
-        .close-modal { position: absolute; right: 20px; top: 20px; color: var(--text-dim); cursor: pointer; font-size: 24px; }
+        .close-modal { position: absolute; right: 15px; top: 15px; color: var(--text-dim); font-size: 24px; }
 
         pre { 
             white-space: pre-wrap; 
             word-wrap: break-word; 
-            background: rgba(0,0,0,0.2); 
-            padding: 15px; 
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.3); 
+            padding: 10px; 
+            border-radius: 6px;
+            font-size: 10px;
         }
     </style>
 </head>
@@ -207,94 +212,79 @@
 
     <div class="main-workspace">
         <header class="top-bar">
-            <div style="display:flex; align-items:center; gap:12px;">
-                <span style="font-weight:800; color:var(--accent); letter-spacing:1px; font-size: 14px;">ALLIANCE ACCESS</span>
-                <span style="color:var(--success); font-size:10px; font-weight:bold;">● ONLINE</span>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-weight:800; color:var(--accent); font-size:13px; letter-spacing:0.5px;">ALLIANCE ACCESS</span>
+                <span style="color:var(--success); font-size:9px;">● ONLINE</span>
             </div>
-            <div style="text-align:right">
-                <div style="font-size:10px; color:var(--text-dim)">OPERATOR</div>
-                <div style="font-size:12px; font-weight:bold;">ELIKO_ADMIN</div>
-            </div>
+            <div style="font-size:11px; font-weight:bold; color:var(--text-dim);">ELIKO</div>
         </header>
 
         <div class="dashboard-grid">
             <div class="left-panel">
-                <div class="card" style="margin-bottom:20px;">
+                <div class="card" style="margin-bottom:15px;">
                     <div class="header-section">
-                        <h2 style="font-size:15px;">MT103 TRANSFER - SETTLED</h2>
+                        <h2 style="font-size:13px;">MT103 SETTLED</h2>
                         <span class="tag">GPI FINAL</span>
                     </div>
 
                     <div class="amount-hero">
-                        <div class="label">Total Transaction Value</div>
+                        <div class="label">Amount Settled</div>
                         <div class="amount-val">€ 20,000,000.00</div>
-                        <div style="color:var(--success); font-size:12px; margin-top:5px; font-weight:bold;">VALUE DATE: 2026-03-26</div>
+                        <div style="color:var(--success); font-size:11px; margin-top:5px; font-weight:bold;">2026-03-26</div>
                     </div>
 
-                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+                    <div style="display:grid; grid-template-columns: 1fr; gap:15px;">
                         <div>
-                            <div style="margin-bottom:15px;">
-                                <div class="label">Ordering Customer <span class="tag">:50K:</span></div>
-                                <div class="value">MMG CAPITAL LIMITED<br><span style="color:var(--text-dim); font-size:12px;">Avenue de Miremont 22, GENEVA, SWITZERLAND</span></div>
-                            </div>
+                            <div class="label">Sender <span class="tag">:50K:</span></div>
+                            <div class="value">MMG CAPITAL LIMITED<br><small style="color:var(--text-dim)">GENEVA, SWITZERLAND</small></div>
                         </div>
                         <div>
-                            <div style="margin-bottom:15px;">
-                                <div class="label">Beneficiary IBAN <span class="tag">:59:</span></div>
-                                <div class="value" style="color:var(--accent); font-family:monospace;">DJ10001173985678944183</div>
-                                <div class="value">CHINA AFRICA HORIZON INVESTMENT GROUP</div>
-                            </div>
+                            <div class="label">Beneficiary <span class="tag">:59:</span></div>
+                            <div class="value" style="color:var(--accent)">DJ10001173985678944183</div>
+                            <div class="value">CHINA AFRICA HORIZON GROUP</div>
                         </div>
                     </div>
 
-                    <div class="network-map-container">
+                    <div class="network-map-outer">
                         <div class="network-map">
-                            <div class="node-item"><div class="node-icon">🏦</div><div class="node-name">CRAMCHGG</div><div class="node-city">Geneva</div></div>
+                            <div class="node-item"><div class="node-icon">🏦</div><div class="node-name">CRAMCHGG</div></div>
                             <div class="connection-line"><div class="line-progress"></div></div>
-                            <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">DEUTDEFF</div><div class="node-city">Frankfurt</div></div>
+                            <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">DEUTDEFF</div></div>
                             <div class="connection-line"><div class="line-progress" style="animation-delay: 0.8s;"></div></div>
-                            <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">BHFBDEFF</div><div class="node-city">Frankfurt</div></div>
+                            <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">BHFBDEFF</div></div>
                             <div class="connection-line"><div class="line-progress" style="animation-delay: 1.6s;"></div></div>
-                            <div class="node-item"><div class="node-icon" style="border-style: double; border-width:3px;">🏛️</div><div class="node-name">EXTNDJJD</div><div class="node-city">Djibouti</div></div>
+                            <div class="node-item"><div class="node-icon" style="border-style: double;">🏛️</div><div class="node-name">EXTNDJJD</div></div>
                         </div>
+                        <div style="text-align:center; font-size:9px; color:var(--text-dim); margin-top:10px;">↔ Sürüşdürün (Scroll)</div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="header-section"><h3>SYSTEM AUDIT LOGS</h3></div>
+                <div class="card" style="margin-bottom:15px;">
+                    <div class="header-section"><h3>SYSTEM LOGS</h3></div>
                     <div class="console" id="console">
-                        <div class="log-entry"><span style="color:var(--text-dim)">[20:05:01]</span> AUTH: Requesting validation for UETR 40fb91ed...</div>
-                        <div class="log-entry"><span style="color:var(--success)">[20:05:08]</span> GPI: Final credit notification received (MT910).</div>
+                        <div class="log-entry"><span style="color:var(--text-dim)">[21:05]</span> AUTH: MT103 Validated.</div>
+                        <div class="log-entry"><span style="color:var(--success)">[21:08]</span> GPI: Credit confirmed.</div>
                     </div>
                 </div>
             </div>
 
             <div class="right-panel">
-                <div class="card" style="height: 100%;">
-                    <div class="header-section"><h3>SWIFT FIN RAW</h3></div>
-                    <pre id="swiftRaw" style="font-family:'Consolas', monospace; font-size:12px; color:var(--text-dim); line-height:1.8;">
+                <div class="card">
+                    <div class="header-section"><h3>SWIFT RAW</h3></div>
+                    <pre id="swiftRaw">
 {1:F01CRAMCHGGAXXX8291722562}
 {2:O1031611060317EXTNDJJDXXX5062118924}
-{3:{108:MT103GPI}}
 {4:
 :20:MT103/DEU17112212C332
-:21:40fb91ed-19aa-4263
 :32A:260326EUR20000000,00
-:50K:/1234567890
-MMG Capital Limited
-Avenue de Miremont 22
-:52A:CRAMCHGGXXX
-:57A:EXTNDJJDXXX
+:50K:MMG Capital Limited
 :59:/DJ10001173985678944183
-China Africa Horizon
-:71A:SHA
 :72:/SET/COMPLETED
--}
-                    </pre>
-                    <div style="margin-top:25px; display:flex; flex-direction:column; gap:12px;">
+-}</pre>
+                    <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
                         <button class="action-btn" onclick="downloadAdvice()">📥 DOWNLOAD ADVICE</button>
-                        <button class="action-btn" style="background:transparent; border:1px solid var(--border)" onclick="toggleModal('rurModal')">📜 VIEW FULL RUR</button>
-                        <button class="action-btn" style="background:transparent; border:1px solid var(--border)" onclick="toggleModal('gpiModal')">📡 TRACE GPI PATH</button>
+                        <button class="action-btn" style="background:transparent; border:1px solid var(--border)" onclick="toggleModal('rurModal')">📜 VIEW RUR</button>
+                        <button class="action-btn" style="background:transparent; border:1px solid var(--border)" onclick="toggleModal('gpiModal')">📡 TRACE GPI</button>
                     </div>
                 </div>
             </div>
@@ -304,11 +294,11 @@ China Africa Horizon
     <div id="gpiModal" class="modal-overlay" onclick="closeOnOutside(event)">
         <div class="modal-content">
             <span class="close-modal" onclick="toggleModal('gpiModal')">&times;</span>
-            <h3 style="color:var(--accent); margin-bottom:20px;">📡 gpi Real-Time Tracker</h3>
-            <div style="border-left: 2px dashed var(--border); margin-left: 10px; padding-left: 25px; font-size: 14px; line-height: 2;">
-                <p><strong>CRAMCHGG (Geneva):</strong> Funds Debited | 2026-03-23</p>
-                <p><strong>DEUTDEFF (Frankfurt):</strong> Processed via gpi Hub</p>
-                <p style="color:var(--success)"><strong>EXTNDJJD (Djibouti):</strong> Funds Credited | 2026-03-26 14:02</p>
+            <h3 style="color:var(--accent); margin-bottom:15px;">📡 GPI Tracker</h3>
+            <div style="font-size: 13px; line-height: 2;">
+                <p>● <strong>CRAMCHGG:</strong> Debited 23.03</p>
+                <p>● <strong>DEUTDEFF:</strong> Processed</p>
+                <p style="color:var(--success)">● <strong>EXTNDJJD:</strong> Credited 26.03</p>
             </div>
         </div>
     </div>
@@ -316,44 +306,40 @@ China Africa Horizon
     <div id="rurModal" class="modal-overlay" onclick="closeOnOutside(event)">
         <div class="modal-content">
             <span class="close-modal" onclick="toggleModal('rurModal')">&times;</span>
-            <h3 style="color:var(--accent); margin-bottom:20px;">📜 Read-Upon-Receipt Report</h3>
-            <div style="background:#000; padding:20px; font-family:monospace; font-size:12px; border:1px solid var(--border); line-height: 1.8;">
-                UETR: 40fb91ed-19aa-4263-be97-dc75011ad83f<br>
-                ORDERER: MMG CAPITAL LIMITED<br>
-                BENEFICIARY: CHINA AFRICA HORIZON GROUP<br>
-                AMOUNT: 20,000,000.00 EUR<br>
-                STATUS: COMPLETED / ACK RECEIVED
+            <h3 style="color:var(--accent); margin-bottom:15px;">📜 RUR Report</h3>
+            <div style="background:#000; padding:15px; font-family:monospace; font-size:11px; border:1px solid var(--border);">
+                STATUS: COMPLETED<br>
+                UETR: 40fb91ed-19aa-4263-be97<br>
+                MMG CAPITAL -> CHINA AFRICA
             </div>
         </div>
     </div>
 
     <script>
-        function logToConsole(msg, isSuccess = false) {
+        function logToConsole(msg, success = false) {
             const consoleEl = document.getElementById('console');
-            const time = new Date().toLocaleTimeString();
+            const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             const div = document.createElement('div');
             div.className = 'log-entry';
-            div.innerHTML = `<span style="color:var(--text-dim)">[${time}]</span> <span style="color:${isSuccess ? 'var(--success)' : '#fff'}">${msg}</span>`;
+            div.innerHTML = `<span style="color:var(--text-dim)">[${time}]</span> <span style="color:${success ? 'var(--success)' : '#fff'}">${msg}</span>`;
             consoleEl.appendChild(div);
             consoleEl.scrollTop = consoleEl.scrollHeight;
         }
 
         function toggleModal(id) {
-            const modal = document.getElementById(id);
-            const isOpen = modal.style.display === 'flex';
-            modal.style.display = isOpen ? 'none' : 'flex';
-            if(!isOpen) logToConsole(`CMD: Accessing secure ${id.replace('Modal','').toUpperCase()} records...`);
+            const m = document.getElementById(id);
+            m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
         }
 
         function downloadAdvice() {
             const content = document.getElementById('swiftRaw').innerText;
-            const blob = new Blob([content], { type: 'text/plain' });
+            const blob = new Blob([content], {type: 'text/plain'});
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'MT103_Advice_MMG_Capital.txt';
+            a.download = 'MT103_MMG.txt';
             a.click();
-            logToConsole("System: Advice generated and downloaded successfully.", true);
+            logToConsole("Document saved.", true);
         }
 
         function closeOnOutside(e) {
