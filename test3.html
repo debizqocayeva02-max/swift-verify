@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="az">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>SWIFT MT103 | Unibank AZ → Commerzbank DE</title>
+    <title>SWIFT MT103/MT900/MT910 | Unibank AZ → UBS Switzerland</title>
     <style>
         :root {
             --bg-dark: #0b0e14;
@@ -114,9 +114,9 @@
 
         .tag {
             font-family: 'Courier New', monospace;
-            color: var(--accent);
+            color: var(--success);
             font-weight: bold;
-            background: rgba(0, 98, 255, 0.15);
+            background: rgba(0, 204, 136, 0.15);
             padding: 4px 8px;
             border-radius: 20px;
             font-size: 10px;
@@ -383,6 +383,16 @@
             line-height: 1.5;
         }
 
+        .mt-badge {
+            display: inline-block;
+            background: rgba(0, 98, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
         @media (max-width: 480px) {
             .card {
                 padding: 14px;
@@ -419,11 +429,11 @@
     <header class="top-bar">
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
             <span style="font-weight:800; color:var(--accent); letter-spacing:1px; font-size: 14px;">SWIFT ALLIANCE ACCESS</span>
-            <span style="color:var(--success); font-size:9px; font-weight:bold; background:#00000055; padding:2px 8px; border-radius:20px;">● NETWORK ACK</span>
+            <span style="color:var(--success); font-size:9px; font-weight:bold; background:#00000055; padding:2px 8px; border-radius:20px;">● COMPLETED / SETTLED</span>
         </div>
         <div style="text-align:right">
-            <div style="font-size:9px; color:var(--text-dim)">BatchSwiftAcks-3335-000001</div>
-            <div style="font-size:12px; font-weight:bold;">17/11/22 18:11:08</div>
+            <div style="font-size:9px; color:var(--text-dim)">UETR: 40fb91ed-19aa-4263-be97-dc75011ad83f</div>
+            <div style="font-size:12px; font-weight:bold;">28-APR-2026 14:32:18</div>
         </div>
     </header>
 
@@ -431,114 +441,135 @@
         <div class="left-panel">
             <div class="card">
                 <div class="header-section">
-                    <h2 style="font-size:15px;">FIN 103 - Single Customer Credit Transfer</h2>
-                    <span class="tag">✓ NETWORK ACK</span>
+                    <h2 style="font-size:15px;">FIN 103 / 900 / 910 - Single Customer Credit Transfer</h2>
+                    <span class="tag">✓ FULLY COMPLETED & SETTLED</span>
                 </div>
 
                 <div class="amount-hero">
-                    <div class="label">:32A: Val Dte/Curr/Interbnk Settld Amt</div>
-                    <div class="amount-val">£34,309.50</div>
-                    <div style="color:var(--text-dim); font-size:11px; margin-top:6px;">Date: 17 November 2022 | Currency: GBP (POUND STERLING)</div>
+                    <div class="label">:32A: Value Date / Currency / Settled Amount</div>
+                    <div class="amount-val">EUR 30,000,000.00</div>
+                    <div style="color:var(--text-dim); font-size:11px; margin-top:6px;">Value Date: 30-MAR-2026 | Currency: EUR (EURO)</div>
                 </div>
 
-                <!-- MESSAGE TEXT - TAM BAŞLIQLAR İLƏ -->
+                <!-- MT103 MESSAGE FIELDS - Updated with correct data -->
                 <div class="message-text-block">
                     <div class="field-row">
-                        <div class="field-title">:20: Sender's Reference</div>
-                        <div class="field-content">COBA171122GBP979</div>
+                        <div class="field-title"><span class="mt-badge">MT103</span> :20: Sender's Reference</div>
+                        <div class="field-content">DEU17112212C332-280426</div>
                     </div>
                     <div class="field-row">
                         <div class="field-title">:23B: Bank Operation Code</div>
                         <div class="field-content">CRED</div>
                     </div>
                     <div class="field-row">
-                        <div class="field-title">:32A: Val Dte/Curr/Interbnk Settld Amt</div>
-                        <div class="field-content">17 November 2022, GBP (POUND STERLING), £34,309.50</div>
+                        <div class="field-title">:32A: Value Date / Currency / Amount</div>
+                        <div class="field-content">30-MAR-2026, EUR (EURO), EUR 30,000,000.00</div>
                     </div>
                     <div class="field-row">
                         <div class="field-title">:50K: Ordering Customer - Name & Address</div>
-                        <div class="field-content">/AZ68UBAZ01621761241020GBP001<br>DMITRY KOROLEV<br>Address: -------</div>
+                        <div class="field-content">/CH4504835000123452002<br>MMG Capital Limited<br>Bahnhofstrasse 45, 8001 Zurich, Switzerland</div>
                     </div>
                     <div class="field-row">
                         <div class="field-title">:52A: Ordering Institution - FI BIC</div>
-                        <div class="field-content">/400887002400 GBP<br>UBAZAZ22XXX<br>UNIBANK CB<br>BAKU AZ</div>
+                        <div class="field-content">CRAMCHGGXXX<br>BANQUE CRAMER & CIE SA<br>GENEVA, SWITZERLAND</div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field-title">:56A: Intermediary Institution</div>
+                        <div class="field-content">DEUTDEFFXXX<br>DEUTSCHE BANK AG<br>FRANKFURT, GERMANY</div>
                     </div>
                     <div class="field-row">
                         <div class="field-title">:57A: Account With Institution - FI BIC</div>
-                        <div class="field-content">HBUKGB4BXXX<br>HSBC UK BANK PLC<br>BIRMINGHAM GB</div>
+                        <div class="field-content">UBSWCHZH80A<br>UBS SWITZERLAND AG<br>ZURICH, SWITZERLAND</div>
                     </div>
                     <div class="field-row">
                         <div class="field-title">:59: Beneficiary Customer - Name & Address</div>
-                        <div class="field-content">/GB43HBUK40032231112058<br>KNIGHT FRANK CLIENT<br>RESIDENTIAL LETTINGS ACCOUNTS 55<br>BAKER STREET LONDON ACC 31112058<br>SORT CODE 400322, GB</div>
+                        <div class="field-content">/CH9404835000123454860<br>ELEKTROLKA SARL<br>Rue de la Confédération 15, 1204 Geneva, Switzerland</div>
                     </div>
                     <div class="field-row">
                         <div class="field-title">:70: Remittance Information</div>
-                        <div class="field-content">/RFB/PAYMENT FOR RENT 01/12/22<br>31/05/23 REFERENCE 272851 04.11.22</div>
+                        <div class="field-content">Payment for Agreement No. AG/SJU-005824</div>
                     </div>
                     <div class="field-row">
                         <div class="field-title">:71A: Details of Charges</div>
-                        <div class="field-content">OUR</div>
+                        <div class="field-content">OUR (Sender pays all charges)</div>
                     </div>
                 </div>
 
                 <div class="network-map-container">
                     <div class="network-map">
-                        <div class="node-item"><div class="node-icon">🏦</div><div class="node-name">UBAZAZ22</div><div class="node-city">Unibank CB, Baku</div></div>
+                        <div class="node-item"><div class="node-icon">🏦</div><div class="node-name">CRAMCHGG</div><div class="node-city">Banque Cramer, Geneva</div></div>
                         <div class="connection-line"><div class="line-progress"></div></div>
-                        <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">COBADEFF</div><div class="node-city">Commerzbank, Frankfurt</div></div>
+                        <div class="node-item"><div class="node-icon">⚙️</div><div class="node-name">DEUTDEFF</div><div class="node-city">Deutsche Bank, Frankfurt</div></div>
                         <div class="connection-line"><div class="line-progress" style="animation-delay: 0.6s;"></div></div>
-                        <div class="node-item"><div class="node-icon" style="border-color:var(--accent);">🏛️</div><div class="node-name">HBUKGB4B</div><div class="node-city">HSBC UK, Birmingham</div></div>
+                        <div class="node-item"><div class="node-icon" style="border-color:var(--success);">🏛️</div><div class="node-name">UBSWCHZH</div><div class="node-city">UBS Switzerland, Zurich</div></div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="header-section"><h3 style="font-size:14px;">NETWORK DELIVERY STATUS</h3></div>
+                <div class="header-section"><h3 style="font-size:14px;">NETWORK DELIVERY STATUS - FULLY COMPLETED</h3></div>
                 <div class="console" id="console">
-                    <div class="log-entry"><span style="color:var(--text-dim)">[17/11/22 18:10:55]</span> Notification (Transmission) of Original sent to SWIFT (ACK)</div>
-                    <div class="log-entry"><span style="color:var(--success)">[17/11/22 18:11:08]</span> Network Delivery Status: Network Ack | Priority/Delivery: Normal</div>
-                    <div class="log-entry"><span style="color:var(--text-dim)">Message Input Reference:</span> 1810 221117UBAZAZ22AXXX1901556422</div>
-                    <div class="log-entry"><span style="color:var(--text-dim)">UETR:</span> 2cbc38e8-c4ce-4c3d-8b9e-d758bddabbe6</div>
-                    <div class="log-entry"><span style="color:var(--accent)">Details of Charges: OUR</span></div>
+                    <div class="log-entry"><span style="color:var(--text-dim)">[28-APR-2026 14:30:12]</span> MT103 sent from CRAMCHGGXXX to DEUTDEFFXXX (ACK received)</div>
+                    <div class="log-entry"><span style="color:var(--text-dim)">[28-APR-2026 14:31:05]</span> MT900 Confirmation of Debit - Fully settled</div>
+                    <div class="log-entry"><span style="color:var(--success)">[28-APR-2026 14:32:18]</span> NETWORK DELIVERY STATUS: COMPLETED | Priority: Normal</div>
+                    <div class="log-entry"><span style="color:var(--text-dim)">Message Input Reference:</span> 1430 280426CRAMCHGGAXXX8291722562</div>
+                    <div class="log-entry"><span style="color:var(--text-dim)">UETR:</span> 40fb91ed-19aa-4263-be97-dc75011ad83f</div>
+                    <div class="log-entry"><span style="color:var(--success)">MT910: Confirmation of Credit - Beneficiary account credited</span></div>
+                    <div class="log-entry"><span style="color:var(--accent)">Details of Charges: OUR (Sender pays all charges)</span></div>
                 </div>
             </div>
         </div>
 
         <div class="right-panel">
             <div class="card">
-                <div class="header-section"><h3 style="font-size:14px;">SWIFT FIN RAW - MT103</h3></div>
-                <pre id="swiftRaw" style="font-family:'Courier New', monospace; font-size:11px; color:var(--text-dim);">{1:F21UBAZAZ22AXXX1901556422}
-{2:I103COBADEFFXXXN}
+                <div class="header-section"><h3 style="font-size:14px;">SWIFT FIN RAW - MT103 / MT900 / MT910</h3></div>
+                <pre id="swiftRaw" style="font-family:'Courier New', monospace; font-size:11px; color:var(--text-dim);">{1:F21CRAMCHGGAXXX8291722562}
+{2:I103DEUTDEFFXXXN}
 {4:
-:20:COBA171122GBP979
+:20:DEU17112212C332-280426
 :23B:CRED
-:32A:221117GBP34309,5
-:50K:/AZ68UBAZ01621761241020GBP001
-DMITRY KOROLEV
-Address: -------
-:52A:/400887002400 GBP
-UBAZAZ22XXX
-UNIBANK CB
-BAKU AZ
-:57A:HBUKGB4BXXX
-HSBC UK BANK PLC
-BIRMINGHAM GB
-:59:/GB43HBUK40032231112058
-KNIGHT FRANK CLIENT
-RESIDENTIAL LETTINGS ACCOUNTS 55
-BAKER STREET LONDON ACC 31112058
-SORT CODE 400322, GB
-:70:/RFB/PAYMENT FOR RENT 01/12/22
-31/05/23 REFERENCE 272851 04.11.22
+:32A:260330EUR30000000,00
+:50K:/CH4504835000123452002
+MMG Capital Limited
+Bahnhofstrasse 45, 8001 Zurich
+:52A:CRAMCHGGXXX
+BANQUE CRAMER & CIE SA
+GENEVA
+:56A:DEUTDEFFXXX
+DEUTSCHE BANK AG
+FRANKFURT
+:57A:UBSWCHZH80A
+UBS SWITZERLAND AG
+ZURICH
+:59:/CH9404835000123454860
+ELEKTROLKA SARL
+Rue de la Confédération 15, 1204 Geneva
+:70:Payment for Agreement No. AG/SJU-005824
 :71A:OUR
 -}
-{5:{CHK:22EDF3657D9F}}
-{PKI Signature: MAC-Equivalent}</pre>
+{5:{CHK:8A3F2E1B7C9D4F6E}}
+{PKI Signature: MAC-Equivalent}
+
+--- MT900 Confirmation of Debit (Completed) ---
+{1:F01CRAMCHGGAXXX8291722562}{2:O9001611060317UBSWCHZH80AXXX}
+:20:DEU17112212C332-280426
+:21:40fb91ed-19aa-4263
+:25:CH4504835000123452002
+:32A:260330EUR30000000,00
+:72:/SETTLED/ Transaction fully completed on 28-APR-2026
+
+--- MT910 Confirmation of Credit (Completed) ---
+{1:F01UBSWCHZH80AXXX1234567890}{2:O9101711060317CRAMCHGGAXXX}
+:20:DEU17112212C332-280426
+:21:40fb91ed-19aa-4263
+:25:CH9404835000123454860
+:32A:260330EUR30000000,00
+:72:/REC/ Value credited to beneficiary - Final settlement executed</pre>
 
                 <div class="button-group">
-                    <button class="action-btn" onclick="downloadAdvice()">📥 DOWNLOAD MT103</button>
-                    <button class="action-btn action-outline" onclick="toggleModal('senderModal')">🏦 ORDERING INSTITUTION</button>
-                    <button class="action-btn action-outline" onclick="toggleModal('gpiModal')">📍 GPI TRACE</button>
+                    <button class="action-btn" onclick="downloadAdvice()">📥 DOWNLOAD FULL MT103/MT900/MT910</button>
+                    <button class="action-btn action-outline" onclick="toggleModal('senderModal')">🏦 ORDERING INSTITUTION (52A)</button>
+                    <button class="action-btn action-outline" onclick="toggleModal('gpiModal')">📍 GPI TRACE / UETR</button>
                 </div>
             </div>
         </div>
@@ -549,13 +580,15 @@ SORT CODE 400322, GB
 <div id="gpiModal" class="modal-overlay" onclick="closeOnOutside(event)">
     <div class="modal-content">
         <span class="close-modal" onclick="toggleModal('gpiModal')">&times;</span>
-        <h3 style="color:var(--accent); margin-bottom:20px; font-size:18px;">📍 GPI Real-Time Tracker</h3>
+        <h3 style="color:var(--accent); margin-bottom:20px; font-size:18px;">📍 GPI Real-Time Tracker - COMPLETED</h3>
         <div style="border-left: 2px solid var(--border); margin-left: 8px; padding-left: 20px; font-size: 13px; line-height: 2;">
-            <p><strong>🏦 UBAZAZ22 (Unibank CB, Baku):</strong> Funds debited · 17/11/22 18:10</p>
-            <p><strong>⚙️ COBADEFF (Commerzbank, Frankfurt):</strong> Processed via SWIFT gpi · 17/11/22 18:11</p>
-            <p style="color:var(--success)"><strong>🏛️ HBUKGB4B (HSBC UK, Birmingham):</strong> Credited to beneficiary account · 17/11/22 18:11:08</p>
-            <p style="margin-top:12px; font-size:11px; color:var(--accent)">UETR: 2cbc38e8-c4ce-4c3d-8b9e-d758bddabbe6</p>
-            <p style="font-size:10px; color:var(--text-dim);">Network Delivery Status: ACK | Charges: OUR</p>
+            <p><strong>🏦 CRAMCHGGXXX (Banque Cramer, Geneva):</strong> Funds debited · 28-APR-2026 14:30</p>
+            <p><strong>⚙️ DEUTDEFFXXX (Deutsche Bank, Frankfurt):</strong> Processed via SWIFT gpi · 28-APR-2026 14:31</p>
+            <p><strong>📄 MT900 Confirmation of Debit:</strong> Fully settled · 28-APR-2026 14:31:22</p>
+            <p style="color:var(--success)"><strong>🏛️ UBSWCHZH80A (UBS Switzerland, Zurich):</strong> Credited to beneficiary account · 28-APR-2026 14:32:18</p>
+            <p><strong>📄 MT910 Confirmation of Credit:</strong> Final settlement executed · 28-APR-2026 14:32:18</p>
+            <p style="margin-top:12px; font-size:11px; color:var(--accent)">UETR: 40fb91ed-19aa-4263-be97-dc75011ad83f</p>
+            <p style="font-size:10px; color:var(--text-dim);">Network Delivery Status: COMPLETED | Charges: OUR</p>
         </div>
     </div>
 </div>
@@ -566,14 +599,17 @@ SORT CODE 400322, GB
         <span class="close-modal" onclick="toggleModal('senderModal')">&times;</span>
         <h3 style="color:var(--accent); margin-bottom:16px;">:52A: Ordering Institution - FI BIC</h3>
         <div style="background:#04070c; padding:18px; border-radius:20px; font-family:monospace; font-size:12px; border:1px solid var(--border); line-height: 1.7;">
-            <strong>Account:</strong> /400887002400 GBP<br>
-            <strong>BIC:</strong> UBAZAZ22XXX<br>
-            <strong>Bank:</strong> UNIBANK CB<br>
-            <strong>City/Country:</strong> BAKU, AZERBAIJAN<br>
+            <strong>Account:</strong> /CH4504835000123452002<br>
+            <strong>BIC:</strong> CRAMCHGGXXX<br>
+            <strong>Bank:</strong> BANQUE CRAMER & CIE SA<br>
+            <strong>City/Country:</strong> GENEVA, SWITZERLAND<br>
             <hr style="border-color:#2d3748; margin:10px 0;">
-            <strong>Sender's Reference (:20:):</strong> COBA171122GBP979<br>
+            <strong>Sender's Reference (:20:):</strong> DEU17112212C332-280426<br>
             <strong>Bank Operation Code (:23B:):</strong> CRED<br>
-            <strong>Charges (:71A:):</strong> OUR (Sender pays all charges)
+            <strong>Charges (:71A:):</strong> OUR (Sender pays all charges)<br>
+            <hr style="border-color:#2d3748; margin:10px 0;">
+            <strong>Intermediary (:56A:):</strong> DEUTDEFFXXX (Deutsche Bank, Frankfurt)<br>
+            <strong>Beneficiary Bank (:57A:):</strong> UBSWCHZH80A (UBS Switzerland, Zurich)
         </div>
     </div>
 </div>
@@ -603,16 +639,16 @@ SORT CODE 400322, GB
 
     function downloadAdvice() {
         let rawContent = document.getElementById('swiftRaw').innerText;
-        const header = "SWIFT MT103 - SINGLE CUSTOMER CREDIT TRANSFER\n";
-        const meta = `Sender: UBAZAZ22XXX (Unibank CB, Baku)\nReceiver: COBADEFFXXX (Commerzbank, Frankfurt)\nUETR: 2cbc38e8-c4ce-4c3d-8b9e-d758bddabbe6\nValue Date: 17 November 2022\nAmount: GBP 34,309.50\nBeneficiary: KNIGHT FRANK CLIENT\nReference: COBA171122GBP979\nCharges: OUR\n\n`;
+        const header = "=== SWIFT MT103/MT900/MT910 - FULLY COMPLETED SETTLEMENT ===\n";
+        const meta = `Sender: CRAMCHGGXXX (Banque Cramer & Cie SA, Geneva)\nIntermediary: DEUTDEFFXXX (Deutsche Bank, Frankfurt)\nReceiver: UBSWCHZH80A (UBS Switzerland AG, Zurich)\nUETR: 40fb91ed-19aa-4263-be97-dc75011ad83f\nValue Date: 30-MAR-2026\nAmount: EUR 30,000,000.00\nBeneficiary: ELEKTROLKA SARL\nReference: DEU17112212C332-280426\nCharges: OUR (Sender pays all charges)\nStatus: COMPLETED / FULLY SETTLED\nSent Date: 28-APR-2026\n\n`;
         const blob = new Blob([header + meta + rawContent], { type: 'text/plain' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `MT103_UBAZAZ22_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.txt`;
+        a.download = `SWIFT_MT103_MT900_MT910_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.txt`;
         a.click();
         window.URL.revokeObjectURL(url);
-        logToConsole("📄 MT103 message downloaded successfully.", true);
+        logToConsole("📄 Full SWIFT message (MT103/MT900/MT910) downloaded successfully.", true);
     }
 
     function closeOnOutside(e) {
@@ -632,10 +668,12 @@ SORT CODE 400322, GB
     });
 
     window.addEventListener('load', () => {
-        logToConsole("SWIFT Alliance Access ready | Network Ack received", true);
-        logToConsole("MT103 GPI tracked | UETR: 2cbc38e8-c4ce-4c3d-8b9e-d758bddabbe6", false);
-        logToConsole(":52A: Ordering Institution - UBAZAZ22XXX (Unibank CB, Baku)", false);
-        logToConsole("Charges: OUR | Delivery: Normal", false);
+        logToConsole("SWIFT Alliance Access ready | Network Status: COMPLETED", true);
+        logToConsole("MT103 GPI tracked | UETR: 40fb91ed-19aa-4263-be97-dc75011ad83f", false);
+        logToConsole(":52A: Ordering Institution - CRAMCHGGXXX (Banque Cramer, Geneva)", false);
+        logToConsole("MT900: Confirmation of Debit - Fully settled", true);
+        logToConsole("MT910: Confirmation of Credit - Beneficiary credited", true);
+        logToConsole("Charges: OUR | Status: COMPLETED | Value Date: 30-MAR-2026", false);
     });
 
     if (window.navigator && window.navigator.vibrate) {
