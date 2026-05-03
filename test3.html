@@ -436,7 +436,7 @@
                 <div class="amount-hero">
                     <div class="label">:32A: Value Date / Currency / Settled Amount</div>
                     <div class="amount-val">EUR 30,000,000.00</div>
-                    <div style="color:var(--text-dim); font-size:11px; margin-top:6px;">Value Date: <strong>30-MAR-2026</strong> | Currency: EUR (EURO) | Sent Date: <strong>28-APR-2026</strong></div>
+                    <div style="color:var(--text-dim); font-size:11px; margin-top:6px;">Value Date: <strong>30-APR-2026</strong> | Currency: EUR (EURO) | Sent Date: <strong>28-APR-2026</strong></div>
                 </div>
 
                 <!-- MT103 MESSAGE FIELDS with Intermediary -->
@@ -594,7 +594,7 @@ Rue de la Confédération 15, 1204 Geneva
             <p style="color:var(--success)"><strong>🏛️ UBSWCHZH80A (UBS Switzerland, Zurich):</strong> Credited to beneficiary account · 28-APR-2026 14:32:18 ✓</p>
             <p><strong>📄 MT910 Confirmation of Credit:</strong> Final settlement executed · 28-APR-2026 14:32:18 ✓</p>
             <p style="margin-top:12px; font-size:11px; color:var(--accent)"><strong>UETR:</strong> 40fb91ed-19aa-4263-be97-dc75011ad83f</p>
-            <p style="font-size:11px; color:var(--text-dim)"><strong>Sent Date:</strong> 28-APR-2026 | <strong>Value Date:</strong> 30-MAR-2026</p>
+            <p style="font-size:11px; color:var(--text-dim)"><strong>Sent Date:</strong> 28-APR-2026 | <strong>Value Date:</strong> 30-APR-2026</p>
             <p style="font-size:10px; color:var(--text-dim);">Network Delivery Status: COMPLETED | Charges: OUR</p>
         </div>
     </div>
@@ -617,7 +617,7 @@ Rue de la Confédération 15, 1204 Geneva
             <hr style="border-color:#2d3748; margin:10px 0;">
             <strong>Intermediary (:56A:):</strong> DEUTDEFFXXX (Deutsche Bank, Frankfurt)<br>
             <strong>Beneficiary Bank (:57A:):</strong> UBSWCHZH80A (UBS Switzerland, Zurich)<br>
-            <strong>Value Date:</strong> 30-MAR-2026<br>
+            <strong>Value Date:</strong> 30-APR-2026<br>
             <strong>Sent Date:</strong> 28-APR-2026<br>
             <strong>Status:</strong> COMPLETED ✓
         </div>
@@ -650,7 +650,7 @@ Rue de la Confédération 15, 1204 Geneva
     function downloadAdvice() {
         let rawContent = document.getElementById('swiftRaw').innerText;
         const header = "=== SWIFT MT103/MT900/MT910 - FULLY COMPLETED SETTLEMENT ===\n";
-        const meta = `Sender: CRAMCHGGXXX (Banque Cramer & Cie SA, Geneva)\nIntermediary: DEUTDEFFXXX (Deutsche Bank, Frankfurt)\nReceiver: UBSWCHZH80A (UBS Switzerland AG, Zurich)\nUETR: 40fb91ed-19aa-4263-be97-dc75011ad83f\nValue Date: 30-MAR-2026\nSent Date: 28-APR-2026\nAmount: EUR 30,000,000.00\nBeneficiary: ELEKTROLKA SARL\nReference: DEU17112212C332-280426\nCharges: OUR (Sender pays all charges)\nStatus: COMPLETED / FULLY SETTLED\n\n`;
+        const meta = `Sender: CRAMCHGGXXX (Banque Cramer & Cie SA, Geneva)\nIntermediary: DEUTDEFFXXX (Deutsche Bank, Frankfurt)\nReceiver: UBSWCHZH80A (UBS Switzerland AG, Zurich)\nUETR: 40fb91ed-19aa-4263-be97-dc75011ad83f\nValue Date: 30-APR-2026\nSent Date: 28-APR-2026\nAmount: EUR 30,000,000.00\nBeneficiary: ELEKTROLKA SARL\nReference: DEU17112212C332-280426\nCharges: OUR (Sender pays all charges)\nStatus: COMPLETED / FULLY SETTLED\n\n`;
         const blob = new Blob([header + meta + rawContent], { type: 'text/plain' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -682,8 +682,8 @@ Rue de la Confédération 15, 1204 Geneva
         logToConsole("MT103 sent from CRAMCHGGXXX to DEUTDEFFXXX (ACK received)", true);
         logToConsole("MT103 forwarded from DEUTDEFFXXX to UBSWCHZH80A (ACK received)", true);
         logToConsole("UETR: 40fb91ed-19aa-4263-be97-dc75011ad83f", false);
-        logToConsole("MT900: Confirmation of Debit - Fully settled (Value Date: 30-MAR-2026)", true);
-        logToConsole("MT910: Confirmation of Credit - Beneficiary credited (Value Date: 30-MAR-2026)", true);
+        logToConsole("MT900: Confirmation of Debit - Fully settled (Value Date: 30-APR-2026)", true);
+        logToConsole("MT910: Confirmation of Credit - Beneficiary credited (Value Date: 30-APR-2026)", true);
         logToConsole("Charges: OUR | Status: COMPLETED | Sent: 28-APR-2026", false);
     });
 
