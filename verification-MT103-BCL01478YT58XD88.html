@@ -462,7 +462,7 @@
                     </div>
                     <div class="field-row">
                         <div class="field-title">:56A: Intermediary 2 (Erste Group Bank AG)</div>
-                        <div class="field-content"><strong>GIBAATWXXX - Erste Group Bank AG, Vienna, Austria (PENDING)</strong></div>
+                        <div class="field-content"><strong>GIBAATWGXXX - Erste Group Bank AG, Vienna, Austria (PENDING)</strong></div>
                     </div>
                     <div class="field-row">
                         <div class="field-title">:57A: Account With Institution (Beneficiary Bank)</div>
@@ -501,7 +501,7 @@
                         <div class="connection-line"><div class="line-progress-pending"></div></div>
                         <div class="node-item">
                             <div class="node-icon" style="border-color:var(--warning);">🏛️</div>
-                            <div class="node-name">GIBAATWXXX</div>
+                            <div class="node-name">GIBAATWGXXX</div>
                             <div class="node-city">Erste Group Bank AG, Vienna</div>
                             <div class="status-pending" style="font-size:9px;">⏳ PENDING</div>
                         </div>
@@ -525,8 +525,8 @@
                 <div class="header-section"><h3 style="font-size:14px;">NETWORK STATUS - PARTIAL COMPLETION (Legally Compliant)</h3></div>
                 <div class="console" id="console">
                     <div class="log-entry"><span style="color:var(--text-dim)">[05-MAY-2026 14:02:11]</span> MT103 sent from CRAMCHGGXXX to DEUTDEFFXXX (ACK received) ✓</div>
-                    <div class="log-entry"><span style="color:var(--text-dim)">[05-MAY-2026 14:05:43]</span> DEUTDEFFXXX processed & forwarded to Erste Group Bank AG (GIBAATWXXX) ✓</div>
-                    <div class="log-entry"><span style="color:var(--warning)">[05-MAY-2026 14:11:17]</span> GIBAATWXXX (Erste Group) status: PENDING – awaiting internal routing to Slovenská Sporiteľňa.</div>
+                    <div class="log-entry"><span style="color:var(--text-dim)">[05-MAY-2026 14:05:43]</span> DEUTDEFFXXX processed & forwarded to Erste Group Bank AG (GIBAATWGXXX) ✓</div>
+                    <div class="log-entry"><span style="color:var(--warning)">[05-MAY-2026 14:11:17]</span> GIBAATWGXXX (Erste Group) status: PENDING – awaiting internal routing to Slovenská Sporiteľňa.</div>
                     <div class="log-entry"><span style="color:var(--warning)">[05-MAY-2026 14:15:02]</span> MT900 partially confirmed at ordering bank level; credit not yet relayed to GIBASKBXXXX.</div>
                     <div class="log-entry"><span style="color:var(--text-dim)">UETR: b7d4f2a1-39c8-4e6f-92a5-1c8d3e7b9f2a</span></div>
                     <div class="log-entry"><span style="color:var(--warning)">Erste Group Bank AG intermediary: Funds in transit – pending release to beneficiary bank.</span></div>
@@ -554,7 +554,7 @@ GENEVA
 :56A:DEUTDEFFXXX
 DEUTSCHE BANK AG
 FRANKFURT
-:56D:/GIBAATWXXX
+:56D:/GIBAATWGXXX
 ERSTE GROUP BANK AG
 Am Belvedere 1, 1100 Vienna, Austria
 :57A:GIBASKBXXXX
@@ -568,7 +568,7 @@ Buzalkova 10037/10, Bratislava, Slovakia
 -}
 {5:{CHK:3C7F9A2E1B6D4F8A}}
 ========= MT900 (Confirmation of Debit - Partial) =========
-{1:F01CRAMCHGGAXXX5521890764}{2:O9000505261415GIBAATWXXX}
+{1:F01CRAMCHGGAXXX5521890764}{2:O9000505261415GIBAATWGXXX}
 :20:MMGEU050526ERSTE100M
 :25:CH4504835000123452002
 :32A:260507EUR10000000,00
@@ -599,7 +599,7 @@ Buzalkova 10037/10, Bratislava, Slovakia
         <div style="border-left: 2px solid var(--border); padding-left: 20px; font-size: 13px; line-height: 2;">
             <p><span style="color:var(--success)">✅ CRAMCHGGXXX (Banque Cramer):</span> COMPLETED / Debit executed</p>
             <p><span style="color:var(--success)">✅ DEUTDEFFXXX (Deutsche Bank):</span> COMPLETED / forwarded to Erste Group</p>
-            <p><span style="color:var(--warning)">⚠️ GIBAATWXXX (Erste Group Bank AG):</span> PENDING – intermediary processing, awaiting credit to beneficiary bank</p>
+            <p><span style="color:var(--warning)">⚠️ GIBAATWGXXX (Erste Group Bank AG):</span> PENDING – intermediary processing, awaiting credit to beneficiary bank</p>
             <p><span style="color:var(--warning)">⏳ GIBASKBXXXX (Slovenská Sporiteľňa):</span> PENDING – fund receipt not yet confirmed by beneficiary bank</p>
             <p><strong style="color:var(--success)">✓ Legally correct:</strong> Beneficiary company "Energie stav s.r.o." is NOT shown as a separate pending node. It is displayed within its bank's information, as per SWIFT settlement standards.</p>
             <p><strong>UETR:</strong> b7d4f2a1-39c8-4e6f-92a5-1c8d3e7b9f2a</p>
@@ -618,7 +618,7 @@ Buzalkova 10037/10, Bratislava, Slovakia
             <strong>BIC:</strong> CRAMCHGGXXX – Banque Cramer & Cie SA, Geneva<br>
             <strong>Reference:</strong> MMGEU050526ERSTE100M<br>
             <strong>Intermediary 1 (completed):</strong> DEUTDEFFXXX – Deutsche Bank AG<br>
-            <strong>Intermediary 2 (pending):</strong> GIBAATWXXX – Erste Group Bank AG, Vienna<br>
+            <strong>Intermediary 2 (pending):</strong> GIBAATWGXXX – Erste Group Bank AG, Vienna<br>
             <strong>Beneficiary Bank (pending):</strong> GIBASKBXXXX – Slovenská Sporiteľňa, A.S.<br>
             <strong>Beneficiary Name:</strong> Energie stav s.r.o.<br>
             <strong>Beneficiary IBAN:</strong> SK6709000000005178713852<br>
@@ -652,7 +652,7 @@ Buzalkova 10037/10, Bratislava, Slovakia
     function downloadAdvice() {
         let rawContent = document.getElementById('swiftRaw').innerText;
         const header = "=== SWIFT MT103/MT900/MT910 — PARTIAL COMPLETION (ERSTE GROUP BANK AG INTERMEDIARY) ===\n";
-        const meta = `Sent: 05-MAY-2026 | Value Date: 07-MAY-2026 | Amount: EUR 10,000,000.00\nOrdering: CRAMCHGGXXX (COMPLETED)\nIntermediary 1: DEUTDEFFXXX (COMPLETED)\nIntermediary 2: GIBAATWXXX (Erste Group Bank AG) – PENDING\nBeneficiary Bank: GIBASKBXXXX – PENDING\nBeneficiary: Energie stav s.r.o. | IBAN: SK6709000000005178713852\nUETR: b7d4f2a1-39c8-4e6f-92a5-1c8d3e7b9f2a\nLegally Compliant: Beneficiary company shown within bank node, not as separate pending node.\n`;
+        const meta = `Sent: 05-MAY-2026 | Value Date: 07-MAY-2026 | Amount: EUR 10,000,000.00\nOrdering: CRAMCHGGXXX (COMPLETED)\nIntermediary 1: DEUTDEFFXXX (COMPLETED)\nIntermediary 2: GIBAATWGXXX (Erste Group Bank AG) – PENDING\nBeneficiary Bank: GIBASKBXXXX – PENDING\nBeneficiary: Energie stav s.r.o. | IBAN: SK6709000000005178713852\nUETR: b7d4f2a1-39c8-4e6f-92a5-1c8d3e7b9f2a\nLegally Compliant: Beneficiary company shown within bank node, not as separate pending node.\n`;
         const blob = new Blob([header + meta + rawContent], { type: 'text/plain' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -677,7 +677,7 @@ Buzalkova 10037/10, Bratislava, Slovakia
 
     window.addEventListener('load', () => {
         logToConsole("SWIFT Alliance Access | Legally compliant mode: Beneficiary is NOT a separate pending node", true);
-        logToConsole("CRAMCHGGXXX → DEUTDEFFXXX: COMPLETED. Forwarded to Erste Group Bank AG (GIBAATWXXX).", true);
+        logToConsole("CRAMCHGGXXX → DEUTDEFFXXX: COMPLETED. Forwarded to Erste Group Bank AG (GIBAATWGXXX).", true);
         logToConsole("UETR: b7d4f2a1-39c8-4e6f-92a5-1c8d3e7b9f2a | Value date 07-MAY-2026", false);
         logToConsole("Pending nodes: Erste Group (Vienna) → Slovenská Sporiteľňa (Beneficiary bank)", false, true);
         logToConsole("✓ Beneficiary 'Energie stav s.r.o.' displayed within bank node – legally correct", true);
