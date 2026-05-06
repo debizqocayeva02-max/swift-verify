@@ -420,7 +420,7 @@
             <span style="color:var(--success); font-size:9px; font-weight:bold; background:#00000055; padding:2px 8px; border-radius:20px;">● COMPLETED / SETTLED</span>
         </div>
         <div style="text-align:right">
-            <div style="font-size:9px; color:var(--text-dim)">UETR: 40fb91ed-19aa-4263-be97-dc75011ad83f</div>
+            <div style="font-size:9px; color:var(--text-dim)">UETR: b521c716-e8a5-438b-96cc-3e163ac0817c</div>
             <div style="font-size:12px; font-weight:bold;">28-APR-2026 14:32:18</div>
         </div>
     </header>
@@ -518,7 +518,7 @@
                     <div class="log-entry"><span style="color:var(--text-dim)">[28-APR-2026 14:31:05]</span> MT900 Confirmation of Debit - Fully settled (Value Date: 30-APR-2026) ✓</div>
                     <div class="log-entry"><span style="color:var(--success)">[28-APR-2026 14:32:18]</span> NETWORK DELIVERY STATUS: COMPLETED | Priority: Normal</div>
                     <div class="log-entry"><span style="color:var(--text-dim)">Message Input Reference:</span> 1430 280426CRAMCHGGAXXX8291722562</div>
-                    <div class="log-entry"><span style="color:var(--text-dim)">UETR:</span> 40fb91ed-19aa-4263-be97-dc75011ad83f</div>
+                    <div class="log-entry"><span style="color:var(--text-dim)">UETR:</span> b521c716-e8a5-438b-96cc-3e163ac0817c</div>
                     <div class="log-entry"><span style="color:var(--success)">MT910: Confirmation of Credit - Beneficiary account credited (Value Date: 30-APR-2026) ✓</span></div>
                     <div class="log-entry"><span style="color:var(--accent)">Details of Charges: OUR (Sender pays all charges) | Status: COMPLETED</span></div>
                 </div>
@@ -593,7 +593,7 @@ Rue de la Confédération 15, 1204 Geneva
             <p><strong>📄 MT900 Confirmation of Debit:</strong> Fully settled · 28-APR-2026 14:31:05 ✓</p>
             <p style="color:var(--success)"><strong>🏛️ UBSWCHZH80A (UBS Switzerland, Zurich):</strong> Credited to beneficiary account · 28-APR-2026 14:32:18 ✓</p>
             <p><strong>📄 MT910 Confirmation of Credit:</strong> Final settlement executed · 28-APR-2026 14:32:18 ✓</p>
-            <p style="margin-top:12px; font-size:11px; color:var(--accent)"><strong>UETR:</strong> 40fb91ed-19aa-4263-be97-dc75011ad83f</p>
+            <p style="margin-top:12px; font-size:11px; color:var(--accent)"><strong>UETR:</strong> b521c716-e8a5-438b-96cc-3e163ac0817c</p>
             <p style="font-size:11px; color:var(--text-dim)"><strong>Sent Date:</strong> 28-APR-2026 | <strong>Value Date:</strong> 30-APR-2026</p>
             <p style="font-size:10px; color:var(--text-dim);">Network Delivery Status: COMPLETED | Charges: OUR</p>
         </div>
@@ -650,7 +650,7 @@ Rue de la Confédération 15, 1204 Geneva
     function downloadAdvice() {
         let rawContent = document.getElementById('swiftRaw').innerText;
         const header = "=== SWIFT MT103/MT900/MT910 - FULLY COMPLETED SETTLEMENT ===\n";
-        const meta = `Sender: CRAMCHGGXXX (Banque Cramer & Cie SA, Geneva)\nIntermediary: DEUTDEFFXXX (Deutsche Bank, Frankfurt)\nReceiver: UBSWCHZH80A (UBS Switzerland AG, Zurich)\nUETR: 40fb91ed-19aa-4263-be97-dc75011ad83f\nValue Date: 30-APR-2026\nSent Date: 28-APR-2026\nAmount: EUR 30,000,000.00\nBeneficiary: ELEKTROLKA SARL\nReference: DEU17112212C332-280426\nCharges: OUR (Sender pays all charges)\nStatus: COMPLETED / FULLY SETTLED\n\n`;
+        const meta = `Sender: CRAMCHGGXXX (Banque Cramer & Cie SA, Geneva)\nIntermediary: DEUTDEFFXXX (Deutsche Bank, Frankfurt)\nReceiver: UBSWCHZH80A (UBS Switzerland AG, Zurich)\nUETR: b521c716-e8a5-438b-96cc-3e163ac0817c\nValue Date: 30-APR-2026\nSent Date: 28-APR-2026\nAmount: EUR 30,000,000.00\nBeneficiary: ELEKTROLKA SARL\nReference: DEU17112212C332-280426\nCharges: OUR (Sender pays all charges)\nStatus: COMPLETED / FULLY SETTLED\n\n`;
         const blob = new Blob([header + meta + rawContent], { type: 'text/plain' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -681,7 +681,7 @@ Rue de la Confédération 15, 1204 Geneva
         logToConsole("SWIFT Alliance Access ready | Network Status: COMPLETED", true);
         logToConsole("MT103 sent from CRAMCHGGXXX to DEUTDEFFXXX (ACK received)", true);
         logToConsole("MT103 forwarded from DEUTDEFFXXX to UBSWCHZH80A (ACK received)", true);
-        logToConsole("UETR: 40fb91ed-19aa-4263-be97-dc75011ad83f", false);
+        logToConsole("UETR: b521c716-e8a5-438b-96cc-3e163ac0817c", false);
         logToConsole("MT900: Confirmation of Debit - Fully settled (Value Date: 30-APR-2026)", true);
         logToConsole("MT910: Confirmation of Credit - Beneficiary credited (Value Date: 30-APR-2026)", true);
         logToConsole("Charges: OUR | Status: COMPLETED | Sent: 28-APR-2026", false);
