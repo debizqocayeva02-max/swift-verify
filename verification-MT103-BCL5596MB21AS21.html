@@ -136,7 +136,6 @@
             font-size: 9px;
         }
 
-        /* HƏR ŞEY ALT-ALTA - YAN-YANA YOX */
         .dashboard-grid {
             display: flex;
             flex-direction: column;
@@ -144,7 +143,165 @@
             padding: 16px;
         }
 
-        /* BÜTÜN KARTLAR TAM GENİŞLİK */
+        /* Üfüqi layout (kompyuter üçün - domiklər yan-yana) */
+        .horizontal-network {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 24px;
+            overflow-x: auto;
+        }
+
+        /* Şaquli layout (telefon üçün - domiklər alt-alta) */
+        .vertical-network {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 24px;
+        }
+
+        /* DOMİK STİLLƏRİ (Ümumi) */
+        .node-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: rgba(21, 25, 33, 0.8);
+            padding: 15px;
+            border-radius: 20px;
+            min-width: 120px;
+        }
+
+        .node-icon {
+            width: 55px;
+            height: 55px;
+            background: #0f131c;
+            border: 2px solid var(--success);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 10px;
+            color: var(--success);
+        }
+
+        .node-name {
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .node-city {
+            font-size: 9px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .status-completed {
+            color: var(--success);
+            font-weight: bold;
+            font-size: 10px;
+            margin-top: 6px;
+        }
+
+        /* Yan-yana üçün ox/xətt */
+        .connector-horizontal {
+            font-size: 24px;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Alt-alta üçün xətt */
+        .connector-vertical {
+            width: 2px;
+            height: 30px;
+            background: #2d3748;
+            position: relative;
+            margin: 5px auto;
+            overflow: hidden;
+        }
+
+        .line-progress {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, var(--success), transparent);
+            position: absolute;
+            top: -100%;
+            animation: pulseVertical 1.8s infinite ease-in-out;
+        }
+
+        @keyframes pulseVertical {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        /* Default: kompyuter üçün (yan-yana) */
+        .network-container .vertical-network {
+            display: none;
+        }
+        .network-container .horizontal-network {
+            display: flex;
+        }
+
+        /* Telefon üçün (alt-alta) */
+        @media (max-width: 768px) {
+            .network-container .horizontal-network {
+                display: none;
+            }
+            .network-container .vertical-network {
+                display: flex;
+            }
+            .dashboard-grid {
+                padding: 12px;
+                gap: 16px;
+            }
+            .card {
+                padding: 14px;
+            }
+            .amount-hero {
+                padding: 14px;
+                margin-bottom: 16px;
+            }
+            .amount-val {
+                font-size: 28px;
+            }
+            .field-content {
+                font-size: 12px;
+            }
+            .console {
+                height: 150px;
+                font-size: 10px;
+            }
+            .action-btn {
+                padding: 12px 10px;
+                font-size: 13px;
+            }
+            pre {
+                font-size: 9px;
+            }
+            .node-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+            .node-name {
+                font-size: 10px;
+            }
+        }
+
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -200,86 +357,6 @@
             color: #fff;
             text-shadow: 0 0 15px rgba(0,98,255,0.3);
             letter-spacing: -0.5px;
-        }
-
-        /* DOMİKLƏR (NODELAR) ŞAQULİ - ALT-ALTA */
-        .network-map-vertical {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.35);
-            border-radius: 24px;
-        }
-
-        .node-vertical {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-            max-width: 240px;
-            margin: 0 auto;
-        }
-
-        .node-icon-vertical {
-            width: 60px;
-            height: 60px;
-            background: #0f131c;
-            border: 2px solid var(--success);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin-bottom: 8px;
-            color: var(--success);
-        }
-
-        .node-name-vertical {
-            font-family: 'Consolas', monospace;
-            font-size: 13px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .node-city-vertical {
-            font-size: 10px;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-
-        .status-completed {
-            color: var(--success);
-            font-weight: bold;
-            font-size: 11px;
-            margin-top: 5px;
-        }
-
-        .connector-line-vertical {
-            width: 2px;
-            height: 35px;
-            background: #2d3748;
-            position: relative;
-            margin: 5px auto;
-            overflow: hidden;
-        }
-
-        .line-progress-vertical {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, var(--success), transparent);
-            position: absolute;
-            top: -100%;
-            animation: pulseVertical 1.8s infinite ease-in-out;
-        }
-
-        @keyframes pulseVertical {
-            0% { top: -100%; }
-            100% { top: 100%; }
         }
 
         .console {
@@ -424,43 +501,6 @@
             word-break: break-word;
             line-height: 1.45;
         }
-
-        /* Telefon üçün əlavə tənzimləmələr */
-        @media (max-width: 768px) {
-            .dashboard-grid {
-                padding: 12px;
-                gap: 16px;
-            }
-            .card {
-                padding: 14px;
-            }
-            .amount-hero {
-                padding: 14px;
-                margin-bottom: 16px;
-            }
-            .amount-val {
-                font-size: 28px;
-            }
-            .field-content {
-                font-size: 12px;
-            }
-            .console {
-                height: 150px;
-                font-size: 10px;
-            }
-            .action-btn {
-                padding: 12px 10px;
-                font-size: 13px;
-            }
-            pre {
-                font-size: 9px;
-            }
-            .node-icon-vertical {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -490,7 +530,7 @@
     </header>
 
     <div class="dashboard-grid">
-        <!-- 1. KART: Əsas məlumatlar + DOMİKLƏR (şafuli/alt-alta) -->
+        <!-- 1. KART: Əsas məlumatlar -->
         <div class="card">
             <div class="header-section">
                 <h2 style="font-size:15px;">FIN 103 / 900 / 910 - Credit Transfer</h2>
@@ -518,29 +558,54 @@
                 <div class="field-row"><div class="field-title">:71A: Charges</div><div class="field-content">OUR (Sender pays all charges)</div></div>
             </div>
 
-            <!-- DOMİKLƏR (ŞAQULİ / ALT-ALTA) -->
-            <div class="network-map-vertical">
-                <div class="node-vertical">
-                    <div class="node-icon-vertical">🏦</div>
-                    <div class="node-name-vertical">CRAMCHGGXXX</div>
-                    <div class="node-city-vertical">Banque Cramer, Geneva</div>
-                    <div class="status-completed">✓ COMPLETED</div>
+            <!-- DOMİKLƏR KONTEYNERİ - kompyuterdə yan-yana, telefonda alt-alta -->
+            <div class="network-container">
+                <!-- Yan-yana (kompyuter) -->
+                <div class="horizontal-network">
+                    <div class="node-item">
+                        <div class="node-icon">🏦</div>
+                        <div class="node-name">CRAMCHGGXXX</div>
+                        <div class="node-city">Banque Cramer, Geneva</div>
+                        <div class="status-completed">✓ COMPLETED</div>
+                    </div>
+                    <div class="connector-horizontal">→</div>
+                    <div class="node-item">
+                        <div class="node-icon">⚙️</div>
+                        <div class="node-name">DEUTDEFFXXX</div>
+                        <div class="node-city">Deutsche Bank, Frankfurt</div>
+                        <div class="status-completed">✓ COMPLETED</div>
+                    </div>
+                    <div class="connector-horizontal">→</div>
+                    <div class="node-item">
+                        <div class="node-icon">🏛️</div>
+                        <div class="node-name">UBSWCHZH80A</div>
+                        <div class="node-city">UBS Switzerland, Zurich</div>
+                        <div class="status-completed">✓ COMPLETED</div>
+                    </div>
                 </div>
-                <div class="connector-line-vertical"><div class="line-progress-vertical"></div></div>
-                
-                <div class="node-vertical">
-                    <div class="node-icon-vertical">⚙️</div>
-                    <div class="node-name-vertical">DEUTDEFFXXX</div>
-                    <div class="node-city-vertical">Deutsche Bank, Frankfurt</div>
-                    <div class="status-completed">✓ COMPLETED</div>
-                </div>
-                <div class="connector-line-vertical"><div class="line-progress-vertical" style="animation-delay:0.6s;"></div></div>
-                
-                <div class="node-vertical">
-                    <div class="node-icon-vertical">🏛️</div>
-                    <div class="node-name-vertical">UBSWCHZH80A</div>
-                    <div class="node-city-vertical">UBS Switzerland, Zurich</div>
-                    <div class="status-completed">✓ COMPLETED</div>
+
+                <!-- Alt-alta (telefon) -->
+                <div class="vertical-network">
+                    <div class="node-item">
+                        <div class="node-icon">🏦</div>
+                        <div class="node-name">CRAMCHGGXXX</div>
+                        <div class="node-city">Banque Cramer, Geneva</div>
+                        <div class="status-completed">✓ COMPLETED</div>
+                    </div>
+                    <div class="connector-vertical"><div class="line-progress"></div></div>
+                    <div class="node-item">
+                        <div class="node-icon">⚙️</div>
+                        <div class="node-name">DEUTDEFFXXX</div>
+                        <div class="node-city">Deutsche Bank, Frankfurt</div>
+                        <div class="status-completed">✓ COMPLETED</div>
+                    </div>
+                    <div class="connector-vertical"><div class="line-progress" style="animation-delay:0.6s;"></div></div>
+                    <div class="node-item">
+                        <div class="node-icon">🏛️</div>
+                        <div class="node-name">UBSWCHZH80A</div>
+                        <div class="node-city">UBS Switzerland, Zurich</div>
+                        <div class="status-completed">✓ COMPLETED</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -559,7 +624,7 @@
             </div>
         </div>
 
-        <!-- 3. KART: SWIFT RAW (MT103/MT900/MT910) -->
+        <!-- 3. KART: SWIFT RAW (AŞAĞIDA) -->
         <div class="card">
             <div class="header-section"><h3 style="font-size:14px;">SWIFT RAW (MT103/MT900/MT910) - COMPLETED</h3></div>
             <pre id="swiftRaw">{1:F21CRAMCHGGAXXX8291722562}
