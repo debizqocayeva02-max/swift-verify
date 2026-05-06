@@ -26,6 +26,7 @@ const refMap = {
     'UBS21618/234U/MT996': 'https://verify-swift.com/check/verify/verifymt199/ub6689-0-nm211',
     'DEU17112212C332-280426': 'https://verify-swift.com/verification-mt103-bcl5596mb21as21',
     'MSUEU050526ERSTE200M': 'https://verify-swift.com/verification-mt103-bma01488yc58xd99',
+    'MMG70M260426DEUT001': 'https://verify-swift.com/verification-mt103-dzc35898rv02sd100',
     'DEU17112212C332-230326': 'https://verify-swift.com/verfication-cob-by653atm688v'
 };
 
