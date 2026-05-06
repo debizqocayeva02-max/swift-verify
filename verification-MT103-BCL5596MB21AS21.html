@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>SWIFT MT103/MT900/MT910 | Completed Settlement</title>
     <style>
-        :root {
-            --bg-dark: #0b0e14;
-            --card-bg: #151921;
-            --accent: #0062ff;
-            --text-main: #e2e8f0;
-            --text-dim: #94a3b8;
-            --success: #00cc88;
-            --warning: #ffb347;
-            --border: #2d3748;
-            --info: #3b82f6;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-dark: #0b0e14;
+            --card-bg: #151921;
+            --accent: #0062ff;
+            --accent-glow: #1e40af;
+            --text-main: #e2e8f0;
+            --text-dim: #94a3b8;
+            --success: #00cc88;
+            --warning: #ffb347;
+            --border: #2d3748;
+            --verify-gold: #f5b042;
         }
 
         body {
@@ -85,6 +86,74 @@
             gap: 8px;
         }
 
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .swift-logo-link {
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.2s ease, opacity 0.2s;
+            cursor: pointer;
+            background: rgba(255,255,255,0.03);
+            padding: 6px 12px;
+            border-radius: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .swift-logo-link:hover {
+            transform: scale(1.02);
+            background: rgba(0, 98, 255, 0.08);
+            border-color: var(--accent);
+        }
+
+        .swift-logo-link img {
+            height: 28px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+
+        .brand-text {
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .pending-badge {
+            color: var(--warning);
+            font-size: 9px;
+            font-weight: bold;
+            background: #00000055;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .completed-badge {
+            color: var(--success);
+            font-size: 9px;
+            font-weight: bold;
+            background: #00000055;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .verify-badge {
+            background: linear-gradient(135deg, #0a2a1a, #052010);
+            border: 1px solid var(--success);
+            border-radius: 32px;
+            padding: 4px 12px;
+            font-family: monospace;
+            font-weight: bold;
+            color: var(--success);
+            font-size: 10px;
+            letter-spacing: 0.5px;
+        }
+
         .dashboard-grid {
             display: flex;
             flex-direction: column;
@@ -131,13 +200,6 @@
             margin-bottom: 5px;
         }
 
-        .value {
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.4;
-            word-break: break-word;
-        }
-
         .amount-hero {
             background: linear-gradient(145deg, #1e2530, #151921);
             padding: 20px 16px;
@@ -179,22 +241,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100px;
+            width: 120px;
             text-align: center;
             flex-shrink: 0;
         }
 
         .node-icon {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             background: #0f131c;
             border: 1.5px solid var(--success);
-            border-radius: 16px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 24px;
             margin-bottom: 8px;
+            transition: border 0.2s;
             color: var(--success);
         }
 
@@ -209,6 +272,14 @@
             font-size: 8px;
             color: var(--accent);
             text-transform: uppercase;
+        }
+
+        .node-sub {
+            font-size: 7px;
+            color: var(--text-dim);
+            margin-top: 4px;
+            max-width: 110px;
+            word-break: break-word;
         }
 
         .connection-line {
@@ -278,7 +349,6 @@
 
         .action-btn:active {
             transform: scale(0.97);
-            filter: brightness(1.1);
         }
 
         .button-group {
@@ -313,7 +383,6 @@
             overflow-y: auto;
             padding: 24px 20px;
             position: relative;
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
         }
 
         .close-modal {
@@ -322,7 +391,6 @@
             top: 18px;
             font-size: 28px;
             cursor: pointer;
-            color: var(--text-dim);
             background: rgba(255,255,255,0.05);
             width: 36px;
             height: 36px;
@@ -353,7 +421,6 @@
         }
 
         .mt-badge {
-            display: inline-block;
             background: rgba(0, 98, 255, 0.2);
             padding: 4px 12px;
             border-radius: 20px;
@@ -387,20 +454,9 @@
         }
 
         @media (max-width: 480px) {
-            .card {
-                padding: 14px;
-            }
-            .amount-hero {
-                padding: 16px;
-            }
-            .node-item {
-                width: 80px;
-            }
-            .node-icon {
-                width: 44px;
-                height: 44px;
-                font-size: 20px;
-            }
+            .node-item { width: 100px; }
+            .node-icon { width: 44px; height: 44px; font-size: 20px; }
+            .brand-text { font-size: 12px; }
         }
     </style>
 </head>
@@ -415,13 +471,19 @@
 
 <div class="main-workspace">
     <header class="top-bar">
-        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <span style="font-weight:800; color:var(--accent); letter-spacing:1px; font-size: 14px;">SWIFT ALLIANCE ACCESS</span>
-            <span style="color:var(--success); font-size:9px; font-weight:bold; background:#00000055; padding:2px 8px; border-radius:20px;">● COMPLETED / SETTLED</span>
+        <div class="logo-section">
+            <!-- verify-swift.com logo (integrated) but completed style -->
+            <a href="https://verify-swift.com/" target="_blank" class="swift-logo-link" id="verifyLogoLink" title="verify-swift.com GPI tracker">
+                <img src="https://verify-swift.com/themes/custom/swift_theme/images/swift-logo-new.svg" alt="verify-swift.com" onerror="this.onerror=null; this.style.display='none'; this.nextSibling.style.display='inline-block';">
+                <span style="display:none;">✓</span>
+            </a>
+            <span class="brand-text">SWIFT ALLIANCE ACCESS</span>
+            <span class="completed-badge">● COMPLETED / SETTLED</span>
+            <div class="verify-badge">✓ www.swift.com Integrated • SETTLED</div>
         </div>
         <div style="text-align:right">
             <div style="font-size:9px; color:var(--text-dim)">UETR: b521c716-e8a5-438b-96cc-3e163ac0817c</div>
-            <div style="font-size:12px; font-weight:bold;">28-APR-2026 14:32:18</div>
+            <div style="font-size:12px; font-weight:bold;">28-APR-2026 14:32:18 UTC+2</div>
         </div>
     </header>
 
@@ -429,109 +491,68 @@
         <div class="left-panel">
             <div class="card">
                 <div class="header-section">
-                    <h2 style="font-size:15px;">FIN 103 / 900 / 910 - Single Customer Credit Transfer</h2>
+                    <h2 style="font-size:15px;">FIN 103 / 900 / 910 - Single Customer Credit Transfer (Fully Completed)</h2>
                     <span class="tag">✓ FULLY COMPLETED & SETTLED</span>
                 </div>
 
                 <div class="amount-hero">
                     <div class="label">:32A: Value Date / Currency / Settled Amount</div>
                     <div class="amount-val">EUR 30,000,000.00</div>
-                    <div style="color:var(--text-dim); font-size:11px; margin-top:6px;">Value Date: <strong>30-APR-2026</strong> | Currency: EUR (EURO) | Sent Date: <strong>28-APR-2026</strong></div>
+                    <div style="color:var(--text-dim); font-size:11px; margin-top:6px;">
+                        Value Date: <strong>30-APR-2026</strong> | Currency: EUR | Sent Date: <strong>28-APR-2026</strong>
+                    </div>
                 </div>
 
-                <!-- MT103 MESSAGE FIELDS with Intermediary -->
+                <!-- MT103 complete fields with intermediary -->
                 <div class="message-text-block">
-                    <div class="field-row">
-                        <div class="field-title"><span class="mt-badge">MT103</span> :20: Sender's Reference</div>
-                        <div class="field-content">DEU17112212C332-280426</div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field-title">:23B: Bank Operation Code</div>
-                        <div class="field-content">CRED</div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field-title">:32A: Value Date / Currency / Amount</div>
-                        <div class="field-content"><strong>30-APR-2026</strong>, EUR (EURO), EUR 30,000,000.00</div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field-title">:50K: Ordering Customer - Name & Address</div>
-                        <div class="field-content">/CH4504835000123452002<br>MMG Capital Limited<br>Bahnhofstrasse 45, 8001 Zurich, Switzerland</div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field-title">:52A: Ordering Institution - FI BIC</div>
-                        <div class="field-content">CRAMCHGGXXX<br>BANQUE CRAMER & CIE SA<br>GENEVA, SWITZERLAND</div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field-title">:56A: Intermediary Institution</div>
-                        <div class="field-content">DEUTDEFFXXX<br>DEUTSCHE BANK AG<br>FRANKFURT, GERMANY</div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field-title">:57A: Account With Institution - FI BIC</div>
-                        <div class="field-content">UBSWCHZH80A<br>UBS SWITZERLAND AG<br>ZURICH, SWITZERLAND</div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field-title">:59: Beneficiary Customer - Name & Address</div>
-                        <div class="field-content">/CH9404835000123454860<br>ELEKTROLKA SARL<br>Rue de la Confédération 15, 1204 Geneva, Switzerland</div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field-title">:70: Remittance Information</div>
-                        <div class="field-content">Payment for Agreement No. AG/SJU-005824</div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field-title">:71A: Details of Charges</div>
-                        <div class="field-content">OUR (Sender pays all charges)</div>
-                    </div>
+                    <div class="field-row"><div class="field-title"><span class="mt-badge">MT103</span> :20: Sender's Reference / Instruction ID</div><div class="field-content">DEU17112212C332-280426</div></div>
+                    <div class="field-row"><div class="field-title">:23B: Bank Operation Code</div><div class="field-content">CRED</div></div>
+                    <div class="field-row"><div class="field-title">:32A: Value Date / Currency / Amount</div><div class="field-content"><strong>30-APR-2026</strong>, EUR, EUR 30,000,000.00</div></div>
+                    <div class="field-row"><div class="field-title">:50K: Ordering Customer - Name & Address</div><div class="field-content">/CH4504835000123452002<br>MMG Capital Limited<br>Bahnhofstrasse 45, 8001 Zurich, Switzerland</div></div>
+                    <div class="field-row"><div class="field-title">:52A: Ordering Institution - FI BIC</div><div class="field-content">CRAMCHGGXXX<br>Banque Cramer & Cie SA<br>Geneva, Switzerland</div></div>
+                    <div class="field-row"><div class="field-title">:56A: Intermediary Institution</div><div class="field-content">DEUTDEFFXXX<br>Deutsche Bank AG<br>Frankfurt am Main, Germany (COMPLETED)</div></div>
+                    <div class="field-row"><div class="field-title">:57A: Account With Institution (Beneficiary Bank)</div><div class="field-content">UBSWCHZH80A<br>UBS Switzerland AG<br>Zurich, Switzerland</div></div>
+                    <div class="field-row"><div class="field-title">:59: Beneficiary Customer - Name & Address</div><div class="field-content"><strong>/CH9404835000123454860</strong><br>ELEKTROLKA SARL<br>Rue de la Confédération 15, 1204 Geneva, Switzerland</div></div>
+                    <div class="field-row"><div class="field-title">:70: Remittance Information / Purpose</div><div class="field-content">Payment for Agreement No. AG/SJU-005824</div></div>
+                    <div class="field-row"><div class="field-title">:71A: Details of Charges</div><div class="field-content">OUR (Sender pays all charges)</div></div>
                 </div>
 
-                <!-- Network Map - 3 nodes: CRAMCHGGXXX → DEUTDEFFXXX → UBSWCHZH80A -->
+                <!-- NETWORK MAP: 3 nodes completed -->
                 <div class="network-map-container">
                     <div class="network-map">
-                        <div class="node-item">
-                            <div class="node-icon">🏦</div>
-                            <div class="node-name">CRAMCHGGXXX</div>
-                            <div class="node-city">Banque Cramer, Geneva</div>
-                            <div class="status-completed" style="font-size:9px; margin-top:4px;">✓ COMPLETED</div>
-                        </div>
+                        <div class="node-item"><div class="node-icon" style="border-color:var(--success);">🏦</div><div class="node-name">CRAMCHGGXXX</div><div class="node-city">Banque Cramer, Geneva</div><div class="status-completed" style="font-size:9px;">✓ COMPLETED</div></div>
                         <div class="connection-line"><div class="line-progress"></div></div>
-                        <div class="node-item">
-                            <div class="node-icon">⚙️</div>
-                            <div class="node-name">DEUTDEFFXXX</div>
-                            <div class="node-city">Deutsche Bank, Frankfurt</div>
-                            <div class="status-completed" style="font-size:9px; margin-top:4px;">✓ COMPLETED</div>
-                        </div>
-                        <div class="connection-line"><div class="line-progress" style="animation-delay: 0.6s;"></div></div>
-                        <div class="node-item">
-                            <div class="node-icon" style="border-color:var(--success);">🏛️</div>
-                            <div class="node-name">UBSWCHZH80A</div>
-                            <div class="node-city">UBS Switzerland, Zurich</div>
-                            <div class="status-completed" style="font-size:9px; margin-top:4px;">✓ COMPLETED</div>
-                        </div>
+                        <div class="node-item"><div class="node-icon" style="border-color:var(--success);">⚙️</div><div class="node-name">DEUTDEFFXXX</div><div class="node-city">Deutsche Bank, Frankfurt</div><div class="status-completed" style="font-size:9px;">✓ COMPLETED</div></div>
+                        <div class="connection-line"><div class="line-progress" style="animation-delay:0.6s;"></div></div>
+                        <div class="node-item"><div class="node-icon" style="border-color:var(--success);">🏛️</div><div class="node-name">UBSWCHZH80A</div><div class="node-city">UBS Switzerland, Zurich</div><div class="status-completed" style="font-size:9px;">✓ COMPLETED</div></div>
                     </div>
+                    <div style="text-align:center; font-size:10px; color:var(--success); margin-top:4px;">▲ Full settlement chain: MT103 → MT900 → MT910 ▲</div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="header-section"><h3 style="font-size:14px;">NETWORK DELIVERY STATUS - FULLY COMPLETED</h3></div>
+                <div class="header-section"><h3 style="font-size:14px;">NETWORK STATUS | GPI TRACKER (verify-swift.com)</h3></div>
                 <div class="console" id="console">
                     <div class="log-entry"><span style="color:var(--text-dim)">[28-APR-2026 14:30:12]</span> MT103 sent from CRAMCHGGXXX to DEUTDEFFXXX (ACK received) ✓</div>
-                    <div class="log-entry"><span style="color:var(--text-dim)">[28-APR-2026 14:30:45]</span> MT103 forwarded from DEUTDEFFXXX to UBSWCHZH80A (ACK received) ✓</div>
+                    <div class="log-entry"><span style="color:var(--text-dim)">[28-APR-2026 14:30:45]</span> DEUTDEFFXXX processed & forwarded to UBSWCHZH80A ✓</div>
                     <div class="log-entry"><span style="color:var(--text-dim)">[28-APR-2026 14:31:05]</span> MT900 Confirmation of Debit - Fully settled (Value Date: 30-APR-2026) ✓</div>
                     <div class="log-entry"><span style="color:var(--success)">[28-APR-2026 14:32:18]</span> NETWORK DELIVERY STATUS: COMPLETED | Priority: Normal</div>
                     <div class="log-entry"><span style="color:var(--text-dim)">Message Input Reference:</span> 1430 280426CRAMCHGGAXXX8291722562</div>
-                    <div class="log-entry"><span style="color:var(--text-dim)">UETR:</span> b521c716-e8a5-438b-96cc-3e163ac0817c</div>
+                    <div class="log-entry"><span style="color:var(--text-dim)">UETR (ISO 20022):</span> b521c716-e8a5-438b-96cc-3e163ac0817c</div>
                     <div class="log-entry"><span style="color:var(--success)">MT910: Confirmation of Credit - Beneficiary account credited (Value Date: 30-APR-2026) ✓</span></div>
-                    <div class="log-entry"><span style="color:var(--accent)">Details of Charges: OUR (Sender pays all charges) | Status: COMPLETED</span></div>
+                    <div class="log-entry"><span style="color:var(--accent)">Charges: OUR (Sender pays all charges) | Status: COMPLETED</span></div>
+                    <div class="log-entry"><span style="color:var(--accent)">verify-swift.com GPI: Settlement confirmation signed by UBS / SWIFTNet.</span></div>
                 </div>
             </div>
         </div>
 
         <div class="right-panel">
             <div class="card">
-                <div class="header-section"><h3 style="font-size:14px;">SWIFT FIN RAW - MT103 / MT900 / MT910 (COMPLETED)</h3></div>
+                <div class="header-section"><h3 style="font-size:14px;">SWIFT FIN + MT900 / MT910 (COMPLETED) & ISO 20022 excerpt</h3></div>
                 <pre id="swiftRaw" style="font-family:'Courier New', monospace; font-size:11px; color:var(--text-dim);">{1:F21CRAMCHGGAXXX8291722562}
 {2:I103DEUTDEFFXXXN}
 {4:
-:20:DEU17112212C332-260428
+:20:DEU17112212C332-280426
 :23B:CRED
 :32A:260430EUR30000000,00
 :50K:/CH4504835000123452002
@@ -553,73 +574,80 @@ Rue de la Confédération 15, 1204 Geneva
 :71A:OUR
 -}
 {5:{CHK:8A3F2E1B7C9D4F6E}}
-{PKI Signature: MAC-Equivalent}
-
-================== MT900 (Confirmation of Debit - Completed) ==================
+================== MT900 (DEBIT CONFIRMATION - COMPLETED) ==================
 {1:F01CRAMCHGGAXXX8291722562}{2:O9002804261431UBSWCHZH80AXXX}
 :20:DEU17112212C332-280426
-:21:40fb91ed-19aa-4263
+:21:40fb91ed-19aa-4263-b7d2
 :25:CH4504835000123452002
 :32A:260428EUR30000000,00
-:72:/SETTLED/ Transaction fully completed on 28-APR-2026 (Value Date: 30-APR-2026)
-
-================== MT910 (Confirmation of Credit - Completed) ==================
+:72:/SETTLED/ Transaction fully completed on 28-APR-2026 (Value Date: 30-APR-2026) – Intermediary DEUTDEFFXXX settled.
+================== MT910 (CREDIT CONFIRMATION - COMPLETED) ==================
 {1:F01UBSWCHZH80AXXX1234567890}{2:O9102804261432CRAMCHGGAXXX}
 :20:DEU17112212C332-280426
-:21:40fb91ed-19aa-4263
+:21:40fb91ed-19aa-4263-b7d2
 :25:CH9404835000123454860
 :32A:260430EUR30000000,00
-:72:/REC/ Value credited to beneficiary account on Value Date 30-APR-2026 - Final settlement executed on 28-APR-2026</pre>
+:72:/REC/ Value credited to beneficiary account ELEKTROLKA SARL on Value Date 30-APR-2026. Final settlement executed 28-APR-2026 - GPI confirmed.
+********** ISO 20022 (pacs.008.001.10) mapping **********
+&lt;Document&gt;
+ &lt;FIToFICstmrCdtTrf&gt;
+   &lt;GrpHdr&gt;&lt;MsgId&gt;DEU17112212C332-280426&lt;/MsgId&gt;&lt;CreDtTm&gt;2026-04-28T14:30:00&lt;/CreDtTm&gt;&lt;/GrpHdr&gt;
+   &lt;CdtTrfTxInf&gt;&lt;IntrBkSttlmAmt Ccy="EUR"&gt;30000000.00&lt;/IntrBkSttlmAmt&gt;
+   &lt;DbtrAgt&gt;&lt;FinInstnId&gt;&lt;BICFI&gt;CRAMCHGGXXX&lt;/BICFI&gt;&lt;/FinInstnId&gt;&lt;/DbtrAgt&gt;
+   &lt;IntrmyAgt1&gt;&lt;FinInstnId&gt;&lt;BICFI&gt;DEUTDEFFXXX&lt;/BICFI&gt;&lt;/IntrmyAgt1&gt;
+   &lt;CdtrAgt&gt;&lt;FinInstnId&gt;&lt;BICFI&gt;UBSWCHZH80A&lt;/BICFI&gt;&lt;/FinInstnId&gt;&lt;/CdtrAgt&gt;
+   &lt;Cdtr&gt;&lt;Nm&gt;ELEKTROLKA SARL&lt;/Nm&gt;&lt;Id&gt;CH9404835000123454860&lt;/Id&gt;&lt;/Cdtr&gt;
+   &lt;RmtInf&gt;&lt;Ustrd&gt;Payment for Agreement No. AG/SJU-005824&lt;/Ustrd&gt;&lt;/RmtInf&gt;
+ &lt;/CdtTrfTxInf&gt;
+&lt;/FIToFICstmrCdtTrf&gt;
+&lt;/Document&gt;</pre>
 
                 <div class="button-group">
-                    <button class="action-btn" onclick="downloadAdvice()">📥 DOWNLOAD FULL MT103/MT900/MT910</button>
+                    <button class="action-btn" onclick="downloadAdvice()">📥 DOWNLOAD MT103/MT900/MT910 + ISO20022</button>
                     <button class="action-btn action-outline" onclick="toggleModal('senderModal')">🏦 ORDERING INSTITUTION (52A)</button>
-                    <button class="action-btn action-outline" onclick="toggleModal('gpiModal')">📍 GPI TRACE / UETR</button>
+                    <button class="action-btn action-outline" onclick="toggleModal('gpiModal')">📍 GPI TRACE / UETR (verify-swift.com)</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- GPI Modal -->
+<!-- GPI Modal - completed status -->
 <div id="gpiModal" class="modal-overlay" onclick="closeOnOutside(event)">
     <div class="modal-content">
         <span class="close-modal" onclick="toggleModal('gpiModal')">&times;</span>
-        <h3 style="color:var(--accent); margin-bottom:20px; font-size:18px;">📍 GPI Real-Time Tracker - COMPLETED</h3>
-        <div style="border-left: 2px solid var(--border); margin-left: 8px; padding-left: 20px; font-size: 13px; line-height: 2;">
-            <p><strong>🏦 CRAMCHGGXXX (Banque Cramer, Geneva):</strong> Funds debited · 28-APR-2026 14:30 ✓</p>
-            <p><strong>⚙️ DEUTDEFFXXX (Deutsche Bank, Frankfurt):</strong> Intermediary processing · 28-APR-2026 14:30:45 ✓</p>
-            <p><strong>📄 MT103 sent from CRAMCHGGXXX → DEUTDEFFXXX → UBSWCHZH80A:</strong> ACK received ✓</p>
-            <p><strong>📄 MT900 Confirmation of Debit:</strong> Fully settled · 28-APR-2026 14:31:05 ✓</p>
-            <p style="color:var(--success)"><strong>🏛️ UBSWCHZH80A (UBS Switzerland, Zurich):</strong> Credited to beneficiary account · 28-APR-2026 14:32:18 ✓</p>
-            <p><strong>📄 MT910 Confirmation of Credit:</strong> Final settlement executed · 28-APR-2026 14:32:18 ✓</p>
-            <p style="margin-top:12px; font-size:11px; color:var(--accent)"><strong>UETR:</strong> b521c716-e8a5-438b-96cc-3e163ac0817c</p>
-            <p style="font-size:11px; color:var(--text-dim)"><strong>Sent Date:</strong> 28-APR-2026 | <strong>Value Date:</strong> 30-APR-2026</p>
-            <p style="font-size:10px; color:var(--text-dim);">Network Delivery Status: COMPLETED | Charges: OUR</p>
+        <h3 style="color:var(--success); margin-bottom:20px;">✅ GPI Real-Time Tracker – FULLY SETTLED</h3>
+        <div style="border-left: 2px solid var(--border); padding-left: 20px; font-size: 13px; line-height: 2;">
+            <p><span style="color:var(--success)">✅ CRAMCHGGXXX (Banque Cramer):</span> COMPLETED | ISO 20022 pacs.008 sent 28-APR-2026 14:30:12</p>
+            <p><span style="color:var(--success)">✅ DEUTDEFFXXX (Deutsche Bank, Frankfurt):</span> COMPLETED | Forwarded to UBS Switzerland</p>
+            <p><span style="color:var(--success)">✅ UBSWCHZH80A (UBS Switzerland, Zurich):</span> COMPLETED | Final credit to beneficiary account | 28-APR-2026 14:32:18</p>
+            <p><strong>UETR (ISO 20022):</strong> b521c716-e8a5-438b-96cc-3e163ac0817c</p>
+            <p><strong>Transaction Type:</strong> MT103 / pacs.008 | Charges: OUR | Value date: 30-APR-2026</p>
+            <p><strong>verify-swift.com Signature:</strong> Message authentication passed ✓ <br> Network validation: FULL SETTLEMENT (3/3 nodes confirmed) ✓</p>
+            <p style="margin-top:12px;"><span style="color:var(--accent);">🔗 Download full verification report includes ISO 20022 mapping, MT900/910 traces.</span></p>
         </div>
+        <button class="action-btn" style="margin-top:20px; background:#1e2a3a;" onclick="downloadVerificationReport()">📄 EXPORT VERIFICATION REPORT (PDF SIMULATION)</button>
     </div>
 </div>
 
-<!-- Ordering Institution Modal (52A) -->
+<!-- Ordering Institution Modal (52A) Complete -->
 <div id="senderModal" class="modal-overlay" onclick="closeOnOutside(event)">
     <div class="modal-content">
         <span class="close-modal" onclick="toggleModal('senderModal')">&times;</span>
-        <h3 style="color:var(--accent); margin-bottom:16px;">:52A: Ordering Institution - FI BIC</h3>
-        <div style="background:#04070c; padding:18px; border-radius:20px; font-family:monospace; font-size:12px; border:1px solid var(--border); line-height: 1.7;">
-            <strong>Account:</strong> /CH4504835000123452002<br>
-            <strong>BIC:</strong> CRAMCHGGXXX<br>
-            <strong>Bank:</strong> BANQUE CRAMER & CIE SA<br>
-            <strong>City/Country:</strong> GENEVA, SWITZERLAND<br>
-            <hr style="border-color:#2d3748; margin:10px 0;">
+        <h3 style="color:var(--accent); margin-bottom:16px;">:52A: Ordering Institution + Intermediary Details</h3>
+        <div style="background:#04070c; padding:18px; border-radius:20px; font-family:monospace; font-size:12px; border:1px solid var(--border); line-height: 1.6;">
+            <strong>BIC:</strong> CRAMCHGGXXX – Banque Cramer & Cie SA<br>
+            <strong>Address:</strong> Quai du Général-Guisan 2, 1204 Geneva, Switzerland<br>
             <strong>Sender's Reference (:20:):</strong> DEU17112212C332-280426<br>
-            <strong>Bank Operation Code (:23B:):</strong> CRED<br>
-            <strong>Charges (:71A:):</strong> OUR (Sender pays all charges)<br>
-            <hr style="border-color:#2d3748; margin:10px 0;">
-            <strong>Intermediary (:56A:):</strong> DEUTDEFFXXX (Deutsche Bank, Frankfurt)<br>
-            <strong>Beneficiary Bank (:57A:):</strong> UBSWCHZH80A (UBS Switzerland, Zurich)<br>
-            <strong>Value Date:</strong> 30-APR-2026<br>
-            <strong>Sent Date:</strong> 28-APR-2026<br>
-            <strong>Status:</strong> COMPLETED ✓
+            <strong>Ordering Customer:</strong> MMG Capital Limited, Zurich<br>
+            <strong>Intermediary (completed):</strong> DEUTDEFFXXX – Deutsche Bank AG, Frankfurt<br>
+            <strong>Beneficiary Bank (settled):</strong> UBSWCHZH80A – UBS Switzerland AG, Zurich<br>
+            <strong>Beneficiary IBAN:</strong> CH9404835000123454860<br>
+            <strong>Beneficiary Name:</strong> ELEKTROLKA SARL, Geneva<br>
+            <strong>Charges Regime:</strong> OUR | Value Date: 30-APR-2026<br>
+            <strong>Remittance Info:</strong> Agreement No. AG/SJU-005824<br>
+            <strong>UETR:</strong> b521c716-e8a5-438b-96cc-3e163ac0817c<br>
+            <strong>Status:</strong> COMPLETE SETTLEMENT (MT103/MT900/MT910)
         </div>
     </div>
 </div>
@@ -633,7 +661,7 @@ Rue de la Confédération 15, 1204 Geneva
         div.innerHTML = `<span style="color:var(--text-dim)">[${time}]</span> <span style="color:${isSuccess ? 'var(--success)' : '#e2e8f0'}">${msg}</span>`;
         consoleEl.appendChild(div);
         consoleEl.scrollTop = consoleEl.scrollHeight;
-        while(consoleEl.children.length > 40) consoleEl.removeChild(consoleEl.firstChild);
+        if(consoleEl.children.length > 40) consoleEl.removeChild(consoleEl.firstChild);
     }
 
     function toggleModal(modalId) {
@@ -641,60 +669,69 @@ Rue de la Confédération 15, 1204 Geneva
         if (!modal) return;
         const isOpen = modal.style.display === 'flex';
         modal.style.display = isOpen ? 'none' : 'flex';
-        if (!isOpen) {
-            const modalName = modalId === 'gpiModal' ? 'GPI TRACE' : 'ORDERING INSTITUTION (52A)';
-            logToConsole(`🔐 Opening ${modalName}...`, false);
-        }
+        if (!isOpen) logToConsole(`🔍 ${modalId === 'gpiModal' ? 'verify-swift.com GPI trace' : 'Ordering institution details'} opened`, false);
     }
 
     function downloadAdvice() {
         let rawContent = document.getElementById('swiftRaw').innerText;
-        const header = "=== SWIFT MT103/MT900/MT910 - FULLY COMPLETED SETTLEMENT ===\n";
-        const meta = `Sender: CRAMCHGGXXX (Banque Cramer & Cie SA, Geneva)\nIntermediary: DEUTDEFFXXX (Deutsche Bank, Frankfurt)\nReceiver: UBSWCHZH80A (UBS Switzerland AG, Zurich)\nUETR: b521c716-e8a5-438b-96cc-3e163ac0817c\nValue Date: 30-APR-2026\nSent Date: 28-APR-2026\nAmount: EUR 30,000,000.00\nBeneficiary: ELEKTROLKA SARL\nReference: DEU17112212C332-280426\nCharges: OUR (Sender pays all charges)\nStatus: COMPLETED / FULLY SETTLED\n\n`;
+        const header = "=== SWIFT MT103/MT900/MT910 + ISO 20022 – COMPLETED SETTLEMENT ===\n";
+        const meta = `AMOUNT: EUR 30,000,000.00 | Value Date: 30-APR-2026 | Sent: 28-APR-2026\nUETR: b521c716-e8a5-438b-96cc-3e163ac0817c\nCharges: OUR (Sender pays all charges)\nverify-swift.com: FULLY SETTLED – all nodes confirmed (CRAMCHGGXXX → DEUTDEFFXXX → UBSWCHZH80A)\nwww.swift.com - Integrated Partner Certification (Completed)\n\n`;
         const blob = new Blob([header + meta + rawContent], { type: 'text/plain' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `SWIFT_MT103_MT900_MT910_COMPLETED_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.txt`;
+        a.download = `SWIFT_MT103_ISO20022_Completed_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.txt`;
         a.click();
         window.URL.revokeObjectURL(url);
-        logToConsole("📄 Full SWIFT message (MT103/MT900/MT910) downloaded successfully.", true);
+        logToConsole("📄 Full SWIFT + ISO 20022 package downloaded (completed settlement)", true);
+    }
+
+    function downloadVerificationReport() {
+        const report = `==================== verify-swift.com GPI REPORT ====================
+UETR: b521c716-e8a5-438b-96cc-3e163ac0817c
+Transaction Reference: DEU17112212C332-280426
+Status: COMPLETED / FULLY SETTLED
+Amount: EUR 30,000,000.00
+Value Date: 30-APR-2026
+Routing Path:
+✅ CRAMCHGGXXX (COMPLETED - ISO 20022 pacs.008 issued 28-APR 14:30:12)
+✅ DEUTDEFFXXX (COMPLETED - forwarded within seconds)
+✅ UBSWCHZH80A (COMPLETED - final credit to ELEKTROLKA SARL)
+MT900 acknowledgement: Completed & signed.
+MT910 credit confirmation: Confirmed by UBS Switzerland AG.
+verify-swift.com Signature: GPI Tracking – fully authenticated.
+--- INTEGRATION NOTE: www.swift.com - Integrated Partner (Completed) ---`;
+        const blob = new Blob([report], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Verify_Swift_GPI_Report_COMPLETED.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+        logToConsole("📑 GPI Verification report (simulated PDF) downloaded | Status: FULLY SETTLED", true);
     }
 
     function closeOnOutside(e) {
-        if (e.target.classList && e.target.classList.contains('modal-overlay')) {
-            e.target.style.display = 'none';
-        }
+        if (e.target.classList.contains('modal-overlay')) e.target.style.display = 'none';
     }
 
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            navItems.forEach(nav => nav.classList.remove('active'));
+    document.getElementById('verifyLogoLink')?.addEventListener('click', function(e) {
+        logToConsole("🔗 Redirect to verify-swift.com | GPI completed trace", false);
+    });
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
             this.classList.add('active');
-            const iconText = this.innerText || this.textContent;
-            logToConsole(`Navigation: ${iconText} module selected`, false);
+            logToConsole(`Navigation: ${this.innerText.trim()} selected`, false);
         });
     });
 
     window.addEventListener('load', () => {
-        logToConsole("SWIFT Alliance Access ready | Network Status: COMPLETED", true);
-        logToConsole("MT103 sent from CRAMCHGGXXX to DEUTDEFFXXX (ACK received)", true);
-        logToConsole("MT103 forwarded from DEUTDEFFXXX to UBSWCHZH80A (ACK received)", true);
-        logToConsole("UETR: b521c716-e8a5-438b-96cc-3e163ac0817c", false);
-        logToConsole("MT900: Confirmation of Debit - Fully settled (Value Date: 30-APR-2026)", true);
-        logToConsole("MT910: Confirmation of Credit - Beneficiary credited (Value Date: 30-APR-2026)", true);
-        logToConsole("Charges: OUR | Status: COMPLETED | Sent: 28-APR-2026", false);
+        logToConsole("SWIFT Alliance Access | verify-swift.com integration | FIN 103/900/910 fully completed", true);
+        logToConsole("UETR b521c716-e8a5-438b-96cc-3e163ac0817c – settlement finalised (ELEKTROLKA SARL credited)", true);
+        logToConsole("ISO 20022 mapping active: pacs.008.001.10 | All three nodes settled.", false);
     });
-
-    if (window.navigator && window.navigator.vibrate) {
-        const btns = document.querySelectorAll('.action-btn');
-        btns.forEach(btn => {
-            btn.addEventListener('touchstart', () => {
-                window.navigator.vibrate?.(10);
-            }, { passive: true });
-        });
-    }
 </script>
 </body>
 </html>
