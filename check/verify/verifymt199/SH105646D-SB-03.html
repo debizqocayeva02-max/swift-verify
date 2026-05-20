@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MT799 - Pre-Advice Message (EUR 75M)</title>
+    <title>MT799 - Pre-Advice Message (EUR 75M) with Correspondent Bank</title>
     <style>
         * {
             margin: 0;
@@ -22,7 +22,7 @@
         }
 
         .message-container {
-            max-width: 1300px;
+            max-width: 1400px;
             width: 100%;
             background: white;
             border-radius: 24px;
@@ -204,6 +204,7 @@
             padding: 18px;
             border-radius: 16px;
             border: 1px solid #e2e8f0;
+            transition: box-shadow 0.2s;
         }
 
         .bank-info-title {
@@ -246,6 +247,106 @@
             border-radius: 6px;
             font-size: 12px;
             display: inline-block;
+        }
+
+        /* Correspondent Bank Panel - same style as sender/receiver windows */
+        .correspondent-panel {
+            margin: 0 24px 24px 24px;
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .correspondent-header {
+            background: #1e3a5f;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 2px solid #f5b042;
+        }
+
+        .correspondent-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .correspondent-badge {
+            background: #f5b042;
+            color: #1e2a3a;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 30px;
+        }
+
+        .correspondent-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            background: #fffef7;
+        }
+
+        .corr-block {
+            padding: 20px 22px;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .corr-block:last-child {
+            border-right: none;
+        }
+
+        .corr-block-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #b45309;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .corr-detail {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .corr-label {
+            width: 110px;
+            color: #5b3e1f;
+            font-weight: 600;
+        }
+
+        .corr-value {
+            flex: 1;
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .intermediary-note {
+            background: #f1f5f9;
+            padding: 12px 22px;
+            font-size: 12px;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-top: 1px solid #cbd5e1;
+            font-family: monospace;
         }
 
         .transaction-info {
@@ -556,6 +657,12 @@
             .header-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .correspondent-details {
+                grid-template-columns: 1fr;
+            }
+            .corr-block {
+                border-right: none;
+            }
         }
         @media (max-width: 700px) {
             .header-grid {
@@ -584,7 +691,7 @@
 
         <div class="message-status">
             <div class="status-indicator"><span class="status-dot"></span><span class="status-text">NETWORK ACK/RECEIVED</span></div>
-            <div class="message-ref">BARCGB22/2026/MT799-EUR</div>
+            <div class="message-ref">BARCGB22/2026/MT799-EUR-CORR</div>
             <div class="message-date">📅 20th May, 2026 - 10:30 AM</div>
         </div>
 
@@ -627,72 +734,4 @@
 
                 <!-- 4. BENEFICIARY (Sky Tower SRL) -->
                 <div class="bank-info">
-                    <div class="bank-info-title">👤 BENEFICIARY</div>
-                    <div class="bank-info-content">
-                        <p><span class="bank-label">Company:</span><span class="bank-value"><strong>Sky Tower SRL</strong></span></p>
-                        <p><span class="bank-label">Beneficiary Address:</span><span class="bank-value">Bucharest Avenue,  Bravo Str., No: 136, Block D20, Enter 2, Flt.3, Apt. 39, Sector 2</span></p>
-                        <p><span class="bank-label">IBAN / Account:</span><span class="bank-value swift-code">RO95UGBI0000142028889EUR</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="transaction-info">
-            <div class="transaction-code"><span class="code-label">20: Transaction Ref:</span><span class="code-value">004444 1 of 1 MSI61HKD4 02672991088</span></div>
-            <div class="transaction-code"><span class="code-label">21: Related Ref:</span><span class="code-value">LOAN-AG/SJU-008893</span></div>
-            <div class="amount-display"><span class="amount-value">EUR 75,000,000.00</span></div>
-        </div>
-
-        <div class="message-text-container">
-            <div class="narrative-section">
-                <div class="narrative-title">📄 79: NARRATIVE (FREE FORMAT)</div>
-                <div class="narrative-content">
-                    <p>WE, THE UNDERSIGNED BANK OFFICERS, CONFIRM THAT THE FUNDS OF <span class="highlight">EUR (€) 75,000,000.00 (SEVENTY FIVE MILLION EUROS)</span> ARE BLOCKED ON THE DEBIT ACCOUNT OF <strong>MMG CAPITAL LIMITED (MMG BANK CORPORATION)</strong> IN BARCLAYS BANK PLC (HEAD OFFICE).</p>
-                    
-                    <p>BASED ON THE LOAN AGREEMENT NO. <strong>AG/SJU – 008893</strong> SIGNED ON <strong>19TH DAY OF MAY, 2026</strong>, BETWEEN MMG CAPITAL LIMITED (MMG BANK CORPORATION) AND TAPAN INSAAT SANAYI VE TICARET LIMITED SIRKETI, OUR BANK IS READY TO TRANSFER <span class="highlight">EUR (€) 75,000,000.00 (SEVENTY FIVE MILLION EUROS)</span> TO THE SKY TOWER SRL ACCOUNT (<strong>RO95UGBI0000142028889EUR</strong>) IN GARANTI BANK S.A., BUCHAREST BRANCH, ROMANIA (RO), WITHIN 2 (TWO) BANKING DAYS UPON RECEIPT OF THE INSURANCE CERTIFICATE, BASED ON INSURANCE AGREEMENT NO. <strong>0381/GB/7280</strong> FROM THE LLOYD'S INSURANCE COMPANY (LLOYD'S BANKING GROUP) AND EULER HERMES SERVICES UK (A COMPANY OF ALLIANZ GROUP) INSURANCE COMPANIES.</p>
-                    
-                    <p><em>THIS IS AN OPERATIVE SWIFT MESSAGE MT799 BY RESPONSIBLE BANK INQUIRY AND IS FULLY ASSIGNABLE, TRANSFERABLE AND DIVISIBLE IN ACCORDANCE WITH THE UNIFORM CUSTOMS AND PRACTICE AS PUBLISHED BY THE I.C.C. PUBLICATION PARIS (LATEST REVISION) AND GOVERNED BY THE LAWS OF FRANCE AND MAY BE VERIFIED ON A BANK-TO-BANK BASIS.</em></p>
-                    
-                    <p><strong>WE KINDLY ASK YOU TO SEND THIS MESSAGE TO THE FOLLOWING BANKING DETAILS:</strong><br>
-                    BENEFICIARY'S BANK: GARANTI BANK S.A., ROMANIA<br>
-                    BANK ADDRESS: F BUILDING, BUS. CTR, FABRICA DE GLUCOZA 5, NOVO PARK 3, BUCHAREST, ROMANIA<br>
-                    IBAN: RO95UGBI0000142028889EUR<br>
-                    SWIFT: UGBIROBUXXX<br>
-                    BENEFICIARY: SKY TOWER SRL</p>
-                </div>
-            </div>
-
-            <div class="signature-box">
-                <div class="date-field"><span class="date-label">DATE OF ISSUE:</span><span class="date-value">20TH DAY OF MAY, 2026</span></div>
-                <div class="officers-row">
-                    <div class="officer-card"><div class="officer-name">Mr. Cathal Deasy</div><div class="officer-title">Global Co-Head of Investment Banking</div></div>
-                    <div class="officer-card"><div class="officer-name">Mr. Nigel Higgins</div><div class="officer-title">Chairman</div></div>
-                </div>
-                <div class="pins-row">
-                    <div class="pin-card"><span class="pin-label">PIN CODE:</span><span class="pin-value">BARC11-RF-029</span></div>
-                    <div class="pin-card"><span class="pin-label">PIN CODE:</span><span class="pin-value">BARC11-GW-820</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="security-footer">
-            <div class="payment-cards">
-                <div class="card-icon visa">VISA</div>
-                <div class="card-icon mastercard"><div class="mastercard-circle circle-left"></div><div class="mastercard-circle circle-right"></div></div>
-                <div class="card-icon amex">AMEX</div>
-                <div style="color:white; font-size:28px;">🔒</div>
-            </div>
-            <div class="secure-badge">
-                <span>✅ Verified by Visa</span><span>🛡️ MasterCard SecureCode</span><span>🔐 Amex SafeKey</span>
-            </div>
-            <div class="verification-bar">
-                <div class="verify-label"><span>🛡️</span><span>3D SECURE VERIFICATION</span></div>
-                <div class="verify-code">MT799-75M-EUR</div>
-                <div class="verify-status"><span>✓</span><span>VERIFIED</span></div>
-            </div>
-            <div class="security-note">256-bit SSL encryption • Verified by Visa Secure • SWIFT Certified • ICC Paris Latest Revision</div>
-        </div>
-    </div>
-    <script>function downloadPDF(){window.print();}</script>
-</body>
-</html>
+                    <div class="bank-info-title">👤 BENEFICIA
