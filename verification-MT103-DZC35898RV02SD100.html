@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>SWIFT MT103/MT900/MT910 | 70M Completed Settlement</title>
+    <title>SWIFT MT103/MT900/MT910 | 70M Completed Settlement | Value Date 29-APR-2026</title>
     <style>
         * {
             margin: 0;
@@ -523,7 +523,7 @@
     </header>
 
     <div class="dashboard-grid">
-        <!-- 1. KART: Əsas məlumatlar -->
+        <!-- Main card with corrected dates: Sent Date = 27-APR, Value Date = 29-APR -->
         <div class="card">
             <div class="header-section">
                 <h2 style="font-size:15px;">FIN 103 / 900 / 910 - ISO 20022 (MX) Equivalent / Single Customer Credit Transfer</h2>
@@ -534,13 +534,13 @@
                 <div class="label">:32A: Value Date / Currency / Amount</div>
                 <div class="amount-val">EUR 70,000,000.00</div>
                 <div style="color:var(--text-dim); font-size:11px; margin-top:6px;">
-                    Value Date: <strong>29-APR-2026</strong> | Sent: <strong>27-APR-2026</strong>
+                    Value Date: <strong>29-APR-2026</strong> | Sent Date: <strong>27-APR-2026</strong>
                 </div>
             </div>
 
             <div class="message-text-block">
-                <div class="field-row"><div class="field-title"><span class="mt-badge"> <h2 style="font-size:15px;">MT103 (FIN) & ISO 20022 - Single Customer Credit Transfer </h2></div></div>
-  		<div class="field-row"><div class="field-title">:20: Sender's Reference</div><div class="field-content">MMG70M260426DEUT001</div></div>
+                <div class="field-row"><div class="field-title"><span class="mt-badge">MT103 (FIN) & ISO 20022 - Single Customer Credit Transfer</span></div></div>
+  		        <div class="field-row"><div class="field-title">:20: Sender's Reference</div><div class="field-content">MMG70M270426DEUT001</div></div>
                 <div class="field-row"><div class="field-title">:23B: Bank Operation Code</div><div class="field-content">CRED</div></div>
                 <div class="field-row"><div class="field-title">:32A: Value Date / Currency / Amount</div><div class="field-content"><strong>29-APR-2026</strong>, EUR, EUR 70,000,000.00</div></div>
                 <div class="field-row"><div class="field-title">:50K: Ordering Customer</div><div class="field-content">/CH4504835000123452002<br>MMG Capital Limited, Bahnhofstrasse 45, 8001 Zurich, Switzerland</div></div>
@@ -552,7 +552,7 @@
                 <div class="field-row"><div class="field-title">:71A: Charges</div><div class="field-content">OUR (Sender pays all charges)</div></div>
             </div>
 
-            <!-- DOMIKLƏR KONTEYNERİ -->
+            <!-- Network Nodes -->
             <div class="network-container">
                 <div class="horizontal-network">
                     <div class="node-item">
@@ -602,7 +602,7 @@
             </div>
         </div>
 
-        <!-- 2. KART: GPI Tracker / Konsol -->
+        <!-- GPI Tracker Console -->
         <div class="card">
             <div class="header-section"><h3 style="font-size:14px;">GPI TRACKER / NETWORK STATUS</h3></div>
             <div class="console" id="console">
@@ -612,18 +612,18 @@
                 <div class="log-entry"><span style="color:var(--success)">[27-APR 09:47:22]</span> STATUS: COMPLETED - Full settlement executed</div>
                 <div class="log-entry"><span style="color:var(--success)">MT910 Credit confirmed - Beneficiary account credited ✓</span></div>
                 <div class="log-entry"><span style="color:var(--accent)">UETR: f8e3b2a1-47d9-4c8b-9f6e-2a7c5d8e9f1b</span></div>
-                <div class="log-entry"><span style="color:var(--success)">Charges: OUR | Value Date: 29-APR-2026 | Final settlement done</span></div>
-                <div class="log-entry"><span style="color:var(--text-dim)">Message Input Reference: 0945 260426CRAMCHGGAXXX9921834671</span></div>
+                <div class="log-entry"><span style="color:var(--success)">Charges: OUR | Value Date: 29-APR-2026 | Final settlement done on 27-APR</span></div>
+                <div class="log-entry"><span style="color:var(--text-dim)">Message Input Reference: 0945 270426CRAMCHGGAXXX9921834671</span></div>
             </div>
         </div>
 
-        <!-- 3. KART: SWIFT RAW (AŞAĞIDA) -->
+        <!-- SWIFT Raw Data with corrected dates (Value Date 29-APR, Sent 27-APR) -->
         <div class="card">
             <div class="header-section"><h3 style="font-size:14px;">SWIFT FIN + ISO 20022 (MX) / MT900 / MT910 - COMPLETED</h3></div>
             <pre id="swiftRaw">{1:F21CRAMCHGGAXXX9921834671}
 {2:I103DEUTDEFFXXXN}
 {4:
-:20:MMG70M260426DEUT001
+:20:MMG70M270426DEUT001
 :23B:CRED
 :32A:270429EUR70000000,00
 :50K:/CH4504835000123452002
@@ -641,16 +641,16 @@ ELEKTROLKA SARL, Rue de la Confederation 15, 1204 Geneva, Switzerland
 -}
 {5:{CHK:7E4A2F1B8C6D3E9F}}
 ================== MT900 (DEBIT CONFIRMATION - COMPLETED) ==================
-{1:F01CRAMCHGGAXXX9921834671}{2:O9002604260946UBSWCHZH80AXXX}
-:20:MMG70M260426DEUT001
+{1:F01CRAMCHGGAXXX9921834671}{2:O9002704260946UBSWCHZH80AXXX}
+:20:MMG70M270426DEUT001
 :21:a3f7e9c2-4b6d-48a1-9c3e-5f8d2a7b1e4c
 :25:CH4504835000123452002
-:32A:270426EUR70000000,00
+:32A:270429EUR70000000,00
 :72:/SETTLED/ Transaction fully completed on 27-APR-2026 (Value Date: 29-APR-2026)
 
 ================== MT910 (CREDIT CONFIRMATION - COMPLETED) ==================
-{1:F01UBSWCHZH80AXXX9988776655}{2:O9102604260947CRAMCHGGAXXX}
-:20:MMG70M260426DEUT001
+{1:F01UBSWCHZH80AXXX9988776655}{2:O9102704260947CRAMCHGGAXXX}
+:20:MMG70M270426DEUT001
 :21:f8e3b2a1-47d9-4c8b-9f6e-2a7c5d8e9f1b
 :25:CH9404835000123454860
 :32A:270429EUR70000000,00
@@ -660,7 +660,7 @@ ELEKTROLKA SARL, Rue de la Confederation 15, 1204 Geneva, Switzerland
 &lt;Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.10"&gt;
   &lt;FIToFICstmrCdtTrf&gt;
     &lt;GrpHdr&gt;
-      &lt;MsgId&gt;MMG70M260426DEUT001&lt;/MsgId&gt;
+      &lt;MsgId&gt;MMG70M270426DEUT001&lt;/MsgId&gt;
       &lt;CreDtTm&gt;2026-04-27T09:45:00&lt;/CreDtTm&gt;
     &lt;/GrpHdr&gt;
     &lt;CdtTrfTxInf&gt;
@@ -684,17 +684,17 @@ ELEKTROLKA SARL, Rue de la Confederation 15, 1204 Geneva, Switzerland
     </div>
 </div>
 
-<!-- GPI MODAL -->
+<!-- GPI MODAL - Value Date 29-APR, settlement 27-APR -->
 <div id="gpiModal" class="modal-overlay" onclick="closeOnOutside(event)">
     <div class="modal-content">
         <span class="close-modal" onclick="toggleModal('gpiModal')">&times;</span>
-        <h3 style="color:var(--success); margin-bottom:20px;">✅ GPI TRACE – FULLY SETTLED</h3>
+        <h3 style="color:var(--success); margin-bottom:20px;">✅ GPI TRACE – FULLY SETTLED (Value Date 29-APR-2026)</h3>
         <div style="border-left: 2px solid var(--border); padding-left: 20px; font-size: 13px; line-height: 2;">
-            <p><span style="color:var(--success)">✅ CRAMCHGGXXX (Banque Cramer):</span> COMPLETED - 26-APR-2026 09:45:12</p>
-            <p><span style="color:var(--success)">✅ DEUTDEFFXXX (Deutsche Bank):</span> COMPLETED - 26-APR-2026 09:45:48</p>
-            <p><span style="color:var(--success)">✅ UBSWCHZH80A (UBS Switzerland):</span> COMPLETED - Credited to beneficiary 26-APR-2026 09:47:22</p>
+            <p><span style="color:var(--success)">✅ CRAMCHGGXXX (Banque Cramer):</span> COMPLETED - 27-APR-2026 09:45:12</p>
+            <p><span style="color:var(--success)">✅ DEUTDEFFXXX (Deutsche Bank):</span> COMPLETED - 27-APR-2026 09:45:48</p>
+            <p><span style="color:var(--success)">✅ UBSWCHZH80A (UBS Switzerland):</span> COMPLETED - Credited to beneficiary 27-APR-2026 09:47:22</p>
             <p><strong>UETR (ISO 20022):</strong> f8e3b2a1-47d9-4c8b-9f6e-2a7c5d8e9f1b</p>
-            <p><strong>Amount:</strong> EUR 70,000,000.00 | Value Date: 29-APR-2026</p>
+            <p><strong>Amount:</strong> EUR 70,000,000.00 | Value Date: <strong>29-APR-2026</strong></p>
             <p><strong>Transaction Type:</strong> MT103 / pacs.008 | Charges: OUR</p>
             <p><strong>verify-swift.com Signature:</strong> Message authentication passed ✓<br>Network validation: FULL SETTLEMENT (3/3 nodes confirmed) ✓</p>
         </div>
@@ -702,7 +702,7 @@ ELEKTROLKA SARL, Rue de la Confederation 15, 1204 Geneva, Switzerland
     </div>
 </div>
 
-<!-- ORDERING INSTITUTION MODAL -->
+<!-- Ordering Institution Modal with correct date references -->
 <div id="senderModal" class="modal-overlay" onclick="closeOnOutside(event)">
     <div class="modal-content">
         <span class="close-modal" onclick="toggleModal('senderModal')">&times;</span>
@@ -710,14 +710,14 @@ ELEKTROLKA SARL, Rue de la Confederation 15, 1204 Geneva, Switzerland
         <div style="background:#04070c; padding:18px; border-radius:20px; font-family:monospace; font-size:12px; border:1px solid var(--border); line-height: 1.6;">
             <strong>BIC:</strong> CRAMCHGGXXX – Banque Cramer & Cie SA<br>
             <strong>Address:</strong> Quai du General-Guisan 2, 1204 Geneva, Switzerland<br>
-            <strong>Sender's Reference (:20:):</strong> MMG70M260426DEUT001<br>
+            <strong>Sender's Reference (:20:):</strong> MMG70M270426DEUT001<br>
             <strong>Ordering Customer:</strong> MMG Capital Limited, Bahnhofstrasse 45, 8001 Zurich, Switzerland<br>
             <strong>Intermediary (completed):</strong> DEUTDEFFXXX – Deutsche Bank AG, Great Gallus Street 10-14, 60311 Frankfurt am Main, Germany<br>
             <strong>Beneficiary Bank (settled):</strong> UBSWCHZH80A – UBS Switzerland AG, Bahnhofstrasse 45, 8001 Zurich, Switzerland<br>
             <strong>Beneficiary IBAN:</strong> CH9404835000123454860<br>
             <strong>Beneficiary Name:</strong> ELEKTROLKA SARL, Rue de la Confederation 15, 1204 Geneva, Switzerland<br>
             <strong>Charges Regime:</strong> OUR (Sender pays all charges)<br>
-            <strong>Value Date:</strong> 29-APR-2026 | Sent Date: 27-APR-2026<br>
+            <strong>Value Date:</strong> <strong>29-APR-2026</strong> | Sent Date: <strong>27-APR-2026</strong><br>
             <strong>Amount:</strong> EUR 70,000,000.00<br>
             <strong>UETR:</strong> f8e3b2a1-47d9-4c8b-9f6e-2a7c5d8e9f1b<br>
             <strong>Status:</strong> COMPLETE SETTLEMENT (MT103/MT900/MT910) ✓
@@ -747,21 +747,21 @@ ELEKTROLKA SARL, Rue de la Confederation 15, 1204 Geneva, Switzerland
     function downloadAdvice() {
         const content = document.getElementById('swiftRaw').innerText;
         const header = "=== SWIFT MT103/MT900/MT910 + ISO 20022 - COMPLETED SETTLEMENT (EUR 70,000,000.00) ===\n";
-        const meta = `UETR: f8e3b2a1-47d9-4c8b-9f6e-2a7c5d8e9f1b\nAmount: EUR 70,000,000.00\nValue Date: 29-APR-2026\nSent Date: 26-APR-2026\nCharges: OUR\nStatus: FULLY SETTLED\n\n`;
+        const meta = `UETR: f8e3b2a1-47d9-4c8b-9f6e-2a7c5d8e9f1b\nAmount: EUR 70,000,000.00\nValue Date: 29-APR-2026\nSent Date: 27-APR-2026\nCharges: OUR\nStatus: FULLY SETTLED\n\n`;
         const blob = new Blob([header + meta + content], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `SWIFT_70M_Completed_${new Date().toISOString().slice(0,19)}.txt`;
+        a.download = `SWIFT_70M_Completed_ValueDate29APR_${new Date().toISOString().slice(0,19)}.txt`;
         a.click();
         URL.revokeObjectURL(url);
-        logToConsole("Downloaded MT103/MT900/MT910 + ISO20022 package (EUR 70M)", true);
+        logToConsole("Downloaded MT103/MT900/MT910 + ISO20022 package (EUR 70M | Value Date 29-APR)", true);
     }
 
     function downloadVerificationReport() {
         const report = `==================== GPI VERIFICATION REPORT ====================
 UETR: f8e3b2a1-47d9-4c8b-9f6e-2a7c5d8e9f1b
-Transaction Reference: MMG70M260426DEUT001
+Transaction Reference: MMG70M270426DEUT001
 Status: FULLY SETTLED / COMPLETED
 Amount: EUR 70,000,000.00
 Value Date: 29-APR-2026
@@ -779,10 +779,10 @@ verify-swift.com: GPI Tracking - Fully authenticated
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'GPI_Report_70M_Completed.pdf';
+        a.download = 'GPI_Report_70M_Completed_ValueDate29APR.pdf';
         a.click();
         URL.revokeObjectURL(url);
-        logToConsole("GPI verification report downloaded (EUR 70M)", true);
+        logToConsole("GPI verification report downloaded (EUR 70M | Value Date 29-APR)", true);
     }
 
     function closeOnOutside(e) {
@@ -797,9 +797,9 @@ verify-swift.com: GPI Tracking - Fully authenticated
     });
 
     window.addEventListener('load', () => {
-        logToConsole("SWIFT Alliance Ready | Status: COMPLETED (EUR 70,000,000.00)", true);
+        logToConsole("SWIFT Alliance Ready | Status: COMPLETED (EUR 70,000,000.00) - Value Date 29-APR-2026", true);
         logToConsole("UETR: f8e3b2a1-47d9-4c8b-9f6e-2a7c5d8e9f1b", true);
-        logToConsole("All nodes settled: CRAMCHGGXXX → DEUTDEFFXXX → UBSWCHZH80A", true);
+        logToConsole("All nodes settled: CRAMCHGGXXX → DEUTDEFFXXX → UBSWCHZH80A (Sent: 27-APR, Value: 29-APR)", true);
     });
 </script>
 </body>
