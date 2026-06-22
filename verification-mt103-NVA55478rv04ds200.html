@@ -591,7 +591,7 @@
 
             <div class="message-text-block">
                 <div class="field-row"><div class="field-title"><span class="mt-badge">MT103 (FIN) & ISO 20022 - Single Customer Credit Transfer</span></div></div>
-  		        <div class="field-row"><div class="field-title">:20: Sender's Reference</div><div class="field-content">MMG70M270426DEUT001</div></div>
+  		        <div class="field-row"><div class="field-title">:20: Sender's Reference</div><div class="field-content">MMG70M230626DEUT001</div></div>
                 <div class="field-row"><div class="field-title">:23B: Bank Operation Code</div><div class="field-content">CRED</div></div>
                 <div class="field-row"><div class="field-title">:32A: Value Date / Currency / Amount</div><div class="field-content"><strong>26-JUNE-2026</strong>, EUR, EUR 50,000,000.00</div></div>
                 <div class="field-row"><div class="field-title">:50K: Ordering Customer</div><div class="field-content">/CH4504835000123452002<br>MMG Capital Limited, Bahnhofstrasse 45, 8001 Zurich, Switzerland</div></div>
@@ -599,7 +599,7 @@
                 <div class="field-row"><div class="field-title">:56A: Intermediary</div><div class="field-content">COBADEFFXXX - COMMERZBANK AG, Kaiserstrasse 16, 60311 Frankfurt am Main, Germany (PENDING)</div></div>
                 <div class="field-row"><div class="field-title">:57A: Beneficiary Bank</div><div class="field-content">PIRBGRAAXXX - Piraeus Bank SA, 4 Amerikis Street, Athens, Greece</div></div>
                 <div class="field-row"><div class="field-title">:59: Beneficiary Customer</div><div class="field-content">/GR1301721300005130114446482<br>General Metal Forte PC, 18757 Greece, Keratsini, Bouboulinas Str., 4-6.</div></div>
-                <div class="field-row"><div class="field-title">:70: Remittance Info</div><div class="field-content">Payment for Agreement No. AG/SJU-008971 / Investment Transfer</div></div>
+                <div class="field-row"><div class="field-title">:70: Remittance Info</div><div class="field-content">Payment for Loan Agreement No. AG/SJU-008893 / Investment Transfer</div></div>
                 <div class="field-row"><div class="field-title">:71A: Charges</div><div class="field-content">OUR (Sender pays all charges)</div></div>
             </div>
 
@@ -687,12 +687,12 @@ COMMERZBANK AG, Kaiserstrasse 16, 60311 Frankfurt am Main, Germany
 PIRAEUS BANK SA, 4 Amerikis Street, Athens, Greece
 :59:/GR1301721300005130114446482
 General Metal Forte PC, 18757 Greece, Keratsini, Bouboulinas Str., 4-6.
-:70:Payment for Agreement No. AG/SJU-008971 / Investment Transfer
+:70:Payment for Loan Agreement No. AG/SJU-008893 / Investment Transfer
 :71A:OUR
 -}
 {5:{CHK:7E4A2F1B8C6D3E9F}}
 ================== MT900 (DEBIT CONFIRMATION - PENDING) ==================
-{1:F01CRAMCHGGAXXX9921834671}{2:O9002306260946UBSWCHZH80AXXX}
+{1:F01CRAMCHGGAXXX9921834671}{2:O9002306260946PIRBGRAAXXX}
 :20:MMG70M230626DEUT001
 :21:f5ed4285-ea7e-4dd4-b650-def0918a9748
 :25:CH4504835000123452002
@@ -700,7 +700,7 @@ General Metal Forte PC, 18757 Greece, Keratsini, Bouboulinas Str., 4-6.
 :72:/PENDING/ Awaiting intermediary confirmation (Value Date: 26-JUNE-2026)
 
 ================== MT910 (CREDIT CONFIRMATION - PENDING) ==================
-{1:F01UBSWCHZH80AXXX9988776655}{2:O9102306260947CRAMCHGGAXXX}
+{1:F01PIRBGRAAXXX9988776655}{2:O9102306260947CRAMCHGGAXXX}
 :20:MMG70M230626DEUT001
 :21:f5ed4285-ea7e-4dd4-b650-def0918a9748
 :25:GR1301721300005130114446482
@@ -721,7 +721,7 @@ General Metal Forte PC, 18757 Greece, Keratsini, Bouboulinas Str., 4-6.
       &lt;IntrmyAgt1&gt;&lt;FinInstnId&gt;&lt;BICFI&gt;COBADEFFXXX&lt;/BICFI&gt;&lt;/FinInstnId&gt;&lt;/IntrmyAgt1&gt;
       &lt;CdtrAgt&gt;&lt;FinInstnId&gt;&lt;BICFI&gt;PIRBGRAAXXX&lt;/BICFI&gt;&lt;/FinInstnId&gt;&lt;/CdtrAgt&gt;
       &lt;Cdtr&gt;&lt;Nm&gt;General Metal Forte PC&lt;/Nm&gt;&lt;Id&gt;GR1301721300005130114446482&lt;/Id&gt;&lt;/Cdtr&gt;
-      &lt;RmtInf&gt;&lt;Ustrd&gt;Payment for Agreement No. AG/SJU-008971 / Investment Transfer&lt;/Ustrd&gt;&lt;/RmtInf&gt;
+      &lt;RmtInf&gt;&lt;Ustrd&gt;Payment for Loan Agreement No. AG/SJU-008893 / Investment Transfer&lt;/Ustrd&gt;&lt;/RmtInf&gt;
     &lt;/CdtTrfTxInf&gt;
   &lt;/FIToFICstmrCdtTrf&gt;
 &lt;/Document&gt;</pre>
@@ -798,7 +798,7 @@ General Metal Forte PC, 18757 Greece, Keratsini, Bouboulinas Str., 4-6.
     function downloadAdvice() {
         const content = document.getElementById('swiftRaw').innerText;
         const header = "=== SWIFT MT103/MT900/MT910 + ISO 20022 - PENDING (EUR 50,000,000.00) ===\n";
-        const meta = `UETR: f5ed4285-ea7e-4dd4-b650-def0918a9748\nAmount: EUR 50,000,000.00\nValue Date: 26-JUNE-2026\nSent Date: 23-JUNE-2026\nCharges: OUR\nStatus: PENDING - Awaiting Intermediary\n\n`;
+        const meta = `UETR: f5ed4285-ea7e-4dd4-b650-def0918a9748\nAmount: EUR 50,000,000.00\nValue Date: 26-JUNE-2026\nSent Date: 23-JUNE-2026\nCharges: OUR\nStatus: PENDING - Awaiting Intermediary\nLoan Agreement: AG/SJU-008893\n\n`;
         const blob = new Blob([header + meta + content], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -817,6 +817,7 @@ Status: PENDING - Awaiting Intermediary
 Amount: EUR 50,000,000.00
 Value Date: 26-JUNE-2026
 Sent Date: 23-JUNE-2026
+Loan Agreement: AG/SJU-008893
 Routing Path:
 ✅ CRAMCHGGXXX, Quai du General-Guisan 2, 1204 Geneva, Switzerland (COMPLETED - 09:45:12)
 ⏳ COBADEFFXXX, Kaiserstrasse 16, 60311 Frankfurt am Main, Germany (PENDING)
@@ -850,6 +851,7 @@ verify-swift.com: GPI Tracking - 1/3 nodes confirmed
     window.addEventListener('load', () => {
         logToConsole("SWIFT Alliance Ready | Status: PENDING (EUR 50,000,000.00) - Value Date 26-JUNE-2026", false);
         logToConsole("UETR: f5ed4285-ea7e-4dd4-b650-def0918a9748", false);
+        logToConsole("Loan Agreement: AG/SJU-008893", false);
         logToConsole("Nodes: CRAMCHGGXXX ✓ COMPLETED → COBADEFFXXX ⏳ PENDING → PIRBGRAAXXX ⏳ PENDING", false);
     });
 </script>
