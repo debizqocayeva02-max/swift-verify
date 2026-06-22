@@ -151,6 +151,7 @@
             flex-direction: column;
             gap: 18px;
             padding: 16px;
+            flex: 1;
         }
 
         .horizontal-network {
@@ -332,6 +333,17 @@
             }
             .node-name {
                 font-size: 10px;
+            }
+            .security-badges {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .security-badges .badge-item {
+                font-size: 9px;
+                padding: 4px 10px;
+            }
+            .security-footer {
+                padding: 12px 14px;
             }
         }
 
@@ -545,6 +557,93 @@
             word-break: break-word;
             line-height: 1.45;
         }
+
+        /* ===== TƏHLÜKƏSİZLİK BADGELERİ - FOOTER ===== */
+        .security-footer {
+            margin-top: auto;
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .security-badges {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .security-badges .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            color: var(--text-dim);
+            background: rgba(255,255,255,0.04);
+            padding: 4px 12px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .security-badges .badge-item:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .security-badges .badge-item .icon {
+            font-size: 14px;
+        }
+
+        .security-badges .badge-item .label {
+            font-size: 9px;
+            text-transform: none;
+            letter-spacing: 0.3px;
+            color: var(--text-dim);
+            margin-bottom: 0;
+        }
+
+        .security-badges .badge-item .check {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .security-text {
+            font-size: 10px;
+            color: var(--text-dim);
+            opacity: 0.5;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .security-text .highlight {
+            color: var(--success);
+            opacity: 1;
+        }
+
+        @media (max-width: 480px) {
+            .security-badges .badge-item {
+                font-size: 8px;
+                padding: 3px 8px;
+                gap: 3px;
+            }
+            .security-badges .badge-item .icon {
+                font-size: 11px;
+            }
+            .security-footer {
+                padding: 12px 14px;
+            }
+            .security-text {
+                font-size: 8px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -731,6 +830,47 @@ General Metal Forte PC, 18757 Greece, Keratsini, Bouboulinas Str., 4-6.
                 <button class="action-btn action-outline" onclick="toggleModal('senderModal')">🏦 ORDERING INSTITUTION (52A)</button>
                 <button class="action-btn action-outline" onclick="toggleModal('gpiModal')">📍 GPI TRACE / UETR</button>
             </div>
+        </div>
+    </div>
+
+    <!-- ===== TƏHLÜKƏSİZLİK BADGELERİ - ƏN AŞAĞIDA ===== -->
+    <div class="security-footer">
+        <div class="security-badges">
+            <div class="badge-item">
+                <span class="icon">🔒</span>
+                <span class="label">SSL Secure</span>
+                <span class="check">✓</span>
+            </div>
+            <div class="badge-item">
+                <span class="icon">💳</span>
+                <span class="label">Visa</span>
+                <span class="check">✓</span>
+            </div>
+            <div class="badge-item">
+                <span class="icon">💳</span>
+                <span class="label">Mastercard</span>
+                <span class="check">✓</span>
+            </div>
+            <div class="badge-item">
+                <span class="icon">🛡️</span>
+                <span class="label">PCI DSS</span>
+                <span class="check">✓</span>
+            </div>
+            <div class="badge-item">
+                <span class="icon">🌐</span>
+                <span class="label">SWIFT GPI</span>
+                <span class="check">✓</span>
+            </div>
+            <div class="badge-item">
+                <span class="icon">🔐</span>
+                <span class="label">256-bit AES</span>
+                <span class="check">✓</span>
+            </div>
+        </div>
+        <div class="security-text">
+            <span class="highlight">●</span> All transactions are secured with end-to-end encryption 
+            <span class="highlight">●</span> Verified by SWIFT GPI 
+            <span class="highlight">●</span> PCI DSS Level 1 Compliant
         </div>
     </div>
 </div>
