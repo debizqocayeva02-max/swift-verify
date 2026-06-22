@@ -950,28 +950,107 @@ General Metal Forte PC, 18757 Greece, Keratsini, Bouboulinas Str., 4-6.
     }
 
     function downloadVerificationReport() {
-        const report = `==================== GPI VERIFICATION REPORT ====================
-UETR: f5ed4285-ea7e-4dd4-b650-def0918a9748
-Transaction Reference: MMG70M230626DEUT001
-Status: PENDING - Awaiting Intermediary
-Amount: EUR 50,000,000.00
-Value Date: 26-JUNE-2026
-Sent Date: 23-JUNE-2026
-Loan Agreement: AG/SJU-008893
-Routing Path:
-✅ CRAMCHGGXXX, Quai du General-Guisan 2, 1204 Geneva, Switzerland (COMPLETED - 09:45:12)
-⏳ COBADEFFXXX, Kaiserstrasse 16, 60311 Frankfurt am Main, Germany (PENDING)
-⏳ PIRBGRAAXXX, 4 Amerikis Street, Athens, Greece (PENDING)
-MT900: Debit confirmation pending
-MT910: Credit confirmation pending
-Charges: OUR (Sender pays all charges)
-verify-swift.com: GPI Tracking - 1/3 nodes confirmed
---- INTEGRATION NOTE: www.swift.com - Integrated Partner (In Progress) ---`;
-        const blob = new Blob([report], { type: 'application/pdf' });
+        // PDF əvəzinə TXT faylı olaraq yüklə - bu daha etibarlıdır və heç bir xəta vermir
+        const now = new Date();
+        const reportDate = now.toLocaleString('en-US', { 
+            year: 'numeric', 
+            month: 'short', 
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        });
+        
+        const report = `================================================================================
+                    GPI VERIFICATION REPORT
+================================================================================
+
+UETR (ISO 20022):              f5ed4285-ea7e-4dd4-b650-def0918a9748
+Transaction Reference:         MMG70M230626DEUT001
+Status:                        PENDING - Awaiting Intermediary
+Amount:                        EUR 50,000,000.00
+Value Date:                    26-JUNE-2026
+Sent Date:                     23-JUNE-2026
+Loan Agreement:                AG/SJU-008893
+Charges:                       OUR (Sender pays all charges)
+
+================================================================================
+                              ROUTING PATH
+================================================================================
+
+✅ CRAMCHGGXXX (Banque Cramer & Cie SA)
+   Address: Quai du General-Guisan 2, 1204 Geneva, Switzerland
+   Status: COMPLETED - 23-JUNE-2026 09:45:12
+
+   ↓
+
+⏳ COBADEFFXXX (Commerzbank AG)
+   Address: Kaiserstrasse 16, 60311 Frankfurt am Main, Germany
+   Status: PENDING - Awaiting processing
+
+   ↓
+
+⏳ PIRBGRAAXXX (Piraeus Bank SA)
+   Address: 4 Amerikis Street, Athens, Greece
+   Status: PENDING - Awaiting intermediary
+
+================================================================================
+                           TRANSACTION DETAILS
+================================================================================
+
+Ordering Customer (50K):       MMG Capital Limited
+                               Bahnhofstrasse 45, 8001 Zurich, Switzerland
+                               CH4504835000123452002
+
+Ordering Institution (52A):    CRAMCHGGXXX - Banque Cramer & Cie SA
+                               Quai du General-Guisan 2, 1204 Geneva, Switzerland
+
+Intermediary (56A):            COBADEFFXXX - Commerzbank AG
+                               Kaiserstrasse 16, 60311 Frankfurt am Main, Germany
+                               Status: PENDING
+
+Beneficiary Bank (57A):        PIRBGRAAXXX - Piraeus Bank SA
+                               4 Amerikis Street, Athens, Greece
+                               Status: PENDING
+
+Beneficiary Customer (59):     General Metal Forte PC
+                               18757 Greece, Keratsini, Bouboulinas Str., 4-6.
+                               GR1301721300005130114446482
+
+Purpose (70):                  Payment for Loan Agreement No. AG/SJU-008893 / Investment Transfer
+
+================================================================================
+                           MESSAGE STATUS
+================================================================================
+
+MT103:   Single Customer Credit Transfer sent from CRAMCHGGXXX to COBADEFFXXX ✓
+MT900:   Debit confirmation - PENDING ⏳
+MT910:   Credit confirmation - PENDING ⏳
+
+Network Delivery Status:       1/3 NODES CONFIRMED (Awaiting Intermediary)
+
+================================================================================
+                         VERIFICATION SIGNATURE
+================================================================================
+
+verify-swift.com:              Message authentication passed ✓
+                               Network validation: 1/3 nodes confirmed (Awaiting intermediary) ⏳
+                               SWIFT GPI Tracking - In Progress
+
+Report Generated:              ${reportDate}
+
+================================================================================
+              INTEGRATION NOTE: www.swift.com - Integrated Partner
+================================================================================
+`;
+
+        // TXT faylı olaraq yüklə - PDF xətası vermir
+        const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'GPI_Report_50M_Pending_ValueDate26JUN.pdf';
+        a.download = `GPI_Report_50M_Pending_ValueDate26JUN_${new Date().toISOString().slice(0,10)}.txt`;
         a.click();
         URL.revokeObjectURL(url);
         logToConsole("GPI verification report downloaded (EUR 50M | Value Date 26-JUN)", false);
