@@ -29,6 +29,7 @@ const refMap = {
     'MMG70M260426DEUT001': 'https://verify-swift.com/verification-mt103-dzc35898rv02sd100',
     'MSI61HKD402672991088': 'https://verify-swift.com/check/verify/verifymt199/sh105646d-sb-03',
     'MMG70M250626DEUT001': 'https://verify-swift.com/verification-mt103-nva55478rv04ds200',
+    'MMG70M250626DEUT001': 'https://verify-swift.com/verification-mt103-345345200.html',
     'DEU17112212C332-230326': 'https://verify-swift.com/verfication-cob-by653atm688v'
 };
 
